@@ -8,73 +8,50 @@ $show_report = isset($_GET['report']) && $_GET['report'] == '1';
 
 // Check if PDF generation is requested for the report
 if ($show_report && isset($_POST['save_pdf']) && $_POST['save_pdf'] == '1') {
-    header("Location: generate_class_report_pdf.php?" . http_build_query($_POST));
+    header("Location: generate_user_report_pdf.php?" . http_build_query($_POST));
     ob_end_clean();
     exit;
 }
 
-// Fetch levels for the form (used in both views)
-$level_sql = "SELECT id, name FROM levels";
-$level_result = $conn->query($level_sql);
-if (!$level_result) {
-    die("Error fetching levels: " . $conn->error);
-}
+// Define the fixed roles
+$roles = ['Admin', 'Teacher'];
 
-// Report View: Fetch class with level filter
+// Report View: Fetch users with role filter
 if ($show_report) {
-    $selected_level = isset($_POST['level_id']) ? $conn->real_escape_string($_POST['level_id']) : '';
-    $where_clause = $selected_level ? "WHERE c.level_id = ?" : "";
-    $sql = "SELECT c.*, l.name AS level_name 
-            FROM class c 
-            LEFT JOIN levels l ON c.level_id = l.id 
-            $where_clause 
-            ORDER BY c.id";
+    $selected_role = isset($_POST['role']) ? $_POST['role'] : '';
+    $where_clause = $selected_role ? "WHERE u.role = ?" : "";
+    $sql = "SELECT * FROM user u $where_clause ORDER BY u.id";
 
-    if ($selected_level) {
+    if ($selected_role) {
         $stmt = $conn->prepare($sql);
-        if (!$stmt) {
-            die("Prepare failed: " . $conn->error);
-        }
-        $stmt->bind_param("s", $selected_level);
+        $stmt->bind_param("s", $selected_role);
         $stmt->execute();
-        $class_result = $stmt->get_result();
+        $users_result = $stmt->get_result();
     } else {
-        $class_result = $conn->query($sql);
-        if (!$class_result) {
-            die("Query failed: " . $conn->error);
-        }
+        $users_result = $conn->query($sql);
     }
 } else {
-    // Management View: Fetch class
-    $sql = "SELECT c.*, l.name AS level_name 
-            FROM class c 
-            LEFT JOIN levels l ON c.level_id = l.id 
-            ORDER BY c.id";
-    $class_result = $conn->query($sql);
-    if (!$class_result) {
-        die("Query failed: " . $conn->error);
-    }
+    // Management View: Fetch users
+    $sql = "SELECT * FROM user";
+    $users_result = $conn->query($sql);
 
-    // Debugging: Log the number of rows
-    error_log("Number of class fetched: " . $class_result->num_rows);
-
-    // Fetch class data for edit modal
-    $edit_class = null;
+    // Fetch user data for edit modal
+    $edit_user = null;
     $edit_error = null;
-    if (isset($_GET['edit_id'])) {
-        $edit_id = $conn->real_escape_string($_GET['edit_id']);
-        $sql = "SELECT * FROM class WHERE id = ?";
+    if (isset($_GET['edit_id']) && is_numeric($_GET['edit_id'])) {
+        $edit_id = (int) $_GET['edit_id'];
+        $sql = "SELECT * FROM user WHERE id = ?";
         $stmt = $conn->prepare($sql);
         if ($stmt === false) {
             $edit_error = "Failed to prepare statement: " . $conn->error;
         } else {
-            $stmt->bind_param("s", $edit_id); // Changed to "s" for VARCHAR
+            $stmt->bind_param("i", $edit_id);
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
                 if ($result->num_rows > 0) {
-                    $edit_class = $result->fetch_assoc();
+                    $edit_user = $result->fetch_assoc();
                 } else {
-                    $edit_error = "No class found with ID: " . htmlspecialchars($edit_id);
+                    $edit_error = "No user found with ID: $edit_id";
                 }
             } else {
                 $edit_error = "Query execution failed: " . $stmt->error;
@@ -82,12 +59,9 @@ if ($show_report) {
             $stmt->close();
         }
     } elseif (isset($_GET['edit_id'])) {
-        $edit_error = "Invalid class ID provided";
+        $edit_error = "Invalid user ID provided";
     }
 }
-
-// Display success/error message if redirected from process_class.php
-$message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message'])) : '';
 ?>
 
 <!DOCTYPE html>
@@ -96,7 +70,7 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $show_report ? 'Class Report' : 'Class Management'; ?></title>
+    <title><?php echo $show_report ? 'User Report' : 'Users Management'; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -254,7 +228,6 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
 
         .modal-content {
             border-radius: 16px;
-            width: 60%;
             border: none;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
@@ -283,7 +256,6 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
 
         .form-select {
             border-radius: 4px;
-            width: 100%;
         }
 
         .form-group {
@@ -298,7 +270,6 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
 
         .form-control {
             border-radius: 4px;
-            width: 100%;
         }
 
         .form-control::placeholder {
@@ -353,53 +324,39 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
             gap: 15px;
             align-items: center;
         }
-
-        .alert {
-            border-radius: 10px;
-        }
     </style>
 </head>
 
 <body>
     <div class="container-fluid py-2">
-        <?php if ($message): ?>
-            <div class="alert <?php echo strpos($message, 'Error') === false ? 'alert-success' : 'alert-danger'; ?> alert-dismissible fade show"
-                role="alert">
-                <?php echo $message; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif; ?>
-
         <?php if ($show_report): ?>
             <!-- Report View -->
-            <h1 class="h3 mb-3 text-gray-800">Class Report</h1>
-            <p class="mb-4 text-muted">Generate a report of class details by level.</p>
+            <h1 class="h3 mb-3 text-gray-800">User Report</h1>
+            <p class="mb-4 text-muted">Generate a report of user details by role.</p>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Class Report</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">User Report</h6>
                     <div>
                         <button class="btn btn-primary me-2" onclick="window.print()"><i
                                 class="fas fa-print me-2"></i>Print</button>
 
-                        <a href="classes.php" class="btn btn-secondary"><i class="fas fa-arrow-left me-2"></i>Back to
+                        <a href="user.php" class="btn btn-secondary"><i class="fas fa-arrow-left me-2"></i>Back to
                             Management</a>
                     </div>
                 </div>
                 <div class="card-body">
-                    <!-- Level Filter -->
+                    <!-- Role Filter -->
                     <form method="post" id="filter_form" class="filter-form mb-4">
                         <div class="d-flex align-items-center">
-                            <label class="form-label">Level:</label>
-                            <select name="level_id" class="form-select" onchange="this.form.submit()">
-                                <option value="">All Levels</option>
-                                <?php
-                                $level_result->data_seek(0);
-                                while ($level = $level_result->fetch_assoc()): ?>
-                                    <option value="<?php echo htmlspecialchars($level['id']); ?>" <?php echo $selected_level == $level['id'] ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($level['name']); ?>
+                            <label class="form-label">Role:</label>
+                            <select name="role" class="form-select" onchange="this.form.submit()">
+                                <option value="">All Roles</option>
+                                <?php foreach ($roles as $role): ?>
+                                    <option value="<?php echo htmlspecialchars($role); ?>" <?php echo $selected_role == $role ? 'selected' : ''; ?>>
+                                        <?php echo htmlspecialchars($role); ?>
                                     </option>
-                                <?php endwhile; ?>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <input type="hidden" name="save_pdf" id="save_pdf" value="0">
@@ -411,24 +368,20 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Level</th>
+                                    <th>Username</th>
+                                    <!--  <th>Password</th> -->
+                                    <th>Role</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if ($class_result->num_rows > 0): ?>
-                                    <?php while ($row = $class_result->fetch_assoc()): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($row['id']); ?></td>
-                                            <td><?php echo htmlspecialchars($row['name']); ?></td>
-                                            <td><?php echo htmlspecialchars($row['level_name'] ?: 'N/A'); ?></td>
-                                        </tr>
-                                    <?php endwhile; ?>
-                                <?php else: ?>
+                                <?php while ($row = $users_result->fetch_assoc()): ?>
                                     <tr>
-                                        <td colspan="3" class="text-center">No class found.</td>
+                                        <td><?php echo htmlspecialchars($row['id']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['username']); ?></td>
+                                        <!-- Note: For security, consider hashing -->
+                                        <td><?php echo htmlspecialchars($row['role']); ?></td>
                                     </tr>
-                                <?php endif; ?>
+                                <?php endwhile; ?>
                             </tbody>
                         </table>
                     </div>
@@ -436,17 +389,17 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
             </div>
         <?php else: ?>
             <!-- Management View -->
-            <h1 class="h3 mb-3 text-gray-800">Class Management</h1>
-            <p class="mb-4 text-muted">Effortlessly manage class records with options to add, edit, or delete details.</p>
+            <h1 class="h3 mb-3 text-gray-800">Users Management</h1>
+            <p class="mb-4 text-muted">Effortlessly manage user records with options to add, edit, or delete details.</p>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Class</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Users</h6>
                     <div>
-                        <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addClassModal">
-                            <i class="fas fa-plus me-2"></i>Add New Class
+                        <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                            <i class="fas fa-plus me-2"></i>Add New User
                         </button>
-                        <a href="classes.php?report=1" class="btn btn-success">
+                        <a href="user.php?report=1" class="btn btn-success">
                             <i class="fas fa-file-alt me-2"></i>Generate Report
                         </a>
                     </div>
@@ -457,81 +410,74 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Level</th>
+                                    <th>Username</th>
+
+                                    <th>Role</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if ($class_result->num_rows > 0): ?>
-                                    <?php while ($row = $class_result->fetch_assoc()): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($row['id']); ?></td>
-                                            <td><?php echo htmlspecialchars($row['name']); ?></td>
-                                            <td><?php echo htmlspecialchars($row['level_name'] ?: 'N/A'); ?></td>
-                                            <td>
-                                                <a href="classes.php?edit_id=<?php echo urlencode($row['id']); ?>"
-                                                    class="btn btn-warning btn-circle btn-sm" title="Edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="#" class="btn btn-danger btn-circle btn-sm" title="Delete"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteClassModal"
-                                                    data-class-id="<?php echo htmlspecialchars($row['id']); ?>">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    <?php endwhile; ?>
-                                <?php else: ?>
+                                <?php while ($row = $users_result->fetch_assoc()): ?>
                                     <tr>
-                                        <td colspan="4" class="text-center">No class found. Please add a class to get started.
+                                        <td><?php echo htmlspecialchars($row['id']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['username']); ?></td>
+                                        <!--   <td><?php echo htmlspecialchars($row['password']); ?></td> -->
+                                        <!-- Note: For security, consider hashing -->
+                                        <td><?php echo htmlspecialchars($row['role']); ?></td>
+                                        <td>
+                                            <a href="user.php?edit_id=<?php echo htmlspecialchars($row['id']); ?>"
+                                                class="btn btn-warning btn-circle btn-sm" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-danger btn-circle btn-sm" title="Delete"
+                                                data-bs-toggle="modal" data-bs-target="#deleteUserModal"
+                                                data-user-id="<?php echo htmlspecialchars($row['id']); ?>">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
-                                <?php endif; ?>
+                                <?php endwhile; ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <!-- Add Class Modal -->
-            <div class="modal fade" id="addClassModal" tabindex="-1" aria-labelledby="addClassModalLabel"
-                aria-hidden="true">
+            <!-- Add User Modal -->
+            <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addClassModalLabel">Add New Class</h5>
+                            <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="process_class.php">
-                                <div class="col g-2">
-                                    <div>
+                            <form method="post" action="process_user.php">
+                                <div class="row g-2">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="form-label required">Class ID</label>
-                                            <input type="text" name="id" class="form-control" placeholder="Enter class ID"
-                                                maxlength="50" required>
+                                            <label class="form-label required">Username</label>
+                                            <input type="text" name="username" class="form-control"
+                                                placeholder="Enter username" required>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="form-label required">Class Name</label>
-                                            <input type="text" name="name" class="form-control"
-                                                placeholder="Enter class name" maxlength="100" required>
+                                            <label class="form-label required">Password</label>
+                                            <input type="password" name="password" class="form-control"
+                                                placeholder="Enter password" required>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="form-label required">Level</label>
-                                            <select name="level_id" class="form-select" required>
-                                                <option value="">Select Level</option>
-                                                <?php
-                                                $level_result->data_seek(0);
-                                                while ($level = $level_result->fetch_assoc()): ?>
-                                                    <option value="<?php echo htmlspecialchars($level['id']); ?>">
-                                                        <?php echo htmlspecialchars($level['name']); ?>
+                                            <label class="form-label required">Role</label>
+                                            <select name="role" class="form-select" required>
+                                                <option value="">Select Role</option>
+                                                <?php foreach ($roles as $role): ?>
+                                                    <option value="<?php echo htmlspecialchars($role); ?>">
+                                                        <?php echo htmlspecialchars($role); ?>
                                                     </option>
-                                                <?php endwhile; ?>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                     </div>
@@ -547,49 +493,47 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                 </div>
             </div>
 
-            <!-- Edit Class Modal -->
-            <div class="modal fade" id="editClassModal" tabindex="-1" aria-labelledby="editClassModalLabel"
+            <!-- Edit User Modal -->
+            <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="editClassModalLabel">Edit Class</h5>
+                            <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <?php if ($edit_class): ?>
-                                <form method="post" action="process_class.php">
-                                    <input type="hidden" name="class_id"
-                                        value="<?php echo htmlspecialchars($edit_class['id']); ?>">
-                                    <div class="col g-2">
-                                        <div>
+                            <?php if ($edit_user): ?>
+                                <form method="post" action="process_user.php">
+                                    <input type="hidden" name="user_id"
+                                        value="<?php echo htmlspecialchars($edit_user['id']); ?>">
+                                    <div class="row g-2">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label required">Class ID</label>
-                                                <input type="text" name="id" class="form-control"
-                                                    value="<?php echo htmlspecialchars($edit_class['id']); ?>" maxlength="50"
-                                                    required>
+                                                <label class="form-label required">Username</label>
+                                                <input type="text" name="username" class="form-control"
+                                                    value="<?php echo htmlspecialchars($edit_user['username']); ?>"
+                                                    placeholder="Enter username" required>
                                             </div>
                                         </div>
-                                        <div>
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label required">Class Name</label>
-                                                <input type="text" name="name" class="form-control"
-                                                    value="<?php echo htmlspecialchars($edit_class['name']); ?>"
-                                                    placeholder="Enter class name" maxlength="100" required>
+                                                <label class="form-label required">Password</label>
+                                                <input type="password" name="password" class="form-control"
+                                                    value="<?php echo htmlspecialchars($edit_user['password']); ?>"
+                                                    placeholder="Enter password" required>
                                             </div>
                                         </div>
-                                        <div>
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label required">Level</label>
-                                                <select name="level_id" class="form-select" required>
-                                                    <option value="">Select Level</option>
-                                                    <?php
-                                                    $level_result->data_seek(0);
-                                                    while ($level = $level_result->fetch_assoc()): ?>
-                                                        <option value="<?php echo htmlspecialchars($level['id']); ?>" <?php echo $edit_class['level_id'] == $level['id'] ? 'selected' : ''; ?>>
-                                                            <?php echo htmlspecialchars($level['name']); ?>
+                                                <label class="form-label required">Role</label>
+                                                <select name="role" class="form-select" required>
+                                                    <option value="">Select Role</option>
+                                                    <?php foreach ($roles as $role): ?>
+                                                        <option value="<?php echo htmlspecialchars($role); ?>" <?php echo $edit_user['role'] == $role ? 'selected' : ''; ?>>
+                                                            <?php echo htmlspecialchars($role); ?>
                                                         </option>
-                                                    <?php endwhile; ?>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -601,7 +545,7 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                                     </div>
                                 </form>
                             <?php else: ?>
-                                <p class="text-danger">No class data found for editing.
+                                <p class="text-danger">No user data found for editing.
                                     <?php echo isset($edit_error) ? htmlspecialchars($edit_error) : ''; ?>
                                 </p>
                             <?php endif; ?>
@@ -610,21 +554,21 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                 </div>
             </div>
 
-            <!-- Delete Class Modal -->
-            <div class="modal fade" id="deleteClassModal" tabindex="-1" aria-labelledby="deleteClassModalLabel"
+            <!-- Delete User Modal -->
+            <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deleteClassModalLabel">Confirm Deletion</h5>
+                            <h5 class="modal-title" id="deleteUserModalLabel">Confirm Deletion</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to delete this class? This action cannot be undone.</p>
+                            <p>Are you sure you want to delete this user? This action cannot be undone.</p>
                         </div>
                         <div class="modal-footer">
-                            <form method="post" action="process_class.php">
-                                <input type="hidden" name="class_id" id="delete_class_id">
+                            <form method="post" action="process_user.php">
+                                <input type="hidden" name="user_id" id="delete_user_id">
                                 <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
                                 <button type="submit" name="submit_delete" class="btn-delete"><i
                                         class="fas fa-trash me-2"></i>Delete</button>
@@ -648,16 +592,16 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                 "order": [[0, "asc"]] // Sort by ID by default
             });
 
-            // Populate class_id in delete modal (management view only)
-            $('#deleteClassModal').on('show.bs.modal', function (event) {
+            // Populate user_id in delete modal (management view only)
+            $('#deleteUserModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
-                var classId = button.data('class-id');
-                $('#delete_class_id').val(classId);
+                var userId = button.data('user-id');
+                $('#delete_user_id').val(userId);
             });
 
-            // Auto-show edit modal if edit_id is in URL and class data exists (management view only)
-            <?php if (!$show_report && isset($_GET['edit_id']) && $edit_class): ?>
-                $('#editClassModal').modal('show');
+            // Auto-show edit modal if edit_id is in URL and user data exists (management view only)
+            <?php if (!$show_report && isset($_GET['edit_id']) && $edit_user): ?>
+                $('#editUserModal').modal('show');
             <?php endif; ?>
         });
     </script>
@@ -667,5 +611,8 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
 
 <?php
 ob_end_flush();
+if (isset($stmt)) {
+    $stmt->close();
+}
 $conn->close();
 ?>

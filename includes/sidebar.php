@@ -41,13 +41,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Student Options:</h6>
                 <a class="collapse-item <?php echo ($activePage == 'students') ? 'active' : ''; ?>"
-                    href="students.php">All Students</a>
-                <a class="collapse-item <?php echo ($activePage == 'student-add') ? 'active' : ''; ?>"
-                    href="student-add.php">Add Student</a>
-                <a class="collapse-item <?php echo ($activePage == 'student-attendance') ? 'active' : ''; ?>"
-                    href="student-attendance.php">Attendance</a>
-                <a class="collapse-item <?php echo ($activePage == 'student-reports') ? 'active' : ''; ?>"
-                    href="student-reports.php">Reports</a>
+                    href="students.php">Students</a>
             </div>
         </div>
     </li>
@@ -67,13 +61,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Teacher Options:</h6>
                 <a class="collapse-item <?php echo ($activePage == 'teachers') ? 'active' : ''; ?>"
-                    href="teachers.php">All Teachers</a>
-                <a class="collapse-item <?php echo ($activePage == 'teacher-add') ? 'active' : ''; ?>"
-                    href="teacher-add.php">Add Teacher</a>
-                <a class="collapse-item <?php echo ($activePage == 'teacher-attendance') ? 'active' : ''; ?>"
-                    href="teacher-attendance.php">Attendance</a>
-                <a class="collapse-item <?php echo ($activePage == 'teacher-schedule') ? 'active' : ''; ?>"
-                    href="teacher-schedule.php">Schedule</a>
+                    href="teachers.php">Teachers</a>
+
             </div>
         </div>
     </li>
@@ -109,27 +98,25 @@
     </li>
 
     <!-- Nav Item - Attendance Collapse Menu -->
-    <li class="nav-item <?php echo (strpos($activePage, 'attendance') !== false) ? 'active' : ''; ?>">
-        <a class="nav-link <?php echo (strpos($activePage, 'attendance') !== false) ? '' : 'collapsed'; ?>" href="#"
+    <li class="nav-item <?php echo (strpos($activePage, 'scores') !== false) ? 'active' : ''; ?>">
+        <a class="nav-link <?php echo (strpos($activePage, 'scores') !== false) ? '' : 'collapsed'; ?>" href="#"
             data-toggle="collapse" data-target="#collapseAttendance"
-            aria-expanded="<?php echo (strpos($activePage, 'attendance') !== false) ? 'true' : 'false'; ?>"
+            aria-expanded="<?php echo (strpos($activePage, 'scores') !== false) ? 'true' : 'false'; ?>"
             aria-controls="collapseAttendance">
             <i class="fas fa-fw fa-calendar-check"></i>
-            <span>Attendance</span>
+            <span>Scores</span>
         </a>
         <div id="collapseAttendance"
-            class="collapse <?php echo (strpos($activePage, 'attendance') !== false) ? 'show' : ''; ?>"
+            class="collapse <?php echo (strpos($activePage, 'scores') !== false) ? 'show' : ''; ?>"
             aria-labelledby="headingAttendance" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Attendance Options:</h6>
-                <a class="collapse-item <?php echo ($activePage == 'attendance') ? 'active' : ''; ?>"
-                    href="attendance.php">Overview</a>
-                <a class="collapse-item <?php echo ($activePage == 'attendance-student') ? 'active' : ''; ?>"
-                    href="attendance-student.php">Student Attendance</a>
-                <a class="collapse-item <?php echo ($activePage == 'attendance-teacher') ? 'active' : ''; ?>"
-                    href="attendance-teacher.php">Teacher Attendance</a>
-                <a class="collapse-item <?php echo ($activePage == 'attendance-reports') ? 'active' : ''; ?>"
-                    href="attendance-reports.php">Reports</a>
+                <h6 class="collapse-header">Score Options:</h6>
+                <a class="collapse-item <?php echo ($activePage == 'scores') ? 'active' : ''; ?>" href="scores.php">Add
+                    Scores</a>
+                <a class="collapse-item <?php echo ($activePage == 'view_scores') ? 'active' : ''; ?>"
+                    href="view_scores.php">View Score</a>
+                <a class="collapse-item <?php echo ($activePage == 'scores_report') ? 'active' : ''; ?>"
+                    href="score_report.php">Reports</a>
             </div>
         </div>
     </li>
@@ -155,26 +142,20 @@
             aria-labelledby="headingUsers" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">User Options:</h6>
-                <a class="collapse-item <?php echo ($activePage == 'users') ? 'active' : ''; ?>" href="users.php">All
+                <a class="collapse-item <?php echo ($activePage == 'users') ? 'active' : ''; ?>" href="user.php">
                     Users</a>
-                <a class="collapse-item <?php echo ($activePage == 'user-add') ? 'active' : ''; ?>"
-                    href="user-add.php">Add User</a>
-                <a class="collapse-item <?php echo ($activePage == 'user-roles') ? 'active' : ''; ?>"
-                    href="user-roles.php">Roles</a>
-                <a class="collapse-item <?php echo ($activePage == 'user-permissions') ? 'active' : ''; ?>"
-                    href="user-permissions.php">Permissions</a>
             </div>
         </div>
     </li>
 
-    <!-- Nav Item - Settings Collapse Menu -->
+    <!-- Nav Item - Register Collapse Menu -->
     <li class="nav-item <?php echo (strpos($activePage, 'setting') !== false) ? 'active' : ''; ?>">
         <a class="nav-link <?php echo (strpos($activePage, 'setting') !== false) ? '' : 'collapsed'; ?>" href="#"
             data-toggle="collapse" data-target="#collapseSettings"
             aria-expanded="<?php echo (strpos($activePage, 'setting') !== false) ? 'true' : 'false'; ?>"
             aria-controls="collapseSettings">
             <i class="fas fa-fw fa-cogs"></i>
-            <span>Settings</span>
+            <span>Register</span>
         </a>
         <div id="collapseSettings"
             class="collapse <?php echo (strpos($activePage, 'setting') !== false) ? 'show' : ''; ?>"
@@ -182,13 +163,12 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Setting Options:</h6>
                 <a class="collapse-item <?php echo ($activePage == 'settings') ? 'active' : ''; ?>"
-                    href="settings.php">General Settings</a>
+                    href="settings.php">All Register</a>
                 <a class="collapse-item <?php echo ($activePage == 'setting-school') ? 'active' : ''; ?>"
-                    href="setting-school.php">School Info</a>
+                    href="setting-school.php">Expire Registet</a>
                 <a class="collapse-item <?php echo ($activePage == 'setting-academic') ? 'active' : ''; ?>"
-                    href="setting-academic.php">Academic Year</a>
-                <a class="collapse-item <?php echo ($activePage == 'setting-appearance') ? 'active' : ''; ?>"
-                    href="setting-appearance.php">Appearance</a>
+                    href="setting-academic.php">Reject</a>
+
             </div>
         </div>
     </li>
