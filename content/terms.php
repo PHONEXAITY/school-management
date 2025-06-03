@@ -232,9 +232,7 @@ $conn->close();
                         <td>${cls.id}</td>
                         <td>${cls.name}</td>
                         <td>
-                            <a href="#" class="btn btn-info btn-circle btn-sm view-btn" data-id="${cls.id}" title="View">
-                                <i class="fas fa-eye"></i>
-                            </a>
+                 
                             <a href="#" class="btn btn-warning btn-circle btn-sm edit-btn" data-id="${cls.id}" title="Edit" data-toggle="modal" data-target="#editClassModal">
                                 <i class="fas fa-edit"></i>
                             </a>

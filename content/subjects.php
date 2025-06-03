@@ -83,6 +83,7 @@ $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,6 +93,7 @@ $conn->close();
     <!-- Font Awesome for icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Subject Management</h1>
@@ -125,7 +127,8 @@ $conn->close();
     </div>
 
     <!-- Add Subject Modal -->
-    <div class="modal fade" id="addClassModal" tabindex="-1" role="dialog" aria-labelledby="addClassModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addClassModal" tabindex="-1" role="dialog" aria-labelledby="addClassModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -156,7 +159,8 @@ $conn->close();
     </div>
 
     <!-- Edit Subject Modal -->
-    <div class="modal fade" id="editClassModal" tabindex="-1" role="dialog" aria-labelledby="editClassModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editClassModal" tabindex="-1" role="dialog" aria-labelledby="editClassModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -184,7 +188,8 @@ $conn->close();
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteClassModal" tabindex="-1" role="dialog" aria-labelledby="deleteClassModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteClassModal" tabindex="-1" role="dialog" aria-labelledby="deleteClassModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -227,9 +232,7 @@ $conn->close();
                         <td>${cls.id}</td>
                         <td>${cls.name}</td>
                         <td>
-                            <a href="#" class="btn btn-info btn-circle btn-sm view-btn" data-id="${cls.id}" title="View">
-                                <i class="fas fa-eye"></i>
-                            </a>
+                        
                             <a href="#" class="btn btn-warning btn-circle btn-sm edit-btn" data-id="${cls.id}" title="Edit" data-toggle="modal" data-target="#editClassModal">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -375,4 +378,5 @@ $conn->close();
         });
     </script>
 </body>
+
 </html>

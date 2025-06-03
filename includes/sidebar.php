@@ -1,12 +1,10 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-school"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">School Management</div>
-    </a>
+    <div class="logo-container text-center my-3">
+        <img src="img/mylogo.png" alt="" width="150" height="150">
+    </div>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">

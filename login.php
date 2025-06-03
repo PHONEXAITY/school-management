@@ -7,11 +7,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    if ($username == "admin" && $password == "admin123") {
+    // Sanitize inputs to prevent SQL injection
+    $username = mysqli_real_escape_string($conn, $username);
+    $password = mysqli_real_escape_string($conn, $password);
+
+    // Query the user table
+    $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) == 1) {
+        $user = mysqli_fetch_assoc($result);
+        $role = $user['role'];
+
+        // Start session and store user data
         session_start();
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        header("Location: index.php");
+        $_SESSION['role'] = $role;
+
+        // Redirect based on role
+        if ($role == 'Admin') {
+            header("Location: index.php");
+        } elseif ($role == 'Teacher') {
+            header("Location: index.php");
+        }
         exit;
     } else {
         $errorMsg = "Invalid username or password";
@@ -27,74 +46,207 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="School Management System Login">
     <meta name="author" content="">
-
     <title>School Management - Login</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <style>
+        body {
+            background-color: #E5E5E5FF;
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 900px;
+            height: 500px;
+            display: flex;
+        }
+
+        .login-image {
+            background-color: #4171DAFF;
+            width: 50%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            background-image: url('https://via.placeholder.com/450x500');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+
+        .login-image .logo-container {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .login-image .logo-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+
+        .login-image .text-overlay {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .login-image .text-overlay h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-image .text-overlay h3 {
+            font-size: 1.2rem;
+        }
+
+        .login-form {
+            width: 50%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: white;
+            color: #333;
+        }
+
+        .login-form h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4171DAFF;
+        }
+
+        .login-form h3::before {
+            content: "✈️";
+            margin-right: 10px;
+        }
+
+        .login-form .form-control {
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .login-form .form-control:focus {
+            border-color: #4171DAFF;
+            box-shadow: 0 0 5px rgba(65, 113, 218, 0.5);
+        }
+
+        .btn-login {
+            background-color: #044FEFFF;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 5px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: #033e99;
+        }
+
+        .link-text {
+            font-size: 0.9rem;
+            color: #4171DAFF;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .link-text a {
+            color: #4171DAFF;
+            text-decoration: none;
+        }
+
+        .link-text a:hover {
+            text-decoration: underline;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                width: 100%;
+                height: auto;
+                flex-direction: column;
+            }
+
+            .login-image,
+            .login-form {
+                width: 100%;
+                height: auto;
+                min-height: 250px;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-gradient-primary">
-    <div class="container">
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-12 col-md-9">
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">School Management System</h1>
-                                    </div>
-                                    <?php if (!empty($errorMsg)) : ?>
-                                        <div class="alert alert-danger"><?php echo $errorMsg; ?></div>
-                                    <?php endif; ?>
-                                    <form class="user" method="post" action="login.php">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" name="username" id="username" aria-describedby="emailHelp" placeholder="Enter Username...">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember Me</label>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </button>
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.php">Forgot Password?</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<body>
+    <div class="login-container">
+        <div class="login-image">
+            <div class="logo-container">
+                <img src="img/mylogo.png" alt="School Logo" width="150" height="150">
+            </div>
+            <div class="text-overlay">
+                <h2>Sanfan Primary</h2>
+                <h3>School Management System</h3>
+            </div>
+        </div>
+
+        <div class="login-form">
+            <h3>Welcome</h3>
+            <?php if (!empty($errorMsg)): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?php echo htmlspecialchars($errorMsg); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+            <?php endif; ?>
+            <form method="post" action="login.php">
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="username" id="username" placeholder="User Name"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password"
+                        required>
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+            <div class="link-text">
+                <a href="#">Forgot your password?</a>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="sb-admin-2/vendor/jquery/jquery.min.js"></script>
-    <script src="sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="sb-admin-2/js/sb-admin-2.min.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

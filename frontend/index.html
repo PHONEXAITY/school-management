@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="lo"> <!-- Changed lang to "lo" for Lao -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,89 +22,126 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Phetsarath OT' } /* Kanit supports Lao */
-        
+
+        body {
+            font-family: 'Phetsarath OT'
+        }
+
+        /* Kanit supports Lao */
+
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        
+
         .glass-effect {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .floating-animation {
             animation: float 3s ease-in-out infinite;
         }
-        
+
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
-        
+
         .slide-in {
             animation: slideIn 0.5s ease-out;
         }
-        
+
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .hover-scale {
             transition: transform 0.3s ease;
         }
-        
+
         .hover-scale:hover {
             transform: scale(1.05);
         }
-        
+
         .glow {
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
-        
+
         .pulse-glow {
             animation: pulseGlow 2s ease-in-out infinite alternate;
         }
-        
+
         @keyframes pulseGlow {
-            from { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-            to { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
+            from {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            }
+
+            to {
+                box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
+            }
         }
-        
+
         .typing {
             overflow: hidden;
             border-right: 2px solid #fff;
             white-space: nowrap;
             animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
         }
-        
+
         @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
         }
-        
+
         @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #fff; }
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: #fff;
+            }
         }
-        
+
         .fade-in-up {
             animation: fadeInUp 0.8s ease-out;
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .particle {
             position: absolute;
             width: 4px;
@@ -112,55 +150,63 @@
             border-radius: 50%;
             animation: particle 6s linear infinite;
         }
-        
+
         @keyframes particle {
             0% {
                 transform: translateY(0) rotate(0deg);
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(-100vh) rotate(360deg);
                 opacity: 0;
             }
         }
-        
+
         .scroll-indicator {
             animation: scrollBounce 2s ease-in-out infinite;
         }
-        
+
         @keyframes scrollBounce {
-            0%, 20%, 50%, 80%, 100% {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
                 transform: translateY(0);
             }
+
             40% {
                 transform: translateY(-10px);
             }
+
             60% {
                 transform: translateY(-5px);
             }
         }
-        
+
         .text-gradient {
             background: linear-gradient(45deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .card-hover {
             transition: all 0.3s ease;
         }
-        
+
         .card-hover:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-        
+
         .achievement-badge {
             position: relative;
             overflow: hidden;
         }
-        
+
         .achievement-badge::before {
             content: '';
             position: absolute;
@@ -173,34 +219,45 @@
             transition: all 0.6s;
             opacity: 0;
         }
-        
+
         .achievement-badge:hover::before {
             animation: shine 0.6s ease-in-out;
             opacity: 1;
         }
-        
+
         @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
         }
-        
+
         .news-ticker {
             display: flex;
             overflow: hidden;
             white-space: nowrap;
         }
-        
+
         .news-content {
             display: inline-block;
             animation: ticker 35s linear infinite;
         }
-        
+
         @keyframes ticker {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
         }
     </style>
 </head>
+
 <body class="bg-gray-50">
     <!-- News Ticker -->
     <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 overflow-hidden">
@@ -219,7 +276,8 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center pulse-glow">
+                    <div
+                        class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center pulse-glow">
                         <i class="fas fa-graduation-cap text-white text-xl"></i>
                     </div>
                     <div>
@@ -227,29 +285,40 @@
                         <p class="text-sm text-gray-600">ໂຮງຮຽນປະຖົມສານຝັນ</p>
                     </div>
                 </div>
-                
+
                 <div class="hidden md:flex space-x-6">
-                    <a href="#" onclick="showPage('home')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ໜ້າຫຼັກ</a>
-                    <a href="#" onclick="showPage('register')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ລົງທະບຽນ</a>
-                    <a href="#" onclick="showPage('scores')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ເບິ່ງຄະແນນ</a>
-                    <a href="#" onclick="showPage('activities')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ກິດຈະກຳ</a>
-                    <a href="#" onclick="showPage('gallery')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ຮູບພາບກິດຈະກຳ</a>
-                    <a href="#" onclick="showPage('about')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ກ່ຽວກັບພວກເຮົາ</a>
+                    <a href="#" onclick="showPage('home')"
+                        class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ໜ້າຫຼັກ</a>
+                    <a href="#" onclick="showPage('register')"
+                        class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ລົງທະບຽນ</a>
+                    <a href="#" onclick="showPage('scores')"
+                        class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ເບິ່ງຄະແນນ</a>
+                    <a href="#" onclick="showPage('activities')"
+                        class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ກິດຈະກຳ</a>
+                    <a href="#" onclick="showPage('gallery')"
+                        class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ຮູບພາບກິດຈະກຳ</a>
+                    <a href="#" onclick="showPage('about')"
+                        class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ກ່ຽວກັບພວກເຮົາ</a>
                 </div>
-                
+
                 <button class="md:hidden" onclick="toggleMobileMenu()">
                     <i class="fas fa-bars text-2xl text-gray-700"></i>
                 </button>
             </div>
-            
+
             <!-- Mobile Menu -->
             <div id="mobileMenu" class="hidden md:hidden pb-4">
                 <a href="#" onclick="showPage('home')" class="block py-2 text-gray-700 hover:text-blue-600">ໜ້າຫຼັກ</a>
-                <a href="#" onclick="showPage('register')" class="block py-2 text-gray-700 hover:text-blue-600">ລົງທະບຽນ</a>
-                <a href="#" onclick="showPage('scores')" class="block py-2 text-gray-700 hover:text-blue-600">ເບິ່ງຄະແນນ</a>
-                <a href="#" onclick="showPage('activities')" class="block py-2 text-gray-700 hover:text-blue-600">ກິດຈະກຳ</a>
-                <a href="#" onclick="showPage('gallery')" class="block py-2 text-gray-700 hover:text-blue-600">ຮູບພາບກິດຈະກຳ</a>
-                <a href="#" onclick="showPage('about')" class="block py-2 text-gray-700 hover:text-blue-600">ກ່ຽວກັບພວກເຮົາ</a>
+                <a href="#" onclick="showPage('register')"
+                    class="block py-2 text-gray-700 hover:text-blue-600">ລົງທະບຽນ</a>
+                <a href="#" onclick="showPage('scores')"
+                    class="block py-2 text-gray-700 hover:text-blue-600">ເບິ່ງຄະແນນ</a>
+                <a href="#" onclick="showPage('activities')"
+                    class="block py-2 text-gray-700 hover:text-blue-600">ກິດຈະກຳ</a>
+                <a href="#" onclick="showPage('gallery')"
+                    class="block py-2 text-gray-700 hover:text-blue-600">ຮູບພາບກິດຈະກຳ</a>
+                <a href="#" onclick="showPage('about')"
+                    class="block py-2 text-gray-700 hover:text-blue-600">ກ່ຽວກັບພວກເຮົາ</a>
             </div>
         </div>
     </nav>
@@ -261,7 +330,7 @@
             <!-- Hero Section -->
             <section class="gradient-bg min-h-screen flex items-center relative overflow-hidden">
                 <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                
+
                 <!-- Floating Particles -->
                 <div class="absolute inset-0 overflow-hidden">
                     <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
@@ -274,7 +343,7 @@
                     <div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
                     <div class="particle" style="left: 90%; animation-delay: 3.5s;"></div>
                 </div>
-                
+
                 <div class="container mx-auto px-4 relative z-10">
                     <div class="grid md:grid-cols-2 gap-12 items-center">
                         <div class="text-white fade-in-up">
@@ -286,52 +355,62 @@
                                 ສ້າງອະນາຄົດທີ່ສົດໃສໃຫ້ລູກຫຼານຂອງທ່ານ ດ້ວຍການສຶກສາທີ່ມີຄຸນນະພາບ.
                             </p>
                             <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                                <button onclick="showPage('register')" class="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-yellow-300 transition-all hover-scale glow">
+                                <button onclick="showPage('register')"
+                                    class="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-yellow-300 transition-all hover-scale glow">
                                     <i class="fas fa-user-plus mr-2"></i>
                                     ລົງທະບຽນດຽວນີ້
                                 </button>
-                                <button onclick="showPage('scores')" class="glass-effect text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:bg-opacity-20 transition-all">
+                                <button onclick="showPage('scores')"
+                                    class="glass-effect text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:bg-opacity-20 transition-all">
                                     <i class="fas fa-chart-line mr-2"></i>
                                     ເບິ່ງຜົນຄະແນນ
                                 </button>
                             </div>
-                            
+
                             <!-- Achievement Badges -->
                             <div class="flex flex-wrap gap-4">
-                                <div class="achievement-badge bg-white bg-opacity-20 px-4 py-2 rounded-full backdrop-blur-sm">
+                                <div
+                                    class="achievement-badge bg-white bg-opacity-20 px-4 py-2 rounded-full backdrop-blur-sm">
                                     <i class="fas fa-medal text-yellow-300 mr-2"></i>
                                     <span class="text-sm">ໂຮງຮຽນມາດຕະຖານ</span>
                                 </div>
-                                <div class="achievement-badge bg-white bg-opacity-20 px-4 py-2 rounded-full backdrop-blur-sm">
+                                <div
+                                    class="achievement-badge bg-white bg-opacity-20 px-4 py-2 rounded-full backdrop-blur-sm">
                                     <i class="fas fa-star text-yellow-300 mr-2"></i>
                                     <span class="text-sm">ລາງວັນເຍົາວະຊົນດີເດັ່ນ</span>
                                 </div>
-                                <div class="achievement-badge bg-white bg-opacity-20 px-4 py-2 rounded-full backdrop-blur-sm">
+                                <div
+                                    class="achievement-badge bg-white bg-opacity-20 px-4 py-2 rounded-full backdrop-blur-sm">
                                     <i class="fas fa-trophy text-yellow-300 mr-2"></i>
                                     <span class="text-sm">ໂຮງຮຽນສີຂຽວ</span>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="text-center">
                             <div class="floating-animation">
-                                <div class="w-80 h-80 mx-auto bg-white bg-opacity-20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                                <div
+                                    class="w-80 h-80 mx-auto bg-white bg-opacity-20 rounded-full flex items-center justify-center backdrop-blur-sm">
                                     <i class="fas fa-school text-8xl text-white opacity-80"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Scroll Indicator -->
                 <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white scroll-indicator">
                     <i class="fas fa-chevron-down text-2xl"></i>
                 </div>
-                
+
                 <!-- Decorative elements -->
-                <div class="absolute top-20 left-10 w-20 h-20 bg-yellow-300 bg-opacity-30 rounded-full floating-animation"></div>
-                <div class="absolute bottom-20 right-10 w-32 h-32 bg-blue-300 bg-opacity-30 rounded-full floating-animation" style="animation-delay: 1s;"></div>
-                <div class="absolute top-1/2 left-20 w-16 h-16 bg-purple-300 bg-opacity-30 rounded-full floating-animation" style="animation-delay: 2s;"></div>
+                <div
+                    class="absolute top-20 left-10 w-20 h-20 bg-yellow-300 bg-opacity-30 rounded-full floating-animation">
+                </div>
+                <div class="absolute bottom-20 right-10 w-32 h-32 bg-blue-300 bg-opacity-30 rounded-full floating-animation"
+                    style="animation-delay: 1s;"></div>
+                <div class="absolute top-1/2 left-20 w-16 h-16 bg-purple-300 bg-opacity-30 rounded-full floating-animation"
+                    style="animation-delay: 2s;"></div>
             </section>
 
             <!-- Statistics Section -->
@@ -369,9 +448,10 @@
                         <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">ການບໍລິການຂອງພວກເຮົາ</h2>
                         <p class="text-xl text-gray-600">ລະບົບການຈັດການທີ່ເຮັດໃຫ້ການສຶກສາງ່າຍຂຶ້ນ</p>
                     </div>
-                    
+
                     <div class="grid md:grid-cols-3 gap-8">
-                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl card-hover cursor-pointer" onclick="showPage('register')">
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl card-hover cursor-pointer"
+                            onclick="showPage('register')">
                             <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mb-6">
                                 <i class="fas fa-user-graduate text-white text-2xl"></i>
                             </div>
@@ -382,19 +462,21 @@
                                 <i class="fas fa-arrow-right ml-2"></i>
                             </div>
                         </div>
-                        
-                        <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl card-hover cursor-pointer" onclick="showPage('scores')">
+
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl card-hover cursor-pointer"
+                            onclick="showPage('scores')">
                             <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-6">
                                 <i class="fas fa-chart-bar text-white text-2xl"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-gray-800 mb-4">ກວດສອບຄະແນນ</h3>
-                            <p class="text-gray-600 mb-6">ເບິ່ງຜົນການຮຽນຂອງລູກທ່ານໄດ້ທຸກບ່ອນ, ທຸກເວລາ ຜ່ານລະບົບອອນລາຍ</p>
+                            <p class="text-gray-600 mb-6">ເບິ່ງຜົນການຮຽນຂອງລູກທ່ານໄດ້ທຸກບ່ອນ, ທຸກເວລາ ຜ່ານລະບົບອອນລາຍ
+                            </p>
                             <div class="flex items-center text-green-600 font-semibold">
                                 <span>ເບິ່ງຄະແນນດຽວນີ້</span>
                                 <i class="fas fa-arrow-right ml-2"></i>
                             </div>
                         </div>
-                        
+
                         <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl card-hover">
                             <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mb-6">
                                 <i class="fas fa-phone text-white text-2xl"></i>
@@ -417,34 +499,38 @@
                         <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">ຫຼັກສູດພິເສດ</h2>
                         <p class="text-xl text-gray-600">ພັດທະນາສັກກະຍະພາບເດັກໃນທຸກດ້ານ</p>
                     </div>
-                    
+
                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div class="bg-white p-6 rounded-2xl shadow-lg card-hover">
-                            <div class="w-16 h-16 bg-gradient-to-r from-red-400 to-pink-500 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <div
+                                class="w-16 h-16 bg-gradient-to-r from-red-400 to-pink-500 rounded-full flex items-center justify-center mb-4 mx-auto">
                                 <i class="fas fa-palette text-white text-2xl"></i>
                             </div>
                             <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">ສິລະປະ ແລະ ຫັດຖະກຳ</h3>
                             <p class="text-gray-600 text-center">ພັດທະນາຄວາມຄິດສ້າງສັນ ແລະ ຈິນຕະນາການ</p>
                         </div>
-                        
+
                         <div class="bg-white p-6 rounded-2xl shadow-lg card-hover">
-                            <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <div
+                                class="w-16 h-16 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full flex items-center justify-center mb-4 mx-auto">
                                 <i class="fas fa-robot text-white text-2xl"></i>
                             </div>
                             <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">ເຕັກໂນໂລຊີ ແລະ ຫຸ່ນຍົນ</h3>
                             <p class="text-gray-600 text-center">ຮຽນຮູ້ການຂຽນໂປຣແກຣມ ແລະ ສ້າງຫຸ່ນຍົນ</p>
                         </div>
-                        
+
                         <div class="bg-white p-6 rounded-2xl shadow-lg card-hover">
-                            <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <div
+                                class="w-16 h-16 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center mb-4 mx-auto">
                                 <i class="fas fa-music text-white text-2xl"></i>
                             </div>
                             <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">ດົນຕີ ແລະ ນາດຕະສິນ</h3>
                             <p class="text-gray-600 text-center">ພັດທະນາທັກສະທາງດົນຕີ ແລະ ການສະແດງ</p>
                         </div>
-                        
+
                         <div class="bg-white p-6 rounded-2xl shadow-lg card-hover">
-                            <div class="w-16 h-16 bg-gradient-to-r from-orange-400 to-yellow-500 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <div
+                                class="w-16 h-16 bg-gradient-to-r from-orange-400 to-yellow-500 rounded-full flex items-center justify-center mb-4 mx-auto">
                                 <i class="fas fa-running text-white text-2xl"></i>
                             </div>
                             <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">ກິລາ ແລະ ສຸຂະພາບ</h3>
@@ -461,11 +547,12 @@
                         <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">ຄຳຄິດເຫັນຂອງຜູ້ປົກຄອງ</h2>
                         <p class="text-xl text-gray-600">ຮັບຟັງສຽງຈາກຜູ້ປົກຄອງທີ່ໄວ້ວາງໃຈໃນການສຶກສາຂອງພວກເຮົາ</p>
                     </div>
-                    
+
                     <div class="grid md:grid-cols-3 gap-8">
                         <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                                <div
+                                    class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-user text-white text-xl"></i>
                                 </div>
                                 <div>
@@ -473,7 +560,8 @@
                                     <p class="text-gray-600">ຜູ້ປົກຄອງນັກຮຽນ ປ.5</p>
                                 </div>
                             </div>
-                            <p class="text-gray-700 italic">"ລູກຂອງຂ້ອຍມີພັດທະນາການທີ່ດີຫຼາຍ, ຄູເອົາໃຈໃສ່ ແລະ ເບິ່ງແຍງເປັນຢ່າງດີ. ໂຮງຮຽນມີກິດຈະກຳຫຼາກຫຼາຍໃຫ້ນັກຮຽນໄດ້ຮຽນຮູ້."</p>
+                            <p class="text-gray-700 italic">"ລູກຂອງຂ້ອຍມີພັດທະນາການທີ່ດີຫຼາຍ, ຄູເອົາໃຈໃສ່ ແລະ
+                                ເບິ່ງແຍງເປັນຢ່າງດີ. ໂຮງຮຽນມີກິດຈະກຳຫຼາກຫຼາຍໃຫ້ນັກຮຽນໄດ້ຮຽນຮູ້."</p>
                             <div class="flex text-yellow-400 mt-4">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -482,10 +570,11 @@
                                 <i class="fas fa-star"></i>
                             </div>
                         </div>
-                        
+
                         <div class="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-2xl card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mr-4">
+                                <div
+                                    class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-user text-white text-xl"></i>
                                 </div>
                                 <div>
@@ -493,7 +582,8 @@
                                     <p class="text-gray-600">ຜູ້ປົກຄອງນັກຮຽນ ປ.4</p>
                                 </div>
                             </div>
-                            <p class="text-gray-700 italic">"ລະບົບການຮຽນການສອນທັນສະໄໝ, ມີເຕັກໂນໂລຊີຊ່ວຍໃນການຮຽນ. ລູກມັກມາໂຮງຮຽນຫຼາຍ ແລະ ມີໝູ່ຫຼາຍ."</p>
+                            <p class="text-gray-700 italic">"ລະບົບການຮຽນການສອນທັນສະໄໝ, ມີເຕັກໂນໂລຊີຊ່ວຍໃນການຮຽນ.
+                                ລູກມັກມາໂຮງຮຽນຫຼາຍ ແລະ ມີໝູ່ຫຼາຍ."</p>
                             <div class="flex text-yellow-400 mt-4">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -502,10 +592,11 @@
                                 <i class="fas fa-star"></i>
                             </div>
                         </div>
-                        
+
                         <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
+                                <div
+                                    class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-user text-white text-xl"></i>
                                 </div>
                                 <div>
@@ -513,7 +604,8 @@
                                     <p class="text-gray-600">ຜູ້ປົກຄອງນັກຮຽນ ປ.2</p>
                                 </div>
                             </div>
-                            <p class="text-gray-700 italic">"ຄູສອນມີຄວາມຊ່ຽວຊານສູງ, ສາມາດເບິ່ງແຍງເດັກນ້ອຍໄດ້ດີ. ໂຮງຮຽນປອດໄພ, ມີການຮັກສາຄວາມສະອາດດີ."</p>
+                            <p class="text-gray-700 italic">"ຄູສອນມີຄວາມຊ່ຽວຊານສູງ, ສາມາດເບິ່ງແຍງເດັກນ້ອຍໄດ້ດີ.
+                                ໂຮງຮຽນປອດໄພ, ມີການຮັກສາຄວາມສະອາດດີ."</p>
                             <div class="flex text-yellow-400 mt-4">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -533,43 +625,51 @@
                         <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">ຂ່າວສານ ແລະ ກິດຈະກຳ</h2>
                         <p class="text-xl text-gray-600">ອັບເດດຂ່າວສານລ່າສຸດຈາກໂຮງຮຽນ</p>
                     </div>
-                    
+
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                            <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                            <div
+                                class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
                                 <i class="fas fa-trophy text-white text-6xl"></i>
                             </div>
                             <div class="p-6">
                                 <div class="flex items-center mb-3">
-                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">ຂ່າວດ່ວນ</span>
+                                    <span
+                                        class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">ຂ່າວດ່ວນ</span>
                                     <span class="text-gray-500 text-sm ml-auto">15 ມິ.ຖ. 2025</span>
                                 </div>
                                 <h3 class="text-xl font-bold text-gray-800 mb-3">ນັກຮຽນໄດ້ຮັບລາງວັນລະດັບຊາດ</h3>
-                                <p class="text-gray-600">ນັກຮຽນຊັ້ນ ປ.5 ໄດ້ຮັບລາງວັນຊະນະເລີດການແຂ່ງຂັນໂຄງການວິທະຍາສາດລະດັບປະເທດ.</p>
+                                <p class="text-gray-600">ນັກຮຽນຊັ້ນ ປ.5
+                                    ໄດ້ຮັບລາງວັນຊະນະເລີດການແຂ່ງຂັນໂຄງການວິທະຍາສາດລະດັບປະເທດ.</p>
                             </div>
                         </div>
-                        
+
                         <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                            <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                            <div
+                                class="h-48 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
                                 <i class="fas fa-seedling text-white text-6xl"></i>
                             </div>
                             <div class="p-6">
                                 <div class="flex items-center mb-3">
-                                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">ກິດຈະກຳ</span>
+                                    <span
+                                        class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">ກິດຈະກຳ</span>
                                     <span class="text-gray-500 text-sm ml-auto">10 ມິ.ຖ. 2025</span>
                                 </div>
                                 <h3 class="text-xl font-bold text-gray-800 mb-3">ໂຄງການໂຮງຮຽນສີຂຽວ</h3>
-                                <p class="text-gray-600">ເປີດໂຄງການປູກຕົ້ນໄມ້ ແລະ ເບິ່ງແຍງສິ່ງແວດລ້ອມ ເພື່ອສ້າງຈິດສຳນຶກຮັກສາໂລກ.</p>
+                                <p class="text-gray-600">ເປີດໂຄງການປູກຕົ້ນໄມ້ ແລະ ເບິ່ງແຍງສິ່ງແວດລ້ອມ
+                                    ເພື່ອສ້າງຈິດສຳນຶກຮັກສາໂລກ.</p>
                             </div>
                         </div>
-                        
+
                         <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                            <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+                            <div
+                                class="h-48 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
                                 <i class="fas fa-users text-white text-6xl"></i>
                             </div>
                             <div class="p-6">
                                 <div class="flex items-center mb-3">
-                                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">ປະກາດ</span>
+                                    <span
+                                        class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">ປະກາດ</span>
                                     <span class="text-gray-500 text-sm ml-auto">5 ມິ.ຖ. 2025</span>
                                 </div>
                                 <h3 class="text-xl font-bold text-gray-800 mb-3">ເປີດຮັບສະໝັກນັກຮຽນໃໝ່</h3>
@@ -589,15 +689,17 @@
                         <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">ກິດຈະກຳນັກຮຽນ</h2>
                         <p class="text-xl text-gray-600">ກິດຈະກຳຫຼາກຫຼາຍເພື່ອພັດທະນາສັກກະຍະພາບເດັກ</p>
                     </div>
-                    
+
                     <!-- Activity Categories -->
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                         <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
-                            <div class="w-20 h-20 bg-gradient-to-r from-red-400 to-pink-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-red-400 to-pink-500 rounded-full flex items-center justify-center mb-6 mx-auto">
                                 <i class="fas fa-palette text-white text-3xl"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">ສິລະປະ ແລະ ຫັດຖະກຳ</h3>
-                            <p class="text-gray-600 text-center mb-6">ພັດທະນາຄວາມຄິດສ້າງສັນຜ່ານການແຕ້ມຮູບ, ປັ້ນດິນ ແລະ ງານຫັດຖະກຳ</p>
+                            <p class="text-gray-600 text-center mb-6">ພັດທະນາຄວາມຄິດສ້າງສັນຜ່ານການແຕ້ມຮູບ, ປັ້ນດິນ ແລະ
+                                ງານຫັດຖະກຳ</p>
                             <ul class="text-gray-700 space-y-2">
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ການແຕ້ມຮູບສີນ້ຳ</li>
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ການປັ້ນດິນໜຽວ</li>
@@ -605,13 +707,16 @@
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ການເຮັດວຽກສິລະປະແບບກຸ່ມ</li>
                             </ul>
                         </div>
-                        
+
                         <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
-                            <div class="w-20 h-20 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full flex items-center justify-center mb-6 mx-auto">
                                 <i class="fas fa-laptop-code text-white text-3xl"></i>
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">ເຕັກໂນໂລຊີ ແລະ ການຂຽນໂປຣແກຣມ</h3>
-                            <p class="text-gray-600 text-center mb-6">ຮຽນຮູ້ເຕັກໂນໂລຊີທັນສະໄໝ ແລະ ທັກສະການຂຽນໂປຣແກຣມເບື້ອງຕົ້ນ</p>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">ເຕັກໂນໂລຊີ ແລະ ການຂຽນໂປຣແກຣມ
+                            </h3>
+                            <p class="text-gray-600 text-center mb-6">ຮຽນຮູ້ເຕັກໂນໂລຊີທັນສະໄໝ ແລະ
+                                ທັກສະການຂຽນໂປຣແກຣມເບື້ອງຕົ້ນ</p>
                             <ul class="text-gray-700 space-y-2">
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ຂຽນໂປຣແກຣມ Scratch</li>
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ສ້າງຫຸ່ນຍົນງ່າຍໆ</li>
@@ -619,9 +724,10 @@
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ການຄົ້ນຄວ້າຂໍ້ມູນອອນລາຍ</li>
                             </ul>
                         </div>
-                        
+
                         <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
-                            <div class="w-20 h-20 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center mb-6 mx-auto">
                                 <i class="fas fa-music text-white text-3xl"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">ດົນຕີ ແລະ ການສະແດງ</h3>
@@ -633,13 +739,15 @@
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ຟ້ອນລຳວົງ ແລະ ຟ້ອນພື້ນເມືອງ</li>
                             </ul>
                         </div>
-                        
+
                         <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
-                            <div class="w-20 h-20 bg-gradient-to-r from-orange-400 to-yellow-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-orange-400 to-yellow-500 rounded-full flex items-center justify-center mb-6 mx-auto">
                                 <i class="fas fa-running text-white text-3xl"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">ກິລາ ແລະ ສຸຂະພາບ</h3>
-                            <p class="text-gray-600 text-center mb-6">ສົ່ງເສີມໃຫ້ເດັກມີຮ່າງກາຍແຂງແຮງ ແລະ ສຸຂະພາບຈິດທີ່ດີ</p>
+                            <p class="text-gray-600 text-center mb-6">ສົ່ງເສີມໃຫ້ເດັກມີຮ່າງກາຍແຂງແຮງ ແລະ ສຸຂະພາບຈິດທີ່ດີ
+                            </p>
                             <ul class="text-gray-700 space-y-2">
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ເຕະບານ, ບານບ້ວງ</li>
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ລອຍນ້ຳ ແລະ ກິລາທາງນ້ຳ</li>
@@ -647,9 +755,10 @@
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ການອອກກຳລັງກາຍເພື່ອສຸຂະພາບ</li>
                             </ul>
                         </div>
-                        
+
                         <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
-                            <div class="w-20 h-20 bg-gradient-to-r from-purple-400 to-indigo-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-purple-400 to-indigo-500 rounded-full flex items-center justify-center mb-6 mx-auto">
                                 <i class="fas fa-microscope text-white text-3xl"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">ວິທະຍາສາດ ແລະ ການທົດລອງ</h3>
@@ -661,13 +770,15 @@
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ການຮຽນຮູ້ກ່ຽວກັບສິ່ງແວດລ້ອມ</li>
                             </ul>
                         </div>
-                        
+
                         <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
-                            <div class="w-20 h-20 bg-gradient-to-r from-pink-400 to-rose-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-pink-400 to-rose-500 rounded-full flex items-center justify-center mb-6 mx-auto">
                                 <i class="fas fa-heart text-white text-3xl"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">ກິດຈະກຳຈິດອາສາ</h3>
-                            <p class="text-gray-600 text-center mb-6">ປູກຝັງຈິດສຳນຶກໃນການຊ່ວຍເຫຼືອສັງຄົມ ແລະ ສິ່ງແວດລ້ອມ</p>
+                            <p class="text-gray-600 text-center mb-6">ປູກຝັງຈິດສຳນຶກໃນການຊ່ວຍເຫຼືອສັງຄົມ ແລະ ສິ່ງແວດລ້ອມ
+                            </p>
                             <ul class="text-gray-700 space-y-2">
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ການອະນາໄມຊຸມຊົນ</li>
                                 <li><i class="fas fa-check text-green-500 mr-2"></i>ການຢ້ຽມຢາມຜູ້ສູງອາຍຸ</li>
@@ -676,7 +787,7 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <!-- Schedule Section -->
                     <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12">
                         <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">ຕາຕະລາງກິດຈະກຳປະຈຳອາທິດ</h3>
@@ -743,21 +854,27 @@
                         <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">ຮູບພາບກິດຈະກຳ</h2>
                         <p class="text-xl text-gray-600">ຊົມຮູບພາບຄວາມຊົງຈຳດີໆ ຈາກກິດຈະກຳຕ່າງໆ ຂອງໂຮງຮຽນ</p>
                     </div>
-                    
+
                     <!-- Gallery Filter -->
                     <div class="flex flex-wrap justify-center gap-4 mb-12">
-                        <button onclick="filterGallery('all')" class="gallery-filter-btn active bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors">ທັງໝົດ</button>
-                        <button onclick="filterGallery('sports')" class="gallery-filter-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition-colors">ກິລາ</button>
-                        <button onclick="filterGallery('arts')" class="gallery-filter-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition-colors">ສິລະປະ</button>
-                        <button onclick="filterGallery('science')" class="gallery-filter-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition-colors">ວິທະຍາສາດ</button>
-                        <button onclick="filterGallery('events')" class="gallery-filter-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition-colors">ງານພິເສດ</button>
+                        <button onclick="filterGallery('all')"
+                            class="gallery-filter-btn active bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors">ທັງໝົດ</button>
+                        <button onclick="filterGallery('sports')"
+                            class="gallery-filter-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition-colors">ກິລາ</button>
+                        <button onclick="filterGallery('arts')"
+                            class="gallery-filter-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition-colors">ສິລະປະ</button>
+                        <button onclick="filterGallery('science')"
+                            class="gallery-filter-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition-colors">ວິທະຍາສາດ</button>
+                        <button onclick="filterGallery('events')"
+                            class="gallery-filter-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition-colors">ງານພິເສດ</button>
                     </div>
-                    
+
                     <!-- Gallery Grid -->
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="galleryGrid">
                         <!-- Sports Images -->
                         <div class="gallery-item sports bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                            <div class="h-64 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                            <div
+                                class="h-64 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
                                 <i class="fas fa-futbol text-white text-6xl"></i>
                             </div>
                             <div class="p-6">
@@ -765,9 +882,10 @@
                                 <p class="text-gray-600">ນັກຮຽນສະແດງທັກສະການຫຼິ້ນເຕະບານໃນການແຂ່ງຂັນລະຫວ່າງໂຮງຮຽນ</p>
                             </div>
                         </div>
-                        
+
                         <div class="gallery-item sports bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                            <div class="h-64 bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
+                            <div
+                                class="h-64 bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
                                 <i class="fas fa-swimmer text-white text-6xl"></i>
                             </div>
                             <div class="p-6">
@@ -775,10 +893,11 @@
                                 <p class="text-gray-600">ນັກຮຽນຝຶກຊ້ອມ ແລະ ແຂ່ງຂັນລອຍນ້ຳໃນສະລອຍນ້ຳຂອງໂຮງຮຽນ</p>
                             </div>
                         </div>
-                        
+
                         <!-- Arts Images -->
                         <div class="gallery-item arts bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                            <div class="h-64 bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center">
+                            <div
+                                class="h-64 bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center">
                                 <i class="fas fa-palette text-white text-6xl"></i>
                             </div>
                             <div class="p-6">
@@ -786,9 +905,10 @@
                                 <p class="text-gray-600">ນັກຮຽນສ້າງສັນຜົນງານສິລະປະທີ່ສວຍງາມ ແລະ ມີເອກະລັກ</p>
                             </div>
                         </div>
-                        
+
                         <div class="gallery-item arts bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                            <div class="h-64 bg-gradient-to-br from-indigo-400 to-pink-500 flex items-center justify-center">
+                            <div
+                                class="h-64 bg-gradient-to-br from-indigo-400 to-pink-500 flex items-center justify-center">
                                 <i class="fas fa-music text-white text-6xl"></i>
                             </div>
                             <div class="p-6">
@@ -796,10 +916,11 @@
                                 <p class="text-gray-600">ນັກຮຽນສະແດງຄວາມສາມາດທາງດົນຕີໃນງານສະແດງປະຈຳປີ</p>
                             </div>
                         </div>
-                        
+
                         <!-- Science Images -->
                         <div class="gallery-item science bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                            <div class="h-64 bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
+                            <div
+                                class="h-64 bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
                                 <i class="fas fa-microscope text-white text-6xl"></i>
                             </div>
                             <div class="p-6">
@@ -807,9 +928,10 @@
                                 <p class="text-gray-600">ນັກຮຽນຮຽນຮູ້ຜ່ານການທົດລອງວິທະຍາສາດທີ່ໜ້າສົນໃຈ</p>
                             </div>
                         </div>
-                        
+
                         <div class="gallery-item science bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                            <div class="h-64 bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
+                            <div
+                                class="h-64 bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
                                 <i class="fas fa-seedling text-white text-6xl"></i>
                             </div>
                             <div class="p-6">
@@ -817,10 +939,11 @@
                                 <p class="text-gray-600">ນັກຮຽນຮ່ວມກັນປູກຕົ້ນໄມ້ ແລະ ເບິ່ງແຍງສິ່ງແວດລ້ອມ</p>
                             </div>
                         </div>
-                        
+
                         <!-- Events Images -->
                         <div class="gallery-item events bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                            <div class="h-64 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                            <div
+                                class="h-64 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
                                 <i class="fas fa-graduation-cap text-white text-6xl"></i>
                             </div>
                             <div class="p-6">
@@ -828,9 +951,10 @@
                                 <p class="text-gray-600">ງານສົ່ງນັກຮຽນຊັ້ນ ປ.5 ສູ່ການສຶກສາໃນລະດັບທີ່ສູງຂຶ້ນ</p>
                             </div>
                         </div>
-                        
+
                         <div class="gallery-item events bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                            <div class="h-64 bg-gradient-to-br from-red-400 to-pink-500 flex items-center justify-center">
+                            <div
+                                class="h-64 bg-gradient-to-br from-red-400 to-pink-500 flex items-center justify-center">
                                 <i class="fas fa-heart text-white text-6xl"></i>
                             </div>
                             <div class="p-6">
@@ -838,9 +962,10 @@
                                 <p class="text-gray-600">ນັກຮຽນສະແດງຄວາມກະຕັນຍູກະຕະເວທິຕາຕໍ່ແມ່ໃນວັນແມ່</p>
                             </div>
                         </div>
-                        
+
                         <div class="gallery-item arts bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                            <div class="h-64 bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center">
+                            <div
+                                class="h-64 bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center">
                                 <i class="fas fa-theater-masks text-white text-6xl"></i>
                             </div>
                             <div class="p-6">
@@ -853,7 +978,7 @@
             </section>
         </div>
 
-     <div id="registerPage" class="page hidden">
+        <div id="registerPage" class="page hidden">
             <section class="py-20 bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
                 <div class="container mx-auto px-4">
                     <div class="max-w-4xl mx-auto">
@@ -861,7 +986,7 @@
                             <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">ລົງທະບຽນນັກຮຽນ</h2>
                             <p class="text-xl text-gray-600">ປ້ອນຂໍ້ມູນເພື່ອລົງທະບຽນເຂົ້າຮຽນ</p>
                         </div>
-                        
+
                         <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12">
                             <!-- Student Search Section -->
                             <div class="mb-8 p-6 bg-blue-50 rounded-2xl">
@@ -871,21 +996,28 @@
                                 </h3>
                                 <div class="grid md:grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-sm font-semibold text-gray-700 mb-2">ລະຫັດນັກຮຽນ</label>
-                                        <input type="text" id="studentId" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="ປ້ອນລະຫັດນັກຮຽນ">
+                                        <label
+                                            class="block text-sm font-semibold text-gray-700 mb-2">ລະຫັດນັກຮຽນ</label>
+                                        <input type="text" id="studentId"
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="ປ້ອນລະຫັດນັກຮຽນ">
                                     </div>
                                     <div>
                                         <label class="block text-sm font-semibold text-gray-700 mb-2">ຊື່ນັກຮຽນ</label>
-                                        <input type="text" id="studentName" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="ປ້ອນຊື່ນັກຮຽນ">
+                                        <input type="text" id="studentName"
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="ປ້ອນຊື່ນັກຮຽນ">
                                     </div>
                                 </div>
-                                <button onclick="searchStudent()" class="mt-4 bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors">
+                                <button onclick="searchStudent()"
+                                    class="mt-4 bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors">
                                     <i class="fas fa-search mr-2"></i>ຄົ້ນຫາ
                                 </button>
                             </div>
-                            
+
                             <!-- Student Info Display -->
-                            <div id="studentInfo" class="hidden mb-8 p-6 bg-green-50 rounded-2xl border-2 border-green-200">
+                            <div id="studentInfo"
+                                class="hidden mb-8 p-6 bg-green-50 rounded-2xl border-2 border-green-200">
                                 <h3 class="text-xl font-bold text-green-800 mb-4">
                                     <i class="fas fa-user-check mr-2"></i>ຂໍ້ມູນນັກຮຽນທີ່ພົບເຫັນ
                                 </h3>
@@ -893,33 +1025,45 @@
                                     <!-- Student details will be populated here -->
                                 </div>
                             </div>
-                            
+
                             <!-- Registration Form -->
                             <form id="registrationForm" class="space-y-6">
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div>
-                                        <label class="block text-sm font-semibold text-gray-700 mb-2">ຊື່ຜູ້ປົກຄອງ *</label>
-                                        <input type="text" name="parentName" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="กรอกชื่อผู้ปกครอง">
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">ຊື່ຜູ້ປົກຄອງ
+                                            *</label>
+                                        <input type="text" name="parentName" required
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="กรอกชื่อผู้ปกครอง">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-semibold text-gray-700 mb-2">ເບີໂທລະສັບ *</label>
-                                        <input type="tel" name="parentPhone" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="กรอกเบอร์โทรศัพท์">
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">ເບີໂທລະສັບ
+                                            *</label>
+                                        <input type="tel" name="parentPhone" required
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="กรอกเบอร์โทรศัพท์">
                                     </div>
                                 </div>
-                                
+
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 mb-2">ອີເມວ</label>
-                                    <input type="email" name="parentEmail" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="กรอกอีเมล">
+                                    <input type="email" name="parentEmail"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="กรอกอีเมล">
                                 </div>
-                                
+
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 mb-2">ທີ່ຢູ່</label>
-                                    <textarea name="address" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="กรอกที่อยู่"></textarea>
+                                    <textarea name="address" rows="3"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        placeholder="กรอกที่อยู่"></textarea>
                                 </div>
-                                
+
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">ຄວາມສຳພັນກັບນັກຮຽນ</label>
-                                    <select name="relationship" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <label
+                                        class="block text-sm font-semibold text-gray-700 mb-2">ຄວາມສຳພັນກັບນັກຮຽນ</label>
+                                    <select name="relationship"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                         <option value="">ເລືອກຄວາມສຳພັນ</option>
                                         <option value="father">ພໍ່</option>
                                         <option value="mother">ແມ່</option>
@@ -927,20 +1071,22 @@
                                         <option value="relative">ຍາດຕິພີ່ນ້ອງ</option>
                                     </select>
                                 </div>
-                                
+
                                 <!-- Payment Section -->
                                 <div class="mt-8 p-6 bg-yellow-50 rounded-2xl border-2 border-yellow-200">
                                     <h3 class="text-2xl font-bold text-gray-800 mb-6">
                                         <i class="fas fa-credit-card mr-2 text-yellow-600"></i>
                                         ການຊຳລະຄ່າລົງທະບຽນ
                                     </h3>
-                                    
+
                                     <div class="grid md:grid-cols-2 gap-8">
                                         <!-- QR Code Display -->
                                         <div class="text-center">
-                                            <h4 class="text-lg font-semibold text-gray-700 mb-4">ສະແກນ QR Code ເພື່ອຊຳລະເງີນ</h4>
+                                            <h4 class="text-lg font-semibold text-gray-700 mb-4">ສະແກນ QR Code
+                                                ເພື່ອຊຳລະເງີນ</h4>
                                             <div class="bg-white p-6 rounded-2xl shadow-lg inline-block">
-                                                <div class="w-48 h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center rounded-xl border-2 border-dashed border-gray-300">
+                                                <div
+                                                    class="w-48 h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center rounded-xl border-2 border-dashed border-gray-300">
                                                     <!-- QR Code placeholder - in real implementation, this would be an actual QR code -->
                                                     <div class="text-center">
                                                         <i class="fas fa-qrcode text-6xl text-gray-400 mb-2"></i>
@@ -954,80 +1100,85 @@
                                                 <p class="text-sm text-gray-600">ເລກບັນຊີ: 0XX-X-XXXXX-X</p>
                                             </div>
                                         </div>
-                                        
+
                                         <!-- Payment Proof Upload -->
                                         <div>
-                                            <h4 class="text-lg font-semibold text-gray-700 mb-4">ອັບໂຫລດຫຼັກຖານການໂອນເງີນ</h4>
+                                            <h4 class="text-lg font-semibold text-gray-700 mb-4">
+                                                ອັບໂຫລດຫຼັກຖານການໂອນເງີນ</h4>
                                             <div class="space-y-4">
                                                 <div>
-                                                    <label class="block text-sm font-semibold text-gray-700 mb-2">ຮູບພາບການໂອນເງີນ *</label>
+                                                    <label
+                                                        class="block text-sm font-semibold text-gray-700 mb-2">ຮູບພາບການໂອນເງີນ
+                                                        *</label>
                                                     <div class="relative">
-                                                        <input type="file" 
-                                                               id="paymentProof" 
-                                                               name="paymentProof" 
-                                                               accept="image/*" 
-                                                               required 
-                                                               class="hidden"
-                                                               onchange="handleFileUpload(this)">
-                                                        <label for="paymentProof" 
-                                                               class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
-                                                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                                                <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                                                        <input type="file" id="paymentProof" name="paymentProof"
+                                                            accept="image/*" required class="hidden"
+                                                            onchange="handleFileUpload(this)">
+                                                        <label for="paymentProof"
+                                                            class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
+                                                            <div
+                                                                class="flex flex-col items-center justify-center pt-5 pb-6">
+                                                                <i
+                                                                    class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
                                                                 <p class="mb-2 text-sm text-gray-500">
-                                                                    <span class="font-semibold">ກົດເພື່ອເລືອກໄຟລ໌</span> ຫຼືລາກໄຟລ໌ມາວາງ
+                                                                    <span class="font-semibold">ກົດເພື່ອເລືອກໄຟລ໌</span>
+                                                                    ຫຼືລາກໄຟລ໌ມາວາງ
                                                                 </p>
-                                                                <p class="text-xs text-gray-500">PNG, JPG หรือ JPEG (ຂະໜາດບໍ່ເກີນ 5MB)</p>
+                                                                <p class="text-xs text-gray-500">PNG, JPG หรือ JPEG
+                                                                    (ຂະໜາດບໍ່ເກີນ 5MB)</p>
                                                             </div>
                                                         </label>
                                                     </div>
-                                                    
+
                                                     <!-- File Preview -->
-                                                    <div id="filePreview" class="hidden mt-4 p-4 bg-green-50 rounded-xl border border-green-200">
+                                                    <div id="filePreview"
+                                                        class="hidden mt-4 p-4 bg-green-50 rounded-xl border border-green-200">
                                                         <div class="flex items-center">
                                                             <i class="fas fa-check-circle text-green-600 mr-3"></i>
                                                             <div class="flex-1">
-                                                                <p class="text-sm font-medium text-green-800">ໄຟລ໌ທີ່ເລືອກ:</p>
+                                                                <p class="text-sm font-medium text-green-800">
+                                                                    ໄຟລ໌ທີ່ເລືອກ:</p>
                                                                 <p id="fileName" class="text-sm text-green-600"></p>
                                                             </div>
-                                                            <button type="button" onclick="removeFile()" class="text-red-500 hover:text-red-700">
+                                                            <button type="button" onclick="removeFile()"
+                                                                class="text-red-500 hover:text-red-700">
                                                                 <i class="fas fa-times"></i>
                                                             </button>
                                                         </div>
                                                         <div class="mt-3">
-                                                            <img id="imagePreview" class="max-w-full h-32 object-cover rounded-lg" style="display: none;">
+                                                            <img id="imagePreview"
+                                                                class="max-w-full h-32 object-cover rounded-lg"
+                                                                style="display: none;">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div>
-                                                    <label class="block text-sm font-semibold text-gray-700 mb-2">ວັນທີໂອນ</label>
-                                                    <input type="date" 
-                                                           name="transferDate" 
-                                                           required 
-                                                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                                    <label
+                                                        class="block text-sm font-semibold text-gray-700 mb-2">ວັນທີໂອນ</label>
+                                                    <input type="date" name="transferDate" required
+                                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                                 </div>
-                                                
+
                                                 <div>
-                                                    <label class="block text-sm font-semibold text-gray-700 mb-2">ເວລາທີ່ໂອນ</label>
-                                                    <input type="time" 
-                                                           name="transferTime" 
-                                                           required 
-                                                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                                    <label
+                                                        class="block text-sm font-semibold text-gray-700 mb-2">ເວລາທີ່ໂອນ</label>
+                                                    <input type="time" name="transferTime" required
+                                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                                 </div>
-                                                
+
                                                 <div>
-                                                    <label class="block text-sm font-semibold text-gray-700 mb-2">ຈຳນວນເງີນທີ່ໂອນ (ກີບ)</label>
-                                                    <input type="number" 
-                                                           name="transferAmount" 
-                                                           required 
-                                                           min="500" 
-                                                           value="500"
-                                                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                                    <label
+                                                        class="block text-sm font-semibold text-gray-700 mb-2">ຈຳນວນເງີນທີ່ໂອນ
+                                                        (ກີບ)</label>
+                                                    <input type="number" name="transferAmount" required min="500"
+                                                        value="500"
+                                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <!-- Payment Instructions -->
                                     <div class="mt-6 p-4 bg-blue-50 rounded-xl">
                                         <h5 class="font-semibold text-blue-800 mb-2">
@@ -1043,9 +1194,10 @@
                                         </ol>
                                     </div>
                                 </div>
-                                
+
                                 <div class="pt-6">
-                                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105">
+                                    <button type="submit"
+                                        class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105">
                                         <i class="fas fa-paper-plane mr-2"></i>
                                         ສົ່ງໃບສະໝັກ
                                     </button>
@@ -1066,21 +1218,25 @@
                             <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">ກວດສອບຄະແນນ</h2>
                             <p class="text-xl text-gray-600">ປ້ອນລະຫັດນັກຮຽນເພື່ອເບິ່ງຜົນການຮຽນ</p>
                         </div>
-                        
+
                         <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12">
                             <!-- Score Search Form -->
                             <div class="mb-8">
                                 <div class="max-w-md mx-auto">
-                                    <label class="block text-lg font-semibold text-gray-700 mb-4 text-center">ລະຫັດນັກຮຽນ</label>
+                                    <label
+                                        class="block text-lg font-semibold text-gray-700 mb-4 text-center">ລະຫັດນັກຮຽນ</label>
                                     <div class="flex gap-3">
-                                        <input type="text" id="scoreStudentId" class="flex-1 px-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent text-center text-lg" placeholder="ປ້ອນລະຫັດນັກຮຽນ">
-                                        <button onclick="searchScores()" class="bg-green-600 text-white px-6 py-4 rounded-xl font-semibold hover:bg-green-700 transition-colors">
+                                        <input type="text" id="scoreStudentId"
+                                            class="flex-1 px-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent text-center text-lg"
+                                            placeholder="ປ້ອນລະຫັດນັກຮຽນ">
+                                        <button onclick="searchScores()"
+                                            class="bg-green-600 text-white px-6 py-4 rounded-xl font-semibold hover:bg-green-700 transition-colors">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Score Results -->
                             <div id="scoreResults" class="hidden">
                                 <div class="mb-6 p-6 bg-blue-50 rounded-2xl">
@@ -1091,33 +1247,36 @@
                                         <!-- Student info will be populated here -->
                                     </div>
                                 </div>
-                                
+
                                 <div class="space-y-6">
                                     <h3 class="text-2xl font-bold text-gray-800 text-center">
                                         <i class="fas fa-chart-line mr-2 text-green-600"></i>ຜົນການຮຽນ
                                     </h3>
-                                    
+
                                     <div id="scoreTable" class="overflow-x-auto">
                                         <!-- Score table will be populated here -->
                                     </div>
-                                    
+
                                     <div class="grid md:grid-cols-3 gap-6 mt-8">
-                                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-2xl text-center">
+                                        <div
+                                            class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-2xl text-center">
                                             <div class="text-3xl font-bold mb-2" id="avgScore">0</div>
                                             <div class="text-blue-100">ຄະແນນສະເລ່ຍ</div>
                                         </div>
-                                        <div class="bg-gradient-to-br from-green-500 to-green-600 text-white p-6 rounded-2xl text-center">
+                                        <div
+                                            class="bg-gradient-to-br from-green-500 to-green-600 text-white p-6 rounded-2xl text-center">
                                             <div class="text-3xl font-bold mb-2" id="highestScore">0</div>
                                             <div class="text-green-100">ຄະແນນສູງສຸດ</div>
                                         </div>
-                                        <div class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-6 rounded-2xl text-center">
+                                        <div
+                                            class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-6 rounded-2xl text-center">
                                             <div class="text-3xl font-bold mb-2" id="totalSubjects">0</div>
                                             <div class="text-purple-100">ຈຳນວນວິຊາ</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- No Results Message -->
                             <div id="noScoreResults" class="hidden text-center py-12">
                                 <i class="fas fa-search text-6xl text-gray-400 mb-4"></i>
@@ -1139,27 +1298,31 @@
                             <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">ກ່ຽວກັບພວກເຮົາ</h2>
                             <p class="text-xl text-gray-600">ໂຮງຮຽນປະຖົມສານຝັນ ມຸ່ງໝັ້ນສ້າງອະນາຄົດທີ່ສົດໃສ</p>
                         </div>
-                        
+
                         <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12">
                             <div class="prose prose-lg max-w-none">
                                 <div class="text-center mb-8">
-                                    <div class="w-32 h-32 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <div
+                                        class="w-32 h-32 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
                                         <i class="fas fa-school text-white text-4xl"></i>
                                     </div>
                                     <h3 class="text-3xl font-bold text-gray-800 mb-4">ໂຮງຮຽນປະຖົມຊັນຟານ</h3>
                                 </div>
-                                
+
                                 <div class="grid md:grid-cols-2 gap-8 mb-8">
                                     <div>
                                         <h4 class="text-2xl font-bold text-gray-800 mb-4">ວິໄສທັດ</h4>
-                                        <p class="text-gray-600">ມຸ່ງໝັ້ນເປັນສະຖາບັນການສຶກສາຊັ້ນນຳທີ່ພັດທະນານັກຮຽນໃຫ້ມີຄວາມຮູ້, ຄຸນນະທຳ ແລະ ທັກສະໃນສັດຕະວັດທີ 21.</p>
+                                        <p class="text-gray-600">
+                                            ມຸ່ງໝັ້ນເປັນສະຖາບັນການສຶກສາຊັ້ນນຳທີ່ພັດທະນານັກຮຽນໃຫ້ມີຄວາມຮູ້, ຄຸນນະທຳ ແລະ
+                                            ທັກສະໃນສັດຕະວັດທີ 21.</p>
                                     </div>
                                     <div>
                                         <h4 class="text-2xl font-bold text-gray-800 mb-4">ພາລະກິດ</h4>
-                                        <p class="text-gray-600">ຈັດການສຶກສາທີ່ມີຄຸນນະພາບ, ສົ່ງເສີມການຮຽນຮູ້ແບບองค์ລວມ ແລະ ພັດທະນາສັກກະຍະພາບຂອງນັກຮຽນທຸກຄົນ.</p>
+                                        <p class="text-gray-600">ຈັດການສຶກສາທີ່ມີຄຸນນະພາບ, ສົ່ງເສີມການຮຽນຮູ້ແບບองค์ລວມ
+                                            ແລະ ພັດທະນາສັກກະຍະພາບຂອງນັກຮຽນທຸກຄົນ.</p>
                                     </div>
                                 </div>
-                                
+
                                 <div class="grid md:grid-cols-3 gap-6 mb-8">
                                     <div class="text-center p-6 bg-blue-50 rounded-2xl">
                                         <i class="fas fa-users text-3xl text-blue-600 mb-4"></i>
@@ -1177,56 +1340,72 @@
                                         <p class="text-2xl font-bold text-purple-600">25+</p>
                                     </div>
                                 </div>
-                                
+
                                 <!-- School Facilities -->
                                 <div class="mb-8">
-                                    <h4 class="text-2xl font-bold text-gray-800 mb-6 text-center">ສິ່ງອຳນວຍຄວາມສະດວກ</h4>
+                                    <h4 class="text-2xl font-bold text-gray-800 mb-6 text-center">ສິ່ງອຳນວຍຄວາມສະດວກ
+                                    </h4>
                                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                        <div class="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
+                                        <div
+                                            class="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
                                             <i class="fas fa-desktop text-3xl text-blue-600 mb-3"></i>
                                             <h5 class="font-semibold text-gray-800">ຫ້ອງຄອມພິວເຕີ</h5>
                                         </div>
-                                        <div class="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl">
+                                        <div
+                                            class="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl">
                                             <i class="fas fa-swimmer text-3xl text-green-600 mb-3"></i>
                                             <h5 class="font-semibold text-gray-800">ສະລອຍນ້ຳ</h5>
                                         </div>
-                                        <div class="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl">
+                                        <div
+                                            class="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl">
                                             <i class="fas fa-book text-3xl text-purple-600 mb-3"></i>
                                             <h5 class="font-semibold text-gray-800">ຫ້ອງສະໝຸດ</h5>
                                         </div>
-                                        <div class="text-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl">
+                                        <div
+                                            class="text-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl">
                                             <i class="fas fa-utensils text-3xl text-orange-600 mb-3"></i>
                                             <h5 class="font-semibold text-gray-800">ໂຮງອາຫານ</h5>
                                         </div>
-                                        <div class="text-center p-4 bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl">
+                                        <div
+                                            class="text-center p-4 bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl">
                                             <i class="fas fa-microscope text-3xl text-pink-600 mb-3"></i>
                                             <h5 class="font-semibold text-gray-800">ຫ້ອງວິທະຍາສາດ</h5>
                                         </div>
-                                        <div class="text-center p-4 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl">
+                                        <div
+                                            class="text-center p-4 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl">
                                             <i class="fas fa-running text-3xl text-yellow-600 mb-3"></i>
                                             <h5 class="font-semibold text-gray-800">ເດີ່ນກິລາ</h5>
                                         </div>
-                                        <div class="text-center p-4 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl">
+                                        <div
+                                            class="text-center p-4 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl">
                                             <i class="fas fa-music text-3xl text-indigo-600 mb-3"></i>
                                             <h5 class="font-semibold text-gray-800">ຫ້ອງດົນຕີ</h5>
                                         </div>
-                                        <div class="text-center p-4 bg-gradient-to-br from-red-50 to-red-100 rounded-xl">
+                                        <div
+                                            class="text-center p-4 bg-gradient-to-br from-red-50 to-red-100 rounded-xl">
                                             <i class="fas fa-palette text-3xl text-red-600 mb-3"></i>
                                             <h5 class="font-semibold text-gray-800">ຫ້ອງສິລະປະ</h5>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="bg-gradient-to-r from-purple-100 to-pink-100 p-8 rounded-2xl">
                                     <h4 class="text-2xl font-bold text-gray-800 mb-4">ຕິດຕໍ່ພວກເຮົາ</h4>
                                     <div class="grid md:grid-cols-2 gap-6">
                                         <div>
-                                            <p class="flex items-center mb-3"><i class="fas fa-map-marker-alt text-purple-600 mr-3"></i> 123 ຖະໜົນການສຶກສາ, ບ້ານຄວາມຮູ້, ເມືອງການຮຽນ, ແຂວງປັນຍາ 12345</p>
-                                            <p class="flex items-center mb-3"><i class="fas fa-phone text-purple-600 mr-3"></i> 02-123-4567</p>
+                                            <p class="flex items-center mb-3"><i
+                                                    class="fas fa-map-marker-alt text-purple-600 mr-3"></i> 123
+                                                ຖະໜົນການສຶກສາ, ບ້ານຄວາມຮູ້, ເມືອງການຮຽນ, ແຂວງປັນຍາ 12345</p>
+                                            <p class="flex items-center mb-3"><i
+                                                    class="fas fa-phone text-purple-600 mr-3"></i> 02-123-4567</p>
                                         </div>
                                         <div>
-                                            <p class="flex items-center mb-3"><i class="fas fa-envelope text-purple-600 mr-3"></i> info@sanfanprimary.com.la</p>
-                                            <p class="flex items-center"><i class="fas fa-globe text-purple-600 mr-3"></i> www.sanfanprimary.ac.th</p>
+                                            <p class="flex items-center mb-3"><i
+                                                    class="fas fa-envelope text-purple-600 mr-3"></i>
+                                                info@sanfanprimary.com.la</p>
+                                            <p class="flex items-center"><i
+                                                    class="fas fa-globe text-purple-600 mr-3"></i>
+                                                www.sanfanprimary.ac.th</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1244,7 +1423,8 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                             <i class="fas fa-graduation-cap text-white"></i>
                         </div>
                         <div>
@@ -1254,44 +1434,55 @@
                     </div>
                     <p class="text-gray-400">ສ້າງອະນາຄົດທີ່ສົດໃສໃຫ້ລູກຫຼານຂອງທ່ານ ດ້ວຍການສຶກສາທີ່ມີຄຸນນະພາບ.</p>
                 </div>
-                
+
                 <div>
                     <h4 class="text-lg font-semibold mb-4">ລິ້ງດ່ວນ</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" onclick="showPage('home')" class="text-gray-400 hover:text-white transition-colors">ໜ້າຫຼັກ</a></li>
-                        <li><a href="#" onclick="showPage('register')" class="text-gray-400 hover:text-white transition-colors">ລົງທະບຽນ</a></li>
-                        <li><a href="#" onclick="showPage('scores')" class="text-gray-400 hover:text-white transition-colors">ເບິ່ງຄະແນນ</a></li>
-                        <li><a href="#" onclick="showPage('activities')" class="text-gray-400 hover:text-white transition-colors">ກິດຈະກຳ</a></li>
-                        <li><a href="#" onclick="showPage('gallery')" class="text-gray-400 hover:text-white transition-colors">ຮູບພາບກິດຈະກຳ</a></li>
-                        <li><a href="#" onclick="showPage('about')" class="text-gray-400 hover:text-white transition-colors">ກ່ຽວກັບພວກເຮົາ</a></li>
+                        <li><a href="#" onclick="showPage('home')"
+                                class="text-gray-400 hover:text-white transition-colors">ໜ້າຫຼັກ</a></li>
+                        <li><a href="#" onclick="showPage('register')"
+                                class="text-gray-400 hover:text-white transition-colors">ລົງທະບຽນ</a></li>
+                        <li><a href="#" onclick="showPage('scores')"
+                                class="text-gray-400 hover:text-white transition-colors">ເບິ່ງຄະແນນ</a></li>
+                        <li><a href="#" onclick="showPage('activities')"
+                                class="text-gray-400 hover:text-white transition-colors">ກິດຈະກຳ</a></li>
+                        <li><a href="#" onclick="showPage('gallery')"
+                                class="text-gray-400 hover:text-white transition-colors">ຮູບພາບກິດຈະກຳ</a></li>
+                        <li><a href="#" onclick="showPage('about')"
+                                class="text-gray-400 hover:text-white transition-colors">ກ່ຽວກັບພວກເຮົາ</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <h4 class="text-lg font-semibold mb-4">ຕິດຕໍ່ພວກເຮົາ</h4>
                     <ul class="space-y-2 text-gray-400">
                         <li><i class="fas fa-phone mr-2"></i> 02-123-4567</li>
                         <li><i class="fas fa-envelope mr-2"></i> info@sanfanprimary.ac.th</li>
-                        <li><i class="fas fa-map-marker-alt mr-2"></i> ບ້ານພູເຫຼັກຈະເລີນ, ເມືອງຫຼວງພະບາງ ແຂວງຫຼວງພະບາງ</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> ບ້ານພູເຫຼັກຈະເລີນ, ເມືອງຫຼວງພະບາງ ແຂວງຫຼວງພະບາງ
+                        </li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <h4 class="text-lg font-semibold mb-4">ຕິດຕາມພວກເຮົາ</h4>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                        <a href="#"
+                            class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
-                            <i class="fab fa-whatsapp"></i> <!-- Line is popular in Thailand, WhatsApp or other might be more common in Laos, but keeping for consistency with original -->
+                        <a href="#"
+                            class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                            <!-- Line is popular in Thailand, WhatsApp or other might be more common in Laos, but keeping for consistency with original -->
                         </a>
-                        <a href="#" class="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors">
+                        <a href="#"
+                            class="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="border-t border-gray-700 mt-8 pt-8 text-center">
                 <p class="text-gray-400">© 2025 Sanfan Primary School. ສະຫງວນລິຂະສິດທຸກປະການ</p>
             </div>
@@ -1366,19 +1557,19 @@
             if (!element) return; // Guard against missing elements
             const start = 0;
             const startTime = performance.now();
-            
+
             function updateCounter(currentTime) {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
                 const current = Math.floor(start + (target - start) * progress);
-                
+
                 element.textContent = current + (elementId === 'yearsCount' ? '' : (elementId === 'avgScore' || elementId === 'highestScore' || elementId === 'totalSubjects' ? '' : '+'));
-                
+
                 if (progress < 1) {
                     requestAnimationFrame(updateCounter);
                 }
             }
-            
+
             requestAnimationFrame(updateCounter);
         }
 
@@ -1386,19 +1577,19 @@
         function filterGallery(category) {
             const items = document.querySelectorAll('.gallery-item');
             const buttons = document.querySelectorAll('.gallery-filter-btn');
-            
+
             // Update button states
             buttons.forEach(btn => {
                 btn.classList.remove('active', 'bg-blue-600', 'text-white');
                 btn.classList.add('bg-gray-200', 'text-gray-700');
             });
-            
+
             const currentButton = event.target.closest('.gallery-filter-btn');
             if (currentButton) {
                 currentButton.classList.remove('bg-gray-200', 'text-gray-700');
                 currentButton.classList.add('active', 'bg-blue-600', 'text-white');
             }
-            
+
             // Filter items
             items.forEach(item => {
                 if (category === 'all' || item.classList.contains(category)) {
@@ -1415,26 +1606,26 @@
             // Hide all pages
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.add('hidden'));
-            
+
             // Show selected page
             const targetPage = document.getElementById(pageId + 'Page');
             if (targetPage) {
                 targetPage.classList.remove('hidden');
             }
-            
+
             // Update navigation
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => link.classList.remove('text-blue-600', 'font-semibold'));
-            
+
             // Close mobile menu
             const mobileMenu = document.getElementById('mobileMenu');
             if (mobileMenu) {
                 mobileMenu.classList.add('hidden');
             }
-            
+
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            
+
             // Trigger animations for specific pages
             if (pageId === 'home') {
                 setTimeout(() => {
@@ -1459,14 +1650,14 @@
             const studentNameInput = document.getElementById('studentName');
             const studentInfoDiv = document.getElementById('studentInfo');
             const studentDetailsDiv = document.getElementById('studentDetails');
-            
+
             if (!studentIdInput || !studentNameInput || !studentInfoDiv || !studentDetailsDiv) return;
 
             const studentId = studentIdInput.value.trim();
             const studentName = studentNameInput.value.trim();
-            
+
             let foundStudent = null;
-            
+
             for (let id in studentsData) {
                 const student = studentsData[id];
                 if ((studentId && student.id.toLowerCase().includes(studentId.toLowerCase())) ||
@@ -1475,7 +1666,7 @@
                     break;
                 }
             }
-            
+
             if (foundStudent) {
                 studentDetailsDiv.innerHTML = `
                     <div>
@@ -1501,7 +1692,7 @@
                 `;
                 studentInfoDiv.classList.remove('hidden');
                 studentInfoDiv.style.animation = 'slideIn 0.5s ease-out';
-                
+
                 const registrationForm = document.getElementById('registrationForm');
                 if (registrationForm) {
                     registrationForm.dataset.studentId = foundStudent.id;
@@ -1523,12 +1714,12 @@
             if (!scoreStudentIdInput || !scoreResultsDiv || !noScoreResultsDiv || !scoreStudentInfoDiv || !scoreTableDiv) return;
 
             const studentId = scoreStudentIdInput.value.trim();
-            
+
             if (scoresData[studentId]) {
                 const data = scoresData[studentId];
                 const student = data.student;
                 const scores = data.scores;
-                
+
                 scoreStudentInfoDiv.innerHTML = `
                     <div>
                         <span class="font-semibold">ລະຫັດນັກຮຽນ:</span>
@@ -1543,7 +1734,7 @@
                         <span>${student.class}</span>
                     </div>
                 `;
-                
+
                 let tableHTML = `
                     <table class="w-full bg-white rounded-2xl overflow-hidden shadow-lg">
                         <thead class="bg-gradient-to-r from-blue-500 to-purple-600 text-white">
@@ -1556,13 +1747,13 @@
                         </thead>
                         <tbody>
                 `;
-                
+
                 scores.forEach((item, index) => {
                     const rowClass = index % 2 === 0 ? 'bg-gray-50' : 'bg-white';
                     const statusClass = item.score >= 50 ? 'text-green-600' : 'text-red-600';
                     const statusIcon = item.score >= 50 ? 'fas fa-check-circle' : 'fas fa-times-circle';
                     const statusText = item.score >= 50 ? 'ຜ່ານ' : 'ບໍ່ຜ່ານ';
-                    
+
                     tableHTML += `
                         <tr class="${rowClass}">
                             <td class="px-6 py-4 font-semibold">${item.subject}</td>
@@ -1578,25 +1769,25 @@
                         </tr>
                     `;
                 });
-                
+
                 tableHTML += `
                         </tbody>
                     </table>
                 `;
-                
+
                 scoreTableDiv.innerHTML = tableHTML;
-                
+
                 const totalScore = scores.reduce((sum, item) => sum + item.score, 0);
                 const avgScore = scores.length > 0 ? Math.round(totalScore / scores.length) : 0;
                 const highestScore = scores.length > 0 ? Math.max(...scores.map(item => item.score)) : 0;
                 const totalSubjects = scores.length;
-                
+
                 setTimeout(() => {
                     animateCounter('avgScore', avgScore, 1000);
                     animateCounter('highestScore', highestScore, 1000);
                     animateCounter('totalSubjects', totalSubjects, 1000);
                 }, 300);
-                
+
                 scoreResultsDiv.classList.remove('hidden');
                 scoreResultsDiv.style.animation = 'fadeInUp 0.8s ease-out';
                 noScoreResultsDiv.classList.add('hidden');
@@ -1607,13 +1798,13 @@
             }
         }
 
-      // File upload handling
+        // File upload handling
         function handleFileUpload(input) {
             const file = input.files[0];
             const filePreview = document.getElementById('filePreview');
             const fileName = document.getElementById('fileName');
             const imagePreview = document.getElementById('imagePreview');
-            
+
             if (file) {
                 // Validate file type
                 const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -1622,7 +1813,7 @@
                     input.value = '';
                     return;
                 }
-                
+
                 // Validate file size (5MB max)
                 const maxSize = 5 * 1024 * 1024; // 5MB in bytes
                 if (file.size > maxSize) {
@@ -1630,60 +1821,60 @@
                     input.value = '';
                     return;
                 }
-                
+
                 // Show file info
                 fileName.textContent = file.name;
                 filePreview.classList.remove('hidden');
-                
+
                 // Show image preview
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     imagePreview.src = e.target.result;
                     imagePreview.style.display = 'block';
                 };
                 reader.readAsDataURL(file);
             }
         }
-        
+
         function removeFile() {
             const fileInput = document.getElementById('paymentProof');
             const filePreview = document.getElementById('filePreview');
             const imagePreview = document.getElementById('imagePreview');
-            
+
             fileInput.value = '';
             filePreview.classList.add('hidden');
             imagePreview.style.display = 'none';
         }
-        
+
         // Form submission handler
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        document.getElementById('registrationForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const formData = new FormData(this);
             const studentId = this.dataset.studentId;
-            
+
             if (!studentId) {
                 alert('ກະລຸນາຄົ້ນຫາແລະເລືອກນັກຮຽນກ່ອນສົ່ງໃບສະໝັກ');
                 return;
             }
-            
+
             // Validate form
             if (!validateForm(this)) {
                 alert('ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບຖ້ວນ');
                 return;
             }
-            
+
             // Show loading state
             const submitButton = this.querySelector('button[type="submit"]');
             showLoading(submitButton);
-            
+
             // Validate payment proof upload
             const paymentProof = formData.get('paymentProof');
             if (!paymentProof || paymentProof.size === 0) {
                 alert('ກະລຸນາອັບໂຫລດຫຼັກຖານການໂອນເງີນ');
                 return;
             }
-            
+
             // Here you would normally send data to PHP backend
             // For demonstration, we'll show success message
             const registrationData = {
@@ -1698,13 +1889,13 @@
                 transferAmount: formData.get('transferAmount'),
                 paymentProof: paymentProof.name // In real implementation, you'd handle file upload properly
             };
-            
+
             console.log('Registration data to be sent to PHP:', registrationData);
-            
+
             // Show success message after delay
             setTimeout(() => {
                 alert('ສົ່ງໃບສະໝັກສຳເລັດແລ້ວ! ທາງໂຮງຮຽນຈະກວດສອບການຊຳລະເງີນແລະຕິດຕໍ່ກັບພາຍໃນ 24 ຊົ່ວໂມງ');
-                
+
                 // Reset form
                 this.reset();
                 document.getElementById('studentInfo').classList.add('hidden');
@@ -1716,15 +1907,15 @@
         });
 
         // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             showPage('home');
-            
+
             // Add intersection observer for animations
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
             };
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1732,7 +1923,7 @@
                     }
                 });
             }, observerOptions);
-            
+
             // Observe elements for animations
             document.querySelectorAll('.card-hover, .achievement-badge').forEach(el => {
                 observer.observe(el);
@@ -1757,7 +1948,7 @@
             const originalText = button.innerHTML;
             button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>ກຳລັງປະມວນຜົນ...';
             button.disabled = true;
-            
+
             setTimeout(() => {
                 button.innerHTML = originalText;
                 button.disabled = false;
@@ -1768,7 +1959,7 @@
         function validateForm(form) {
             const requiredFields = form.querySelectorAll('[required]');
             let isValid = true;
-            
+
             requiredFields.forEach(field => {
                 if (!field.value.trim()) {
                     field.classList.add('border-red-500', 'bg-red-50');
@@ -1777,34 +1968,34 @@
                     field.classList.remove('border-red-500', 'bg-red-50');
                 }
             });
-            
+
             return isValid;
         }
 
         // Add enter key support for search
-        document.getElementById('studentId').addEventListener('keypress', function(e) {
+        document.getElementById('studentId').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 searchStudent();
             }
         });
 
-        document.getElementById('studentName').addEventListener('keypress', function(e) {
+        document.getElementById('studentName').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 searchStudent();
             }
         });
 
-        document.getElementById('scoreStudentId').addEventListener('keypress', function(e) {
+        document.getElementById('scoreStudentId').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 searchScores();
             }
         });
 
         // Add scroll effects
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const scrolled = window.pageYOffset;
             const particles = document.querySelectorAll('.particle');
-            
+
             particles.forEach((particle, index) => {
                 const speed = 0.5 + (index * 0.1);
                 particle.style.transform = `translateY(${scrolled * speed}px)`;
@@ -1833,4 +2024,5 @@
         setInterval(resetTypingAnimation, 10000);
     </script>
 </body>
+
 </html>

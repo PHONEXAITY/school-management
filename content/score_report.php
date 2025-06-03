@@ -3,11 +3,10 @@ ob_start(); // Start output buffering
 
 include 'config/db.php';
 
-// Check if PDF generation is requested (moved to top)
+// Check if PDF generation is requested
 if (isset($_POST['save_pdf']) && $_POST['save_pdf'] == '1') {
-    // Redirect to PDF generation script
     header("Location: generate_score_report_pdf.php?" . http_build_query($_POST));
-    ob_end_clean(); // Clean buffer and stop further output
+    ob_end_clean();
     exit;
 }
 
@@ -40,6 +39,7 @@ $selected_class = isset($_POST['class_id']) ? $_POST['class_id'] : '';
 $selected_student = isset($_POST['student_id']) ? $_POST['student_id'] : '';
 $selected_term = isset($_POST['term_id']) ? $_POST['term_id'] : '';
 $selected_year = isset($_POST['sch_year_id']) ? $_POST['sch_year_id'] : '';
+$selected_month = isset($_POST['month']) ? $_POST['month'] : '';
 
 $conditions = [];
 $params = [];
@@ -64,6 +64,11 @@ if ($selected_year) {
     $params[] = $selected_year;
     $types .= 's';
 }
+if ($selected_month) {
+    $conditions[] = "sc.month = ?";
+    $params[] = $selected_month;
+    $types .= 'i';
+}
 
 $where_clause = !empty($conditions) ? "WHERE " . implode(" AND ", $conditions) : "";
 $sql = "SELECT 
@@ -86,6 +91,9 @@ $sql = "SELECT
 
 if (!empty($params)) {
     $stmt = $conn->prepare($sql);
+    if ($stmt === false) {
+        die("Error preparing statement: " . $conn->error);
+    }
     $stmt->bind_param($types, ...$params);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -97,7 +105,7 @@ if ($result === false) {
     die("Error fetching scores: " . $conn->error);
 }
 
-// Group scores by student, class, term, year, and month
+// Group scores and calculate sum, average, and status
 $grouped_scores = [];
 while ($row = $result->fetch_assoc()) {
     $key = $row['student_name'] . '|' . $row['class_name'] . '|' . $row['term_name'] . '|' . $row['year_name'] . '|' . $row['month'];
@@ -108,11 +116,44 @@ while ($row = $result->fetch_assoc()) {
             'term_name' => $row['term_name'],
             'year_name' => $row['year_name'],
             'month' => $row['month'],
-            'scores' => []
+            'scores' => [],
+            'sum' => 0,
+            'count' => 0,
+            'average' => 0,
+            'status' => ''
         ];
     }
-    $grouped_scores[$key]['scores'][$row['subject_id']] = $row['score'];
+    if ($row['score'] !== null) {
+        $grouped_scores[$key]['scores'][$row['subject_id']] = $row['score'];
+        $grouped_scores[$key]['sum'] += $row['score'];
+        $grouped_scores[$key]['count']++;
+    }
 }
+
+// Calculate average and status
+foreach ($grouped_scores as $key => &$group) {
+    if ($group['count'] > 0) {
+        $group['average'] = $group['sum'] / $group['count'];
+        $group['status'] = $group['average'] >= 5 ? 'ຜ່ານ' : 'ບໍ່ຜ່ານ';
+    } else {
+        $group['average'] = 0;
+        $group['status'] = 'Fail';
+    }
+}
+
+// Calculate arrange (rank) based on sum
+$sums = array_column($grouped_scores, 'sum');
+$unique_sums = array_unique($sums);
+rsort($unique_sums); // Sort in descending order
+$rank_map = [];
+$rank = 1;
+foreach ($unique_sums as $sum) {
+    $rank_map[$sum] = $rank++;
+}
+foreach ($grouped_scores as $key => &$group) {
+    $group['arrange'] = $rank_map[$group['sum']] ?? $rank;
+}
+unset($group); // Unset reference
 ?>
 
 <!DOCTYPE html>
@@ -163,6 +204,8 @@ while ($row = $result->fetch_assoc()) {
             background: #ffffff;
             border-radius: 8px;
             overflow: hidden;
+            table-layout: auto;
+            /* Allow cells to expand based on content */
         }
 
         .table thead {
@@ -172,8 +215,12 @@ while ($row = $result->fetch_assoc()) {
 
         .table th,
         .table td {
+            white-space: nowrap;
+            /* Prevent text wrapping */
             vertical-align: middle;
             padding: 12px;
+            overflow: visible;
+            /* Ensure content is visible without truncation */
         }
 
         .table tbody tr:hover {
@@ -248,6 +295,14 @@ while ($row = $result->fetch_assoc()) {
             gap: 15px;
             align-items: center;
         }
+
+        .arrange-column {
+            cursor: pointer;
+        }
+
+        .arrange-hidden {
+            display: none;
+        }
     </style>
 </head>
 
@@ -255,7 +310,8 @@ while ($row = $result->fetch_assoc()) {
     <div class="container-fluid py-2">
         <!-- Page Heading -->
         <h1 class="h3 mb-3 text-gray-800">Score Report</h1>
-        <p class="mb-4 text-muted">Generate a report of student scores by class, student, term, and school year.</p>
+        <p class="mb-4 text-muted">Generate a report of student scores by class, student, term, school year, and month.
+        </p>
 
         <!-- Card for Filters and Table -->
         <div class="card shadow mb-4">
@@ -264,7 +320,9 @@ while ($row = $result->fetch_assoc()) {
                 <div>
                     <button class="btn btn-primary me-2" onclick="window.print()"><i
                             class="fas fa-print me-2"></i>Print</button>
-
+                    <button class="btn btn-success"
+                        onclick="document.getElementById('save_pdf').value='1';document.getElementById('filter_form').submit();"><i
+                            class="fas fa-file-pdf me-2"></i>Save as PDF</button>
                 </div>
             </div>
             <div class="card-body">
@@ -322,6 +380,32 @@ while ($row = $result->fetch_assoc()) {
                             <?php endwhile; ?>
                         </select>
                     </div>
+                    <div class="d-flex align-items-center">
+                        <label class="form-label">Month:</label>
+                        <select name="month" class="form-select" onchange="this.form.submit()">
+                            <option value="">All Months</option>
+                            <?php
+                            $months = [
+                                1 => 'January',
+                                2 => 'February',
+                                3 => 'March',
+                                4 => 'April',
+                                5 => 'May',
+                                6 => 'June',
+                                7 => 'July',
+                                8 => 'August',
+                                9 => 'September',
+                                10 => 'October',
+                                11 => 'November',
+                                12 => 'December'
+                            ];
+                            foreach ($months as $month_id => $month_name): ?>
+                                <option value="<?php echo $month_id; ?>" <?php echo $selected_month == $month_id ? 'selected' : ''; ?>>
+                                    <?php echo htmlspecialchars($month_name); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     <input type="hidden" name="save_pdf" id="save_pdf" value="0">
                 </form>
 
@@ -338,25 +422,14 @@ while ($row = $result->fetch_assoc()) {
                                 <?php foreach ($subjects as $subject_id => $subject_name): ?>
                                     <th><?php echo htmlspecialchars($subject_name); ?></th>
                                 <?php endforeach; ?>
+                                <th>Sum</th>
+                                <th>Average</th>
+                                <th>Status</th>
+                                <th class="arrange-column">Arrange</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            $months = [
-                                1 => 'January',
-                                2 => 'February',
-                                3 => 'March',
-                                4 => 'April',
-                                5 => 'May',
-                                6 => 'June',
-                                7 => 'July',
-                                8 => 'August',
-                                9 => 'September',
-                                10 => 'October',
-                                11 => 'November',
-                                12 => 'December'
-                            ];
-                            foreach ($grouped_scores as $group): ?>
+                            <?php foreach ($grouped_scores as $group): ?>
                                 <tr>
                                     <td><?php echo htmlspecialchars($group['student_name']); ?></td>
                                     <td><?php echo htmlspecialchars($group['class_name']); ?></td>
@@ -372,6 +445,10 @@ while ($row = $result->fetch_assoc()) {
                                             ?>
                                         </td>
                                     <?php endforeach; ?>
+                                    <td><?php echo $group['sum']; ?></td>
+                                    <td><?php echo number_format($group['average'], 2); ?></td>
+                                    <td><?php echo $group['status']; ?></td>
+                                    <td class="arrange-column"><?php echo $group['arrange']; ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -387,10 +464,22 @@ while ($row = $result->fetch_assoc()) {
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function () {
+            // Initialize DataTables
             $('#dataTable').DataTable({
                 "pageLength": 10,
                 "lengthMenu": [10, 25, 50, 100],
-                "order": [[0, "asc"]] // Sort by Student Name by default
+                "order": [[0, "asc"]]
+            });
+
+            // Toggle Arrange column visibility
+            let arrangeVisible = true;
+            $('.arrange-column').on('click', function () {
+                arrangeVisible = !arrangeVisible;
+                if (arrangeVisible) {
+                    $('.arrange-column').removeClass('arrange-hidden');
+                } else {
+                    $('.arrange-column').addClass('arrange-hidden');
+                }
             });
         });
     </script>
@@ -399,7 +488,7 @@ while ($row = $result->fetch_assoc()) {
 </html>
 
 <?php
-ob_end_flush(); // Flush the output buffer
+ob_end_flush();
 if (!empty($params)) {
     $stmt->close();
 }
