@@ -1,6 +1,18 @@
 <?php
 include("./config/db.php");
 
+session_start(); // Start session at the top
+
+// Check if user is already logged in
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    if ($_SESSION['role'] === 'Admin') {
+        header("Location: index.php");
+    } elseif ($_SESSION['role'] === 'Teacher') {
+        header("Location: index_teacher.php");
+    }
+    exit;
+}
+
 $errorMsg = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,8 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = mysqli_fetch_assoc($result);
         $role = $user['role'];
 
-        // Start session and store user data
-        session_start();
+        // Store user data in session
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
         $_SESSION['role'] = $role;
@@ -29,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($role == 'Admin') {
             header("Location: index.php");
         } elseif ($role == 'Teacher') {
-            header("Location: index.php");
+            header("Location: index_teacher.php");
         }
         exit;
     } else {
@@ -136,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .login-form h3::before {
-            content: "✈️";
+
             margin-right: 10px;
         }
 
@@ -150,12 +161,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .login-form .form-control:focus {
-            border-color: #4171DAFF;
+            border-colorCharSet: #4171DAFF;
             box-shadow: 0 0 5px rgba(65, 113, 218, 0.5);
         }
 
         .btn-login {
-            background-color: #044FEFFF;
+            background-color: #4171DAFF;
             color: white;
             border: none;
             padding: 0.75rem;
@@ -220,7 +231,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div class="login-form">
-            <h3>Welcome</h3>
+
+            <h3>Welcome To Login</h3>
             <?php if (!empty($errorMsg)): ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <?php echo htmlspecialchars($errorMsg); ?>
