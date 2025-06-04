@@ -28,10 +28,10 @@ try {
     debugLog("Loading database connection");
     
     $configFiles = [
+        '../../config/db_pdo.php',
+        '../../config/db_pdo.php',
         '../config/db.php',
-        '../config/db_pdo.php',
-        './config/db.php',
-        './config/db_pdo.php'
+        '../config/db_pdo.php'
     ];
     
     $dbLoaded = false;
@@ -50,7 +50,7 @@ try {
     
     debugLog("Database connection established");
     
-    $uploadDir = '../uploads/payment_slips/';
+    $uploadDir = '../../uploads/payment_slips/';
     if (!is_dir($uploadDir)) {
         debugLog("Creating upload directory: " . $uploadDir);
         if (!mkdir($uploadDir, 0755, true)) {

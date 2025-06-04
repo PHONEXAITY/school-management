@@ -1,5 +1,5 @@
 <?php
-require_once '../config/db_pdo.php';
+require_once '../../config/db_pdo.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');

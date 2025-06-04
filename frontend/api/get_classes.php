@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit;
 }
 
-if (!file_exists('../config/db_pdo.php')) {
+if (!file_exists('../../config/db_pdo.php')) {
     echo json_encode(['success' => false, 'error' => 'Database config file not found']);
     exit;
 }
 
 try {
-    require_once '../config/db_pdo.php';
+    require_once '../../config/db_pdo.php';
     if (!isset($conn) && !isset($pdo)) {
         throw new Exception('Database connection not established');
     }
