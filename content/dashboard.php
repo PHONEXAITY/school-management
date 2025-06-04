@@ -215,56 +215,6 @@
         </div>
     </div>
 
-    <!-- Content Row -->
-    <div class="row">
-        <!-- Content Column -->
-        <div class="col-lg-12 mb-4">
-            <!-- Recent Events -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Recent School Events</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>Event Name</th>
-                                    <th>Date</th>
-                                    <th>Location</th>
-                                    <th>Description</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Annual Sports Day</td>
-                                    <td>2025-06-15</td>
-                                    <td>School Ground</td>
-                                    <td>Annual sports competition</td>
-                                    <td>Upcoming</td>
-                                </tr>
-                                <tr>
-                                    <td>Science Fair</td>
-                                    <td>2025-05-20</td>
-                                    <td>School Hall</td>
-                                    <td>Exhibition of student projects</td>
-                                    <td>Completed</td>
-                                </tr>
-                                <tr>
-                                    <td>Parent-Teacher Meeting</td>
-                                    <td>2025-06-25</td>
-                                    <td>Classrooms</td>
-                                    <td>Term end meeting</td>
-                                    <td>Upcoming</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
