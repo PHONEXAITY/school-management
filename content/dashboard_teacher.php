@@ -201,19 +201,20 @@
                     </div>
                     <div class="mt-4 text-center small">
                         <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Grade 10
+                            <i class="fas fa-circle text-primary"></i> class 1
                         </span>
                         <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Grade 11
+                            <i class="fas fa-circle text-success"></i> class 2
                         </span>
                         <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Grade 12
+                            <i class="fas fa-circle text-info"></i> class 3
                         </span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 
     <!-- Bootstrap JS and dependencies -->
@@ -227,7 +228,7 @@
         new Chart(ctxPie, {
             type: 'pie',
             data: {
-                labels: ['Grade 10', 'Grade 11', 'Grade 12'],
+                labels: ['12 students', '13 students', '10 students'],
                 datasets: [{
                     data: [2, 2, 1],
                     backgroundColor: ['#007bff', '#28a745', '#17a2b8'],

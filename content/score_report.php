@@ -320,9 +320,7 @@ unset($group); // Unset reference
                 <div>
                     <button class="btn btn-primary me-2" onclick="window.print()"><i
                             class="fas fa-print me-2"></i>Print</button>
-                    <button class="btn btn-success"
-                        onclick="document.getElementById('save_pdf').value='1';document.getElementById('filter_form').submit();"><i
-                            class="fas fa-file-pdf me-2"></i>Save as PDF</button>
+
                 </div>
             </div>
             <div class="card-body">
