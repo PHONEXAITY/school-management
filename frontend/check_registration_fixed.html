@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ກວດສອບສະຖານະການລົງທະບຽນ - Sanfan Primary School</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'lao': ['Noto Sans Lao', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans Lao', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .input-focus {
+            transition: all 0.3s ease;
+        }
+        
+        .search-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .result-card {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .floating-elements::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-gradient h1 {
+                font-size: 2.5rem;
+            }
+            
+            .glass-effect {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center pulse-slow">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-800">Sanfan Primary</h1>
+                        <p class="text-sm text-gray-600">ໂຮງຮຽນປະຖົມສານຝັນ</p>
+                    </div>
+                </div>
+                
+                <!-- Breadcrumb -->
+                <div class="hidden md:flex items-center space-x-3 text-sm">
+                    <a href="index.html" class="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i>
+                        <span class="hidden md:inline">ໜ້າຫຼັກ</span>
+                    </a>
+                    <div class="h-6 w-px bg-gray-300"></div>
+                    <div class="flex items-center text-blue-600 font-medium">
+                        <i class="fas fa-search-location mr-2"></i>
+                        <span class="hidden md:inline">ກວດສອບສະຖານະ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient pt-24 pb-16 relative overflow-hidden floating-elements">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                    ກວດສອບສະຖານະການລົງທະບຽນ
+                </h1>
+                <p class="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
+                    ຄົ້ນຫາຂໍ້ມູນການລົງທະບຽນຂອງນັກຮຽນໄດ້ງ່າຍ ແລະ ໄວ
+                </p>
+                <div class="flex justify-center space-x-4 text-blue-100">
+                    <div class="flex items-center">
+                        <i class="fas fa-search mr-2"></i>
+                        <span>ຄົ້ນຫາງ່າຍ</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-qrcode mr-2"></i>
+                        <span>ສະແກນ QR</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-mobile-alt mr-2"></i>
+                        <span>ຮອງຮັບທຸກອຸປະກອນ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-16 relative">
+        <div class="container mx-auto px-6">
+            <!-- Search Section -->
+            <div class="search-container mb-12">
+                <div class="glass-effect rounded-2xl card-shadow p-8 md:p-12">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">ເລືອກວິທີການຄົ້ນຫາ</h2>
+                        <p class="text-gray-600 text-lg">ທ່ານສາມາດຄົ້ນຫາໂດຍການປ້ອນລະຫັດນັກຮຽນ ຫຼື ຊື່ນັກຮຽນ</p>
+                    </div>
+
+                    <!-- Search Form -->
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="space-y-2">
+                            <label for="searchType" class="block text-sm font-semibold text-gray-700">
+                                <i class="fas fa-filter mr-2 text-blue-500"></i>ປະເພດການຄົ້ນຫາ
+                            </label>
+                            <select id="searchType" class="w-full p-4 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:ring-0 input-focus transition-all duration-300 bg-white">
+                                <option value="student_id">🔍 ລະຫັດນັກຮຽນ</option>
+                                <option value="name">👤 ຊື່ນັກຮຽນ</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2 space-y-2">
+                            <label for="searchValue" class="block text-sm font-semibold text-gray-700">
+                                <i class="fas fa-keyboard mr-2 text-blue-500"></i>ຄໍາຄົ້ນຫາ
+                            </label>
+                            <input type="text" id="searchValue" 
+                                class="w-full p-4 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:ring-0 input-focus transition-all duration-300" 
+                                placeholder="ປ້ອນລະຫັດນັກຮຽນ ຫຼື ຊື່ນັກຮຽນ">
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <div class="flex justify-center">
+                        <button id="checkStatusBtn" class="btn-primary text-white font-semibold py-4 px-8 rounded-xl flex items-center justify-center space-x-3 min-w-[250px]">
+                            <i id="btnIcon" class="fas fa-search"></i>
+                            <span id="btnText">ກວດສອບສະຖານະ</span>
+                            <div id="btnLoading" class="hidden">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="statusResult" class="hidden">
+                <!-- Results will be displayed here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Sanfan Primary School</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">ສ້າງເພື່ອການສຶກສາ ແລະ ພັດທະນາເຍົາວະຊົນໃຫ້ມີຄຸນນະພາບ</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">ຂໍ້ມູນຕິດຕໍ່</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>ບ້ານສານຝັນ, ເມືອງ, ແຂວງ</p>
+                        <p><i class="fas fa-phone mr-2 text-blue-400"></i>+856 20 XXXX XXXX</p>
+                        <p><i class="fas fa-envelope mr-2 text-blue-400"></i>info@sanfan-school.la</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">ລິ້ງທີ່ມີປະໂຫຍດ</h4>
+                    <div class="space-y-2">
+                        <a href="index.html" class="block text-gray-300 hover:text-blue-400 transition-colors">
+                            <i class="fas fa-home mr-2"></i>ໜ້າຫຼັກ
+                        </a>
+                        <a href="index.html" class="block text-gray-300 hover:text-blue-400 transition-colors">
+                            <i class="fas fa-user-plus mr-2"></i>ລົງທະບຽນຮຽນ
+                        </a>
+                        <a href="index.html" class="block text-gray-300 hover:text-blue-400 transition-colors">
+                            <i class="fas fa-chart-line mr-2"></i>ເບິ່ງຄະແນນ
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">© 2025 Sanfan Primary School. All rights reserved.</p>
+                <p class="text-gray-500 text-sm mt-2">ພັດທະນາດ້ວຍ ❤️ ເພື່ອການສຶກສາທີ່ດີກວ່າ</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkStatusBtn = document.getElementById('checkStatusBtn');
+            const searchTypeSelect = document.getElementById('searchType');
+            const searchValueInput = document.getElementById('searchValue');
+            const statusResult = document.getElementById('statusResult');
+            const btnText = document.getElementById('btnText');
+            const btnLoading = document.getElementById('btnLoading');
+            const btnIcon = document.getElementById('btnIcon');
+            
+            // Check Status Button
+            checkStatusBtn.addEventListener('click', async () => {
+                const searchType = searchTypeSelect.value;
+                const searchValue = searchValueInput.value.trim();
+                
+                if (!searchValue) {
+                    showErrorMessage('ກະລຸນາປ້ອນຂໍ້ມູນທີ່ຕ້ອງການຄົ້ນຫາ');
+                    return;
+                }
+                
+                // Show loading state
+                setLoadingState(true);
+                
+                try {
+                    console.log('Sending request:', { searchType, searchValue });
+                    
+                    const response = await fetch('api/check_registration_status.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            searchType: searchType,
+                            searchValue: searchValue
+                        })
+                    });
+                    
+                    console.log('Response status:', response.status);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    console.log('API Response:', data);
+                    
+                    if (data.status === 'success') {
+                        displayResults(data);
+                    } else if (data.status === 'not_found') {
+                        showErrorMessage(data.message || 'ບໍ່ພົບຂໍ້ມູນນັກຮຽນ');
+                    } else if (data.status === 'not_registered') {
+                        showNotRegisteredMessage(data);
+                    } else {
+                        showErrorMessage(data.message || 'ບໍ່ພົບຂໍ້ມູນທີ່ຄົ້ນຫາ');
+                    }
+                    
+                } catch (error) {
+                    console.error('Error:', error);
+                    showErrorMessage('ເກີດຂໍ້ຜິດພາດໃນການເຊື່ອມຕໍ່ກັບເຊີເວີ: ' + error.message);
+                } finally {
+                    setLoadingState(false);
+                }
+            });
+            
+            // Enter key support for search
+            searchValueInput.addEventListener('keyup', (event) => {
+                if (event.key === 'Enter') {
+                    checkStatusBtn.click();
+                }
+            });
+
+            // Set Loading State
+            function setLoadingState(loading) {
+                if (loading) {
+                    btnIcon.classList.add('hidden');
+                    btnText.classList.add('hidden');
+                    btnLoading.classList.remove('hidden');
+                    checkStatusBtn.disabled = true;
+                    checkStatusBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                } else {
+                    btnIcon.classList.remove('hidden');
+                    btnText.classList.remove('hidden');
+                    btnLoading.classList.add('hidden');
+                    checkStatusBtn.disabled = false;
+                    checkStatusBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            }
+
+            // Display Results Function
+            function displayResults(data) {
+                let statusIcon, statusColor, statusText, statusBg;
+                
+                const student = data.student;
+                const registration = data.registration;
+                
+                // Determine status styling based on registration status
+                if (registration && registration.status) {
+                    switch(registration.status.toLowerCase()) {
+                        case 'completed':
+                        case 'approved':
+                        case 'ສຳເລັດແລ້ວ':
+                            statusIcon = 'fas fa-check-circle';
+                            statusColor = 'text-green-600';
+                            statusText = 'ລົງທະບຽນສຳເລັດແລ້ວ';
+                            statusBg = 'bg-green-50 border-green-200';
+                            break;
+                        case 'pending':
+                        case 'ລໍຖ້າອະນຸມັດ':
+                            statusIcon = 'fas fa-clock';
+                            statusColor = 'text-yellow-600';
+                            statusText = 'ລໍຖ້າການອະນຸມັດ';
+                            statusBg = 'bg-yellow-50 border-yellow-200';
+                            break;
+                        case 'rejected':
+                        case 'ຖືກປະຕິເສດ':
+                            statusIcon = 'fas fa-times-circle';
+                            statusColor = 'text-red-600';
+                            statusText = 'ຖືກປະຕິເສດ';
+                            statusBg = 'bg-red-50 border-red-200';
+                            break;
+                        default:
+                            statusIcon = 'fas fa-info-circle';
+                            statusColor = 'text-blue-600';
+                            statusText = registration.status;
+                            statusBg = 'bg-blue-50 border-blue-200';
+                    }
+                } else {
+                    statusIcon = 'fas fa-question-circle';
+                    statusColor = 'text-gray-600';
+                    statusText = 'ບໍ່ທາວຄວາມ';
+                    statusBg = 'bg-gray-50 border-gray-200';
+                }
+
+                // Payment status
+                let paymentIcon, paymentColor, paymentText;
+                if (registration && registration.payment_status) {
+                    switch(registration.payment_status.toLowerCase()) {
+                        case 'paid':
+                        case 'ຈ່າຍແລ້ວ':
+                            paymentIcon = 'fas fa-check-circle';
+                            paymentColor = 'text-green-600';
+                            paymentText = 'ຈ່າຍຄ່າທຳນຽມແລ້ວ';
+                            break;
+                        case 'pending':
+                        case 'ລໍຖ້າ':
+                            paymentIcon = 'fas fa-clock';
+                            paymentColor = 'text-yellow-600';
+                            paymentText = 'ລໍຖ້າການຈ່າຍເງິນ';
+                            break;
+                        case 'unpaid':
+                        case 'ຍັງບໍ່ຈ່າຍ':
+                            paymentIcon = 'fas fa-times-circle';
+                            paymentColor = 'text-red-600';
+                            paymentText = 'ຍັງບໍ່ໄດ້ຈ່າຍຄ່າທຳນຽມ';
+                            break;
+                        default:
+                            paymentIcon = 'fas fa-info-circle';
+                            paymentColor = 'text-gray-600';
+                            paymentText = registration.payment_status;
+                    }
+                } else {
+                    paymentIcon = 'fas fa-question-circle';
+                    paymentColor = 'text-gray-600';
+                    paymentText = 'ບໍ່ມີຂໍ້ມູນ';
+                }
+
+                const resultHTML = `
+                    <div class="result-card rounded-2xl card-shadow p-8 mb-8 animate-fadeIn">
+                        <!-- Student Info Header -->
+                        <div class="text-center mb-8">
+                            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+                                <i class="fas fa-user-graduate text-white text-3xl"></i>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+                                ${student.fname} ${student.lname}
+                            </h2>
+                            <p class="text-gray-600 text-lg">ລະຫັດນັກຮຽນ: ${student.id}</p>
+                        </div>
+
+                        <!-- Status Cards -->
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <!-- Registration Status -->
+                            <div class="p-6 rounded-xl ${statusBg} border-2">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-800">ສະຖານະການລົງທະບຽນ</h3>
+                                    <i class="${statusIcon} text-2xl ${statusColor}"></i>
+                                </div>
+                                <p class="text-xl font-bold ${statusColor} mb-2">${statusText}</p>
+                                ${registration && registration.registration_date ? `
+                                <p class="text-sm text-gray-600">
+                                    <i class="fas fa-calendar mr-1"></i>ວັນທີ່ລົງທະບຽນ: ${registration.registration_date}
+                                </p>
+                                ` : ''}
+                            </div>
+
+                            <!-- Payment Status -->
+                            <div class="p-6 rounded-xl bg-white border-2 border-gray-200">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-800">ສະຖານະການຈ່າຍເງິນ</h3>
+                                    <i class="${paymentIcon} text-2xl ${paymentColor}"></i>
+                                </div>
+                                <p class="text-xl font-bold ${paymentColor}">${paymentText}</p>
+                            </div>
+                        </div>
+
+                        <!-- Academic Info -->
+                        ${registration ? `
+                        <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                                <i class="fas fa-graduation-cap mr-2 text-blue-500"></i>ຂໍ້ມູນການສຶກສາ
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2 text-gray-500"></i>
+                                    <span class="text-gray-600">ປີການສຶກສາ:</span>
+                                    <span class="ml-2 font-semibold">${registration.year_name || 'ບໍ່ມີຂໍ້ມູນ'}</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-bookmark mr-2 text-gray-500"></i>
+                                    <span class="text-gray-600">ເທີມ:</span>
+                                    <span class="ml-2 font-semibold">${registration.term_name || 'ບໍ່ມີຂໍ້ມູນ'}</span>
+                                </div>
+                            </div>
+                        </div>
+                        ` : ''}
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center pt-6 border-t border-gray-200">
+                            <button onclick="printResults()" class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-3 rounded-lg transition-all hover:transform hover:scale-105">
+                                <i class="fas fa-print mr-2"></i>ພິມຜົນການຄົ້ນຫາ
+                            </button>
+                            <button onclick="resetSearch()" class="bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white px-6 py-3 rounded-lg transition-all hover:transform hover:scale-105">
+                                <i class="fas fa-search mr-2"></i>ຄົ້ນຫາໃໝ່
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                statusResult.innerHTML = resultHTML;
+                statusResult.classList.remove('hidden');
+                
+                // Smooth scroll to results
+                statusResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Show Not Registered Message
+            function showNotRegisteredMessage(data) {
+                const student = data.student;
+                const resultHTML = `
+                    <div class="result-card rounded-2xl card-shadow p-8 mb-8 bg-yellow-50 border-2 border-yellow-200 animate-fadeIn">
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-yellow-100 flex items-center justify-center">
+                                <i class="fas fa-user-clock text-3xl text-yellow-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-yellow-800 mb-2">ພົບຂໍ້ມູນນັກຮຽນ</h3>
+                            <p class="text-lg text-gray-800 mb-2">${student.fname} ${student.lname}</p>
+                            <p class="text-sm text-gray-600 mb-4">ລະຫັດນັກຮຽນ: ${student.id}</p>
+                            <div class="bg-white rounded-lg p-4 mb-6">
+                                <p class="text-yellow-700 mb-4">
+                                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                                    ${data.message}
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    ກະລຸນາຕິດຕໍ່ຫ້ອງການໂຮງຮຽນເພື່ອລົງທະບຽນຮຽນ
+                                </p>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <a href="index.html" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors">
+                                    <i class="fas fa-user-plus mr-2"></i>ລົງທະບຽນຮຽນ
+                                </a>
+                                <button onclick="resetSearch()" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg transition-colors">
+                                    <i class="fas fa-search mr-2"></i>ຄົ້ນຫາໃໝ່
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                statusResult.innerHTML = resultHTML;
+                statusResult.classList.remove('hidden');
+                statusResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Show Error Message
+            function showErrorMessage(message) {
+                const errorHTML = `
+                    <div class="result-card rounded-2xl card-shadow p-8 mb-8 bg-red-50 border-2 border-red-200 animate-fadeIn">
+                        <div class="text-center">
+                            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
+                                <i class="fas fa-exclamation-triangle text-3xl text-red-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-red-800 mb-2">ບໍ່ພົບຂໍ້ມູນ</h3>
+                            <p class="text-red-700 mb-6">${message}</p>
+                            <button onclick="resetSearch()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-search mr-2"></i>ລອງຄົ້ນຫາໃໝ່
+                            </button>
+                        </div>
+                    </div>
+                `;
+                statusResult.innerHTML = errorHTML;
+                statusResult.classList.remove('hidden');
+                statusResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+
+        // Utility Functions
+        function resetSearch() {
+            document.getElementById('searchValue').value = '';
+            document.getElementById('statusResult').classList.add('hidden');
+            document.getElementById('searchValue').focus();
+        }
+
+        function printResults() {
+            const printContent = document.getElementById('statusResult').innerHTML;
+            const originalContent = document.body.innerHTML;
+            
+            document.body.innerHTML = `
+                <div style="padding: 20px; font-family: 'Noto Sans Lao', sans-serif;">
+                    <h1 style="text-align: center; margin-bottom: 20px;">ຜົນການຄົ້ນຫາສະຖານະການລົງທະບຽນ</h1>
+                    <div>${printContent}</div>
+                    <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #666;">
+                        ພິມເມື່ອວັນທີ: ${new Date().toLocaleDateString('lo-LA')}
+                    </div>
+                </div>
+            `;
+            
+            window.print();
+            document.body.innerHTML = originalContent;
+            
+            // Re-initialize after printing
+            location.reload();
+        }
+
+        // Auto-focus search input
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('searchValue').focus();
+        });
+    </script>
+</body>
+</html>
