@@ -173,7 +173,7 @@ class RegistrationManager {
             </div>
             <div>
                 <span class="font-semibold">ເພດ:</span>
-                <span>${student.gender === 'M' ? 'ຊາຍ' : 'ຍິງ'}</span>
+                <span>${student.gender === 'M' ? 'ຊາຍ' : (student.gender === 'F' ? 'ຍິງ' : 'ອື່ນໆ')}</span>
             </div>
             <div>
                 <span class="font-semibold">ທີ່ຢູ່:</span>

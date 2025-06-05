@@ -13,6 +13,22 @@ if (isset($_POST['submit_add'])) {
     $degree = $_POST['degree'];
     $phone = $_POST['phone'];
     $class_id = $_POST['class_id'] ?: null;
+    
+    // Validate and normalize gender value
+    if (!in_array($gender, ['Male', 'Female', 'Other'])) {
+        // For compatibility with both formats
+        if ($gender === 'M') {
+            $gender = 'Male';
+        } elseif ($gender === 'F') {
+            $gender = 'Female';
+        } elseif ($gender === 'O') {
+            $gender = 'Other';
+        } else {
+            // Handle invalid gender values
+            error_log("Invalid gender value: $gender. Defaulting to 'Male'");
+            $gender = 'Male';
+        }
+    }
 
     $sql = "INSERT INTO teacher (fname, lname, gender, birth_date, village, district, province, degree, phone, class_id) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -31,6 +47,23 @@ if (isset($_POST['submit_edit'])) {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $gender = $_POST['gender'];
+    
+    // Validate and normalize gender value
+    if (!in_array($gender, ['Male', 'Female', 'Other'])) {
+        // For compatibility with both formats
+        if ($gender === 'M') {
+            $gender = 'Male';
+        } elseif ($gender === 'F') {
+            $gender = 'Female';
+        } elseif ($gender === 'O') {
+            $gender = 'Other';
+        } else {
+            // Handle invalid gender values
+            error_log("Invalid gender value in edit: $gender. Defaulting to 'Male'");
+            $gender = 'Male';
+        }
+    }
+    
     $birth_date = $_POST['birth_date'];
     $village = $_POST['village'];
     $district = $_POST['district'];
