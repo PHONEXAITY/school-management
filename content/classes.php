@@ -372,18 +372,17 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
 
         <?php if ($show_report): ?>
             <!-- Report View -->
-            <h1 class="h3 mb-3 text-gray-800">Class Report</h1>
-            <p class="mb-4 text-muted">Generate a report of class details by level.</p>
+            <h1 class="h3 mb-3 text-gray-800">ລາຍງານຂໍ້ມູນຫ້ອງຮຽນ </h1>
+            <p class="mb-4 text-muted">ສ້າງບົດລາຍງານລາຍຂອງຊັ້ນຮຽນຕາມລຳດັບ.</p>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Class Report</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">ລາຍງານຂໍ້ມູນຫ້ອງຮຽນ</h6>
                     <div>
                         <button class="btn btn-primary me-2" onclick="window.print()"><i
                                 class="fas fa-print me-2"></i>Print</button>
 
-                        <a href="classes.php" class="btn btn-secondary"><i class="fas fa-arrow-left me-2"></i>Back to
-                            Management</a>
+                        <a href="classes.php" class="btn btn-secondary"><i class="fas fa-arrow-left me-2"></i>ກັບໄປໜ້າຈັດການຂໍ້ມູນ</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -410,9 +409,9 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Level</th>
+                                    <th>ລະຫັດ</th>
+                                    <th>ຫ້ອງ</th>
+                                    <th>ຊັ້ນຮຽນ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -426,7 +425,7 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                                     <?php endwhile; ?>
                                 <?php else: ?>
                                     <tr>
-                                        <td colspan="3" class="text-center">No class found.</td>
+                                        <td colspan="3" class="text-center">ບໍ່ພົບຂໍ້ມູນຫ້ອງຮຽນ.</td>
                                     </tr>
                                 <?php endif; ?>
                             </tbody>
@@ -436,18 +435,18 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
             </div>
         <?php else: ?>
             <!-- Management View -->
-            <h1 class="h3 mb-3 text-gray-800">Class Management</h1>
-            <p class="mb-4 text-muted">Effortlessly manage class records with options to add, edit, or delete details.</p>
+            <h1 class="h3 mb-3 text-gray-800">ຈັດການຫ້ອງຮຽນ</h1>
+            <p class="mb-4 text-muted">ຈັດການມູນຊັ້ນຮຽນດ້ວຍຕົວເລືອກ ເພີ່ມ, ແກ້ໄຂ ແລະ ລຶບຂໍ້ມູນ.</p>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Class</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">ຫ້ອງຮຽນ</h6>
                     <div>
                         <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addClassModal">
-                            <i class="fas fa-plus me-2"></i>Add New Class
+                            <i class="fas fa-plus me-2"></i>ເພີ່ມຫ້ອງຮຽນໃໝ່
                         </button>
                         <a href="classes.php?report=1" class="btn btn-success">
-                            <i class="fas fa-file-alt me-2"></i>Generate Report
+                            <i class="fas fa-file-alt me-2"></i>ລາຍງານຂໍ້ມູນຫ້ອງຮຽນ
                         </a>
                     </div>
                 </div>
@@ -456,10 +455,10 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Level</th>
-                                    <th>Actions</th>
+                                    <th>ລະຫັດ</th>
+                                    <th>ຫ້ອງ</th>
+                                    <th>ຊັ້ນຮຽນ</th>
+                                    <th>ຈັດການ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -484,7 +483,7 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                                     <?php endwhile; ?>
                                 <?php else: ?>
                                     <tr>
-                                        <td colspan="4" class="text-center">No class found. Please add a class to get started.
+                                        <td colspan="4" class="text-center">ບໍ່ພົບຫ້ອງຮຽນ. ກະລຸນາເພີ່ມຫ້ອງຮຽນ.
                                         </td>
                                     </tr>
                                 <?php endif; ?>
@@ -500,7 +499,7 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addClassModalLabel">Add New Class</h5>
+                            <h5 class="modal-title" id="addClassModalLabel">ເພີ່ມຫ້ອງຮຽນໃໝ່</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -508,23 +507,23 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                                 <div class="col g-2">
                                     <div>
                                         <div class="form-group">
-                                            <label class="form-label required">Class ID</label>
+                                            <label class="form-label required">ລະຫັດຫ້ອງ</label>
                                             <input type="text" name="id" class="form-control" placeholder="Enter class ID"
                                                 maxlength="50" required>
                                         </div>
                                     </div>
                                     <div>
                                         <div class="form-group">
-                                            <label class="form-label required">Class Name</label>
+                                            <label class="form-label required">ຫ້ອງຮຽນ</label>
                                             <input type="text" name="name" class="form-control"
                                                 placeholder="Enter class name" maxlength="100" required>
                                         </div>
                                     </div>
                                     <div>
                                         <div class="form-group">
-                                            <label class="form-label required">Level</label>
+                                            <label class="form-label required">ຊັ້ນຮຽນ</label>
                                             <select name="level_id" class="form-select" required>
-                                                <option value="">Select Level</option>
+                                                <option value="">ເລືອກຊັ້ນຮຽນ</option>
                                                 <?php
                                                 $level_result->data_seek(0);
                                                 while ($level = $level_result->fetch_assoc()): ?>
@@ -537,9 +536,9 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn-cancel" data-bs-dismiss="modal">ຍົກເລີກ</button>
                                     <button type="submit" name="submit_add" class="btn-save"><i
-                                            class="fas fa-save me-2"></i>Save</button>
+                                            class="fas fa-save me-2"></i>ບັນທືກ</button>
                                 </div>
                             </form>
                         </div>
@@ -553,7 +552,7 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="editClassModalLabel">Edit Class</h5>
+                            <h5 class="modal-title" id="editClassModalLabel">ແກ້ໄຂຫ້ອງຮຽນ</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -564,7 +563,7 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                                     <div class="col g-2">
                                         <div>
                                             <div class="form-group">
-                                                <label class="form-label required">Class ID</label>
+                                                <label class="form-label required">ລະຫັດຫ້ອງ</label>
                                                 <input type="text" name="id" class="form-control"
                                                     value="<?php echo htmlspecialchars($edit_class['id']); ?>" maxlength="50"
                                                     required>
@@ -572,7 +571,7 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                                         </div>
                                         <div>
                                             <div class="form-group">
-                                                <label class="form-label required">Class Name</label>
+                                                <label class="form-label required">ຫ້ອງຮຽນ</label>
                                                 <input type="text" name="name" class="form-control"
                                                     value="<?php echo htmlspecialchars($edit_class['name']); ?>"
                                                     placeholder="Enter class name" maxlength="100" required>
@@ -580,9 +579,9 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                                         </div>
                                         <div>
                                             <div class="form-group">
-                                                <label class="form-label required">Level</label>
+                                                <label class="form-label required">ຊັ້ນຮຽນ</label>
                                                 <select name="level_id" class="form-select" required>
-                                                    <option value="">Select Level</option>
+                                                    <option value="">ເລືອກຊັ້ນຮຽນ</option>
                                                     <?php
                                                     $level_result->data_seek(0);
                                                     while ($level = $level_result->fetch_assoc()): ?>
@@ -595,13 +594,13 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">ຍົກເລີກ</button>
                                         <button type="submit" name="submit_edit" class="btn-save"><i
-                                                class="fas fa-save me-2"></i>Update</button>
+                                                class="fas fa-save me-2"></i>ອັບເດດ</button>
                                     </div>
                                 </form>
                             <?php else: ?>
-                                <p class="text-danger">No class data found for editing.
+                                <p class="text-danger">ບໍ່ພົບຂໍ້ມູນຊັ້ນຮຽນສໍາລັບການເເກ້ໄຂ.
                                     <?php echo isset($edit_error) ? htmlspecialchars($edit_error) : ''; ?>
                                 </p>
                             <?php endif; ?>
@@ -616,18 +615,18 @@ $message = isset($_GET['message']) ? htmlspecialchars(urldecode($_GET['message']
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deleteClassModalLabel">Confirm Deletion</h5>
+                            <h5 class="modal-title" id="deleteClassModalLabel">ຢືນຢັນການລຶບ</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to delete this class? This action cannot be undone.</p>
+                            <p>ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບຫ້ອງຮຽນນີ້?</p>
                         </div>
                         <div class="modal-footer">
                             <form method="post" action="process_class.php">
                                 <input type="hidden" name="class_id" id="delete_class_id">
-                                <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn-cancel" data-bs-dismiss="modal">ຍົກເລີກ</button>
                                 <button type="submit" name="submit_delete" class="btn-delete"><i
-                                        class="fas fa-trash me-2"></i>Delete</button>
+                                        class="fas fa-trash me-2"></i>ລືບ</button>
                             </form>
                         </div>
                     </div>
