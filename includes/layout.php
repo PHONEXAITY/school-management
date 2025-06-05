@@ -20,6 +20,9 @@ $activePage = isset($activePage) ? $activePage : "";
 
     <!-- Custom styles for this template-->
     <link href="sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+    
+    <!-- Page specific CSS -->
+    <?php if (isset($pageSpecificCSS)) echo $pageSpecificCSS; ?>
 </head>
 
 <body id="page-top">

@@ -2,6 +2,7 @@
 ob_start(); // Start output buffering
 
 include 'config/db.php';
+include 'includes/format_helpers.php'; // Include formatting helpers
 
 // Check if report view is requested
 $show_report = isset($_GET['report']) && $_GET['report'] == '1';
@@ -393,7 +394,7 @@ if ($show_report) {
                                     <tr>
                                         <td><?php echo htmlspecialchars($row['id']); ?></td>
                                         <td><?php echo htmlspecialchars($row['fname'] . ' ' . $row['lname']); ?></td>
-                                        <td><?php echo htmlspecialchars($row['gender']); ?></td>
+                                        <td><?php echo htmlspecialchars(formatGender($row['gender'])); ?></td>
                                         <td><?php echo htmlspecialchars($row['birth_date']); ?></td>
                                         <td><?php echo htmlspecialchars($row['village']); ?></td>
                                         <td><?php echo htmlspecialchars($row['district']); ?></td>
@@ -449,7 +450,7 @@ if ($show_report) {
                                     <tr>
                                         <td><?php echo htmlspecialchars($row['id']); ?></td>
                                         <td><?php echo htmlspecialchars($row['fname'] . ' ' . $row['lname']); ?></td>
-                                        <td><?php echo htmlspecialchars($row['gender']); ?></td>
+                                        <td><?php echo htmlspecialchars(formatGender($row['gender'])); ?></td>
                                         <td><?php echo htmlspecialchars($row['birth_date']); ?></td>
                                         <td><?php echo htmlspecialchars($row['village']); ?></td>
                                         <td><?php echo htmlspecialchars($row['district']); ?></td>

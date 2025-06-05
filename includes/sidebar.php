@@ -118,15 +118,61 @@
         </div>
     </li>
 
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Administration
+    </div>
+
     <?php if ($_SESSION['role'] == 'Admin'): ?>
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Administration
-        </div>
-
+        <!-- Nav Item - Registration Management Collapse Menu -->
+        <li class="nav-item <?php echo (strpos($activePage, 'registration') !== false) ? 'active' : ''; ?>">
+            <a class="nav-link <?php echo (strpos($activePage, 'registration') !== false) ? '' : 'collapsed'; ?>" href="#"
+                data-toggle="collapse" data-target="#collapseRegistrations"
+                aria-expanded="<?php echo (strpos($activePage, 'registration') !== false) ? 'true' : 'false'; ?>"
+                aria-controls="collapseRegistrations">
+                <i class="fas fa-fw fa-clipboard-list"></i>
+                <span>การลงทะเบียน</span>
+                <?php
+                // Count pending registrations
+                include_once 'config/db.php';
+                $pending_count_sql = "SELECT COUNT(*) as count FROM registration WHERE registration_status = 'pending'";
+                $pending_count_result = $conn->query($pending_count_sql);
+                             
+                if ($pending_count_result && $pending_count_row = $pending_count_result->fetch_assoc()) {
+                    $pending_count = (int)$pending_count_row['count'];
+                    if ($pending_count > 0) {
+                        echo "<span class='badge badge-danger badge-counter ml-2'>{$pending_count}</span>";
+                    }
+                }
+                ?>
+            </a>
+            <div id="collapseRegistrations"
+                 class="collapse <?php echo (strpos($activePage, 'registration') !== false) ? 'show' : ''; ?>"
+                aria-labelledby="headingRegistrations" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Registration Options:</h6>
+                    <a class="collapse-item <?php echo ($activePage == 'admin_registrations') ? 'active' : ''; ?>" 
+                       href="admin_registration_management.php">
+                        <i class="fas fa-user-shield"></i> จัดการการลงทะเบียน
+                        <?php if ($pending_count > 0): ?>
+                            <span class="badge badge-warning badge-sm ml-1"><?= $pending_count ?></span>
+                        <?php endif; ?>
+                    </a>
+                    <a class="collapse-item <?php echo ($activePage == 'registration_analytics') ? 'active' : ''; ?>" 
+                       href="registration_analytics.php">
+                        <i class="fas fa-chart-bar"></i> รายงานและสถิติ
+                    </a>
+                    <a class="collapse-item <?php echo ($activePage == 'system_logs') ? 'active' : ''; ?>" 
+                       href="system_logs.php">
+                        <i class="fas fa-history"></i> ประวัติการดำเนินการ
+                    </a>
+                </div>
+            </div>
+        </li>
+        
         <!-- Nav Item - Users Collapse Menu -->
         <li class="nav-item <?php echo (strpos($activePage, 'user') !== false) ? 'active' : ''; ?>">
             <a class="nav-link <?php echo (strpos($activePage, 'user') !== false) ? '' : 'collapsed'; ?>" href="#"
@@ -142,30 +188,6 @@
                     <h6 class="collapse-header">User Options:</h6>
                     <a class="collapse-item <?php echo ($activePage == 'users') ? 'active' : ''; ?>" href="user.php">
                         Users</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Register Collapse Menu -->
-        <li class="nav-item <?php echo (strpos($activePage, 'setting') !== false) ? 'active' : ''; ?>">
-            <a class="nav-link <?php echo (strpos($activePage, 'setting') !== false) ? '' : 'collapsed'; ?>" href="#"
-                data-toggle="collapse" data-target="#collapseSettings"
-                aria-expanded="<?php echo (strpos($activePage, 'setting') !== false) ? 'true' : 'false'; ?>"
-                aria-controls="collapseSettings">
-                <i class="fas fa-fw fa-cogs"></i>
-                <span>Register</span>
-            </a>
-            <div id="collapseSettings"
-                class="collapse <?php echo (strpos($activePage, 'setting') !== false) ? 'show' : ''; ?>"
-                aria-labelledby="headingSettings" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Setting Options:</h6>
-                    <a class="collapse-item <?php echo ($activePage == 'settings') ? 'active' : ''; ?>"
-                        href="settings.php">All Register</a>
-                    <a class="collapse-item <?php echo ($activePage == 'setting-school') ? 'active' : ''; ?>"
-                        href="setting-school.php">Expire Register</a>
-                    <a class="collapse-item <?php echo ($activePage == 'setting-academic') ? 'active' : ''; ?>"
-                        href="setting-academic.php">Reject</a>
                 </div>
             </div>
         </li>
