@@ -338,27 +338,27 @@ if ($show_report) {
     <div class="container-fluid py-2">
         <?php if ($show_report): ?>
             <!-- Report View -->
-            <h1 class="h3 mb-3 text-gray-800">Teacher Report</h1>
-            <p class="mb-4 text-muted">Generate a report of teacher details by class.</p>
+            <h1 class="h3 mb-3 text-gray-800">ລາຍງານຂໍ້ມູນ ນາຍຄູ</h1>
+            <p class="mb-4 text-muted">ສ້າງ​​ລາຍ​ງານ​ລາຍ​ລະ​ອຽດ​ຂອງ​ນາຍຄູ​​ດ້ວຍຫ້ອງ​ຮຽນ​.</p>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Teacher Report</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">ລາຍງານຂໍ້ມູນ</h6>
                     <div>
                         <button class="btn btn-primary me-2" onclick="window.print()"><i
                                 class="fas fa-print me-2"></i>Print</button>
 
-                        <a href="teachers.php" class="btn btn-secondary"><i class="fas fa-arrow-left me-2"></i>Back to
-                            Management</a>
+                        <a href="teachers.php" class="btn btn-secondary"><i
+                                class="fas fa-arrow-left me-2"></i>ກັບໄປໜ້າຈັດການ</a>
                     </div>
                 </div>
                 <div class="card-body">
                     <!-- Class Filter -->
                     <form method="post" id="filter_form" class="filter-form mb-4">
                         <div class="d-flex align-items-center">
-                            <label class="form-label">Class:</label>
+                            <label class="form-label">ຫ້ອງ:</label>
                             <select name="class_id" class="form-select" onchange="this.form.submit()">
-                                <option value="">All Classes</option>
+                                <option value="">ທຸກຫ້ອງ</option>
                                 <?php
                                 $class_result->data_seek(0);
                                 while ($class = $class_result->fetch_assoc()): ?>
@@ -376,16 +376,16 @@ if ($show_report) {
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Gender</th>
-                                    <th>Birth Date</th>
-                                    <th>Village</th>
-                                    <th>District</th>
-                                    <th>Province</th>
-                                    <th>Degree</th>
-                                    <th>Phone</th>
-                                    <th>Class</th>
+                                    <th>ລະຫັດ</th>
+                                    <th>ຊື່ ແລະ ນາມສະກຸນ</th>
+                                    <th>ເພດ</th>
+                                    <th>ວັນເດືອນປີເກີດ</th>
+                                    <th>ບ້ານ</th>
+                                    <th>ເມືອງ</th>
+                                    <th>ແຂວງ</th>
+                                    <th>ລະດັບການສຶກສາ</th>
+                                    <th>ເບີໂທ</th>
+                                    <th>ສອນຫ້ອງ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -410,19 +410,19 @@ if ($show_report) {
             </div>
         <?php else: ?>
             <!-- Management View -->
-            <h1 class="h3 mb-3 text-gray-800">Teachers Management</h1>
-            <p class="mb-4 text-muted">Effortlessly manage teacher records with options to add, edit, view, or delete
-                details.</p>
+            <h1 class="h3 mb-3 text-gray-800">ຈັດການຂໍ້ມູນ ນາຍຄູ</h1>
+            <p class="mb-4 text-muted">ຈັດການຂໍ້ມູນ ນາຍຄູ ບັນທຶກ, ແກ້ໄຂ ຫຼື ລຶບ
+                ລາຍລະອຽດ.</p>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Teachers</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">ນາຍຄູ</h6>
                     <div>
                         <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addTeacherModal">
-                            <i class="fas fa-plus me-2"></i>Add New Teacher
+                            <i class="fas fa-plus me-2"></i>ເພີ່ມນາຍຄູ
                         </button>
                         <a href="teachers.php?report=1" class="btn btn-success">
-                            <i class="fas fa-file-alt me-2"></i>Generate Report
+                            <i class="fas fa-file-alt me-2"></i>ລາຍງານຂໍ້ມູນນາຍຄູ
                         </a>
                     </div>
                 </div>
@@ -431,17 +431,17 @@ if ($show_report) {
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Gender</th>
-                                    <th>Birth Date</th>
-                                    <th>Village</th>
-                                    <th>District</th>
-                                    <th>Province</th>
-                                    <th>Degree</th>
-                                    <th>Phone</th>
-                                    <th>Class</th>
-                                    <th>Actions</th>
+                                    <th>ລະຫັດ</th>
+                                    <th>ຊື່ ແລະ ນາມສະກຸນ</th>
+                                    <th>ເພດ</th>
+                                    <th>ວັນເດືອນປີເກີດ</th>
+                                    <th>ບ້ານຢູ່ປັດຈຸບັນ</th>
+                                    <th>ເມືອງ</th>
+                                    <th>ແຂວງ</th>
+                                    <th>ລະດັບການສຶກສາ</th>
+                                    <th>ເບີໂທ</th>
+                                    <th>ສອນຫ້ອງ</th>
+                                    <th>ຈັດການຂໍ້ມູນ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -483,7 +483,7 @@ if ($show_report) {
                     <div class="modal-content">
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addTeacherModalLabel">Add New Teacher</h5>
+                            <h5 class="modal-title" id="addTeacherModalLabel">ເພີ່ມນາຍຄູ</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
@@ -493,23 +493,23 @@ if ($show_report) {
                                 <div class="row g-2">
                                     <!-- First Name -->
                                     <div class="col-md-4">
-                                        <label class="form-label required">First Name</label>
+                                        <label class="form-label required">ຊື່ບາຍຄູ</label>
                                         <input type="text" name="fname" class="form-control" placeholder="Enter first name"
                                             required>
                                     </div>
 
                                     <!-- Last Name -->
                                     <div class="col-md-4">
-                                        <label class="form-label required">Last Name</label>
+                                        <label class="form-label required">ນາມສະກຸນ</label>
                                         <input type="text" name="lname" class="form-control" placeholder="Enter last name"
                                             required>
                                     </div>
 
                                     <!-- Gender -->
                                     <div class="col-md-3">
-                                        <label class="form-label required">Gender</label>
+                                        <label class="form-label required"> ເລຶອກເພດ -</label>
                                         <select name="gender" class="form-select" required>
-                                            <option value="">Select Gender</option>
+                                            <option value="">ເລຶອກເພດ</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                             <option value="Other">Other</option>
@@ -518,43 +518,43 @@ if ($show_report) {
 
                                     <!-- Date of Birth -->
                                     <div class="col-md-4">
-                                        <label class="form-label required">Date of Birth</label>
+                                        <label class="form-label required">ວັນເດືອນປີເກີດ</label>
                                         <input type="date" name="birth_date" class="form-control" required>
                                     </div>
 
                                     <!-- Phone -->
                                     <div class="col-md-4">
-                                        <label class="form-label required">Phone</label>
+                                        <label class="form-label required">ເບີໂທ</label>
                                         <input type="tel" name="phone" class="form-control" placeholder="Enter phone number"
                                             required>
                                     </div>
 
                                     <!-- Village -->
                                     <div class="col-md-4">
-                                        <label class="form-label required">Village</label>
+                                        <label class="form-label required">ບ້ານ</label>
                                         <input type="text" name="village" class="form-control" placeholder="Enter village"
                                             required>
                                     </div>
 
                                     <!-- District -->
                                     <div class="col-md-4">
-                                        <label class="form-label required">District</label>
+                                        <label class="form-label required">ເມືອງ</label>
                                         <input type="text" name="district" class="form-control" placeholder="Enter district"
                                             required>
                                     </div>
 
                                     <!-- Province -->
                                     <div class="col-md-4">
-                                        <label class="form-label required">Province</label>
+                                        <label class="form-label required">ແຂວງ</label>
                                         <input type="text" name="province" class="form-control" placeholder="Enter province"
                                             required>
                                     </div>
 
                                     <!-- Degree -->
                                     <div class="col-md-3">
-                                        <label class="form-label required">Degree</label>
+                                        <label class="form-label required">ລະດັບການສຶກສາ</label>
                                         <select name="degree" class="form-select" required>
-                                            <option value="">Select Degree</option>
+                                            <option value="">ເລຶອກລະດັບການສຶກສາ</option>
                                             <option value="Master">Master</option>
                                             <option value="Bachelor">Bachelor</option>
                                             <option value="Other">Other</option>
@@ -563,9 +563,9 @@ if ($show_report) {
 
                                     <!-- Class (Optional) -->
                                     <div class="col-md-4">
-                                        <label class="form-label">Class</label>
+                                        <label class="form-label">ສອນຫ້ອງ</label>
                                         <select name="class_id" class="form-select">
-                                            <option value="">Select Class (Optional)</option>
+                                            <option value="">ເລຶອກຫ້ອງ (Optional)</option>
                                             <?php
                                             $class_result->data_seek(0); // Reset class result pointer
                                             while ($class = $class_result->fetch_assoc()): ?>
@@ -579,8 +579,8 @@ if ($show_report) {
 
                                 <!-- Modal Footer -->
                                 <div class="modal-footer mt-3">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" name="submit_add" class="btn btn-primary">Save</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ຍົກເລີກ</button>
+                                    <button type="submit" name="submit_add" class="btn btn-primary">ບັນທຶກ</button>
                                 </div>
                             </form>
                         </div>
@@ -595,7 +595,7 @@ if ($show_report) {
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="editTeacherModalLabel">Edit Teacher</h5>
+                            <h5 class="modal-title" id="editTeacherModalLabel">ແກ້ໄຂຂໍ້ມູນ ນາຍຄູ</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -606,7 +606,7 @@ if ($show_report) {
                                     <div class="row g-1">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="form-label required">First Name</label>
+                                                <label class="form-label required">ຊື່ນາຍຄູ</label>
                                                 <input type="text" name="fname" class="form-control"
                                                     value="<?php echo htmlspecialchars($edit_teacher['fname']); ?>"
                                                     placeholder="Enter first name" required>
@@ -614,7 +614,7 @@ if ($show_report) {
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="form-label required">Last Name</label>
+                                                <label class="form-label required">ນາມສະກຸນ</label>
                                                 <input type="text" name="lname" class="form-control"
                                                     value="<?php echo htmlspecialchars($edit_teacher['lname']); ?>"
                                                     placeholder="Enter last name" required>
@@ -622,7 +622,7 @@ if ($show_report) {
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label class="form-label required">Gender</label>
+                                                <label class="form-label required">ເພດ</label>
                                                 <select name="gender" class="form-select" required>
                                                     <option value="">Select Gender</option>
                                                     <option value="Male" <?php echo $edit_teacher['gender'] == 'Male' ? 'selected' : ''; ?>>Male</option>
@@ -633,7 +633,7 @@ if ($show_report) {
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="form-label required">Date of Birth</label>
+                                                <label class="form-label required">ວັນເດືອນປີເກີດ</label>
                                                 <input type="date" name="birth_date" class="form-control"
                                                     value="<?php echo htmlspecialchars($edit_teacher['birth_date']); ?>"
                                                     required>
@@ -641,7 +641,7 @@ if ($show_report) {
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="form-label required">Phone</label>
+                                                <label class="form-label required">ເບີໂທ</label>
                                                 <input type="tel" name="phone" class="form-control"
                                                     value="<?php echo htmlspecialchars($edit_teacher['phone']); ?>"
                                                     placeholder="Enter phone number" required>
@@ -649,7 +649,7 @@ if ($show_report) {
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="form-label required">Village</label>
+                                                <label class="form-label required">ບ້ານ</label>
                                                 <input type="text" name="village" class="form-control"
                                                     value="<?php echo htmlspecialchars($edit_teacher['village']); ?>"
                                                     placeholder="Enter village" required>
@@ -657,7 +657,7 @@ if ($show_report) {
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="form-label required">District</label>
+                                                <label class="form-label required">ເມືອງ</label>
                                                 <input type="text" name="district" class="form-control"
                                                     value="<?php echo htmlspecialchars($edit_teacher['district']); ?>"
                                                     placeholder="Enter district" required>
@@ -665,7 +665,7 @@ if ($show_report) {
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="form-label required">Province</label>
+                                                <label class="form-label required">ແຂວງ</label>
                                                 <input type="text" name="province" class="form-control"
                                                     value="<?php echo htmlspecialchars($edit_teacher['province']); ?>"
                                                     placeholder="Enter province" required>
@@ -673,9 +673,9 @@ if ($show_report) {
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label class="form-label required">Degree</label>
+                                                <label class="form-label required">ລະດັບການສຶກສາ</label>
                                                 <select name="degree" class="form-select" required>
-                                                    <option value="">Select Degree</option>
+                                                    <option value="">ເລຶອກລະດັບການສຶກສາ</option>
                                                     <option value="Master" <?php echo $edit_teacher['degree'] == 'Master' ? 'selected' : ''; ?>>Master</option>
                                                     <option value="Bachelor" <?php echo $edit_teacher['degree'] == 'Bachelor' ? 'selected' : ''; ?>>Bachelor</option>
                                                     <option value="Other" <?php echo $edit_teacher['degree'] == 'Other' ? 'selected' : ''; ?>>Other</option>
@@ -684,9 +684,9 @@ if ($show_report) {
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="form-label">Class</label>
+                                                <label class="form-label">ສອນຫ້ອງ</label>
                                                 <select name="class_id" class="form-select">
-                                                    <option value="">Select Class (Optional)</option>
+                                                    <option value="">ເລຶອກຫ້ອງ (Optional)</option>
                                                     <?php
                                                     $class_result->data_seek(0); // Reset class result pointer
                                                     while ($class = $class_result->fetch_assoc()): ?>
@@ -700,15 +700,15 @@ if ($show_report) {
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn-cancel" data-bs-dismiss="modal">
-                                            Cancel
+                                            ຍົກເລີກ
                                         </button>
                                         <button type="submit" name="submit_edit" class="btn-save">
-                                            </i>Update
+                                            </i>ແກ້ໄຂ
                                         </button>
                                     </div>
                                 </form>
                             <?php else: ?>
-                                <p class="text-danger">No teacher data found for editing.
+                                <p class="text-danger">ບໍ່ພົບຂໍ້ມູນນາຍຄູໃນການ ແກ້ໄຂ.
                                     <?php echo isset($edit_error) ? htmlspecialchars($edit_error) : ''; ?>
                                 </p>
                             <?php endif; ?>
@@ -723,18 +723,18 @@ if ($show_report) {
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deleteTeacherModalLabel">Confirm Deletion</h5>
+                            <h5 class="modal-title" id="deleteTeacherModalLabel">ຢືນຢັນການລຶບ</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to delete this teacher? This action cannot be undone.</p>
+                            <p>ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບຂໍ້ມູນນາຍຄູນີ້.</p>
                         </div>
                         <div class="modal-footer">
                             <form method="post" action="process_teacher.php">
                                 <input type="hidden" name="teacher_id" id="delete_teacher_id">
-                                <button type="button" class="btn-cancel" data-bs-dismiss="modal"> Cancel</button>
+                                <button type="button" class="btn-cancel" data-bs-dismiss="modal"> ຍົກເລີກ</button>
                                 <button type="submit" name="submit_delete" class="btn-delete">
-                                    </i>Delete
+                                    </i>ລຶບ
                                 </button>
                             </form>
                         </div>
@@ -774,9 +774,9 @@ if ($show_report) {
 </html>
 
 <?php
-ob_end_flush();
+/* ob_end_flush();
 if (isset($stmt)) {
     $stmt->close();
-}
+} */
 $conn->close();
 ?>

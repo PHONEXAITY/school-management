@@ -309,14 +309,15 @@ unset($group); // Unset reference
 <body>
     <div class="container-fluid py-2">
         <!-- Page Heading -->
-        <h1 class="h3 mb-3 text-gray-800">Score Report</h1>
-        <p class="mb-4 text-muted">Generate a report of student scores by class, student, term, school year, and month.
+        <h1 class="h3 mb-3 text-gray-800">ລາຍງານຂໍ້ມູນຄະແນນ</h1>
+        <p class="mb-4 text-muted">ສ້າງລາຍງານລາຍລະອຽດຂອງຄະແນນຂອງນັກຮຽນທີ່ແບ່ງຕາມຫ້ອງຮຽນ, ນັກຮຽນແຕ່ລະຄົນ, ສົກຮຽນ, ພາກຮຽນ
+            ແລະ ເດືອນ.
         </p>
 
         <!-- Card for Filters and Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Score Report</h6>
+                <h6 class="m-0 font-weight-bold text-primary">ລາຍງານຄະແນນ</h6>
                 <div>
                     <button class="btn btn-primary me-2" onclick="window.print()"><i
                             class="fas fa-print me-2"></i>Print</button>
@@ -327,9 +328,9 @@ unset($group); // Unset reference
                 <!-- Filters -->
                 <form method="post" id="filter_form" class="filter-form mb-4">
                     <div class="d-flex align-items-center">
-                        <label class="form-label">Class:</label>
+                        <label class="form-label">ຫ້ອງ:</label>
                         <select name="class_id" class="form-select" onchange="this.form.submit()">
-                            <option value="">All Classes</option>
+                            <option value="">ຫ້ອງທັງໝົດ</option>
                             <?php
                             $class_result->data_seek(0);
                             while ($class = $class_result->fetch_assoc()): ?>
@@ -340,9 +341,9 @@ unset($group); // Unset reference
                         </select>
                     </div>
                     <div class="d-flex align-items-center">
-                        <label class="form-label">Student:</label>
+                        <label class="form-label">ນັກຮຽນ:</label>
                         <select name="student_id" class="form-select" onchange="this.form.submit()">
-                            <option value="">All Students</option>
+                            <option value="">ນັກຮຽນທັງໝົດ</option>
                             <?php
                             $student_result->data_seek(0);
                             while ($student = $student_result->fetch_assoc()): ?>
@@ -353,9 +354,9 @@ unset($group); // Unset reference
                         </select>
                     </div>
                     <div class="d-flex align-items-center">
-                        <label class="form-label">Term:</label>
+                        <label class="form-label">ພາກຮຽນ:</label>
                         <select name="term_id" class="form-select" onchange="this.form.submit()">
-                            <option value="">All Terms</option>
+                            <option value="">ພາກຮຽນທັງໝົດ</option>
                             <?php
                             $term_result->data_seek(0);
                             while ($term = $term_result->fetch_assoc()): ?>
@@ -366,9 +367,9 @@ unset($group); // Unset reference
                         </select>
                     </div>
                     <div class="d-flex align-items-center">
-                        <label class="form-label">School Year:</label>
+                        <label class="form-label">ສົກຮຽນ:</label>
                         <select name="sch_year_id" class="form-select" onchange="this.form.submit()">
-                            <option value="">All Years</option>
+                            <option value="">ສົກຮຽນທັງໝົດ</option>
                             <?php
                             $year_result->data_seek(0);
                             while ($year = $year_result->fetch_assoc()): ?>
@@ -379,23 +380,23 @@ unset($group); // Unset reference
                         </select>
                     </div>
                     <div class="d-flex align-items-center">
-                        <label class="form-label">Month:</label>
+                        <label class="form-label">ເດືອນ:</label>
                         <select name="month" class="form-select" onchange="this.form.submit()">
-                            <option value="">All Months</option>
+                            <option value="">ເດືອນທັງໝົດ</option>
                             <?php
                             $months = [
-                                1 => 'January',
-                                2 => 'February',
-                                3 => 'March',
-                                4 => 'April',
-                                5 => 'May',
-                                6 => 'June',
-                                7 => 'July',
-                                8 => 'August',
-                                9 => 'September',
-                                10 => 'October',
-                                11 => 'November',
-                                12 => 'December'
+                                1 => 'ມັງກອນ',
+                                2 => 'ກຸມພາ',
+                                3 => 'ມີນາ',
+                                4 => 'ເມສາ',
+                                5 => 'ພຶດສະພາ',
+                                6 => 'ມິຖຸນາ',
+                                7 => 'ກໍລະກົດ',
+                                8 => 'ສິງຫາ',
+                                9 => 'ກັນຍາ',
+                                10 => 'ຕຸລາ',
+                                11 => 'ພະຈິກ',
+                                12 => 'ທັນວາ'
                             ];
                             foreach ($months as $month_id => $month_name): ?>
                                 <option value="<?php echo $month_id; ?>" <?php echo $selected_month == $month_id ? 'selected' : ''; ?>>
@@ -412,18 +413,18 @@ unset($group); // Unset reference
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Student Name</th>
-                                <th>Class</th>
-                                <th>Term</th>
-                                <th>School Year</th>
-                                <th>Month</th>
+                                <th>ຊື່ນັກຮຽນ</th>
+                                <th>ຫ້ອງ</th>
+                                <th>ພາກຮຽນ</th>
+                                <th>ສົກຮຽນ</th>
+                                <th>ເດືອນ</th>
                                 <?php foreach ($subjects as $subject_id => $subject_name): ?>
                                     <th><?php echo htmlspecialchars($subject_name); ?></th>
                                 <?php endforeach; ?>
-                                <th>Sum</th>
-                                <th>Average</th>
-                                <th>Status</th>
-                                <th class="arrange-column">Arrange</th>
+                                <th>ຄະແນນລວມ</th>
+                                <th>ຄະແນນສະເລ່ຍ</th>
+                                <th>ສະຖານະ</th>
+                                <th class="arrange-column">ຈັດທີ່</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -49,6 +49,10 @@ if (empty($subjects)) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-5-theme/1.3.0/select2-bootstrap-5-theme.min.css"
+        rel="stylesheet">
     <style>
         body {
             background-color: #f4f6f9;
@@ -129,7 +133,7 @@ if (empty($subjects)) {
         }
 
         .btn-cancel {
-            background-color: #7F7E7EFF;
+            background-color: #7F7E7E;
             color: white;
             border: none;
             border-radius: 10px;
@@ -162,19 +166,43 @@ if (empty($subjects)) {
             gap: 10px;
             justify-content: flex-end;
         }
+
+        .select2-container--bootstrap-5 .select2-selection {
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            background: linear-gradient(145deg, #ffffff, #f1f5f9);
+        }
+
+        .select2-container--bootstrap-5 .select2-selection--single {
+            height: 38px;
+            padding: 6px 12px;
+        }
+
+        .select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered {
+            line-height: 26px;
+        }
+
+        .select2-container--bootstrap-5 .select2-selection--single .select2-selection__arrow {
+            height: 38px;
+        }
+
+        .select2-container--bootstrap-5 .select2-dropdown {
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+        }
     </style>
 </head>
 
 <body>
     <div class="container-fluid py-2">
         <!-- Page Heading -->
-        <h1 class="h3 mb-3 text-gray-800">Enter Student Scores</h1>
-        <p class="mb-4 text-muted">Enter monthly scores for students across all subjects in one action.</p>
+        <h1 class="h3 mb-3 text-gray-800">ປ້ອນຂໍ້ມູນຄະແນນ</h1>
+        <p class="mb-4 text-muted">ປ້ອນຄະແນນປະຈໍາເດືອນຂ້ອງນັກຮຽນໃນທຸກວິຊາໃຫ້ຄົບຖ້ວນເພື່ອທັນທຶກໄວ້ໃນລະບົບ.</p>
 
         <!-- Card for Form -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Score Entry Form</h6>
+                <h6 class="m-0 font-weight-bold text-primary">ຟອມປ້ອນຄະແນນ</h6>
             </div>
             <div class="card-body">
                 <?php if (isset($error_message)): ?>
@@ -185,9 +213,9 @@ if (empty($subjects)) {
                             <!-- Student Selection -->
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="form-label required">Student</label>
-                                    <select name="student_id" class="form-select" required>
-                                        <option value="">Select Student</option>
+                                    <label class="form-label required">ນັກຮຽນ</label>
+                                    <select name="student_id" class="form-select select2-student" required>
+                                        <option value="">ເລືອກນັກຮຽນ</option>
                                         <?php
                                         $student_result->data_seek(0); // Reset pointer
                                         while ($student = $student_result->fetch_assoc()): ?>
@@ -201,23 +229,23 @@ if (empty($subjects)) {
                             <!-- Month Selection -->
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="form-label required">Month</label>
+                                    <label class="form-label required">ເດືອນ</label>
                                     <select name="month" class="form-select" required>
-                                        <option value="">Select Month</option>
+                                        <option value="">ກະລຸນາເລືອກເດືອນ</option>
                                         <?php
                                         $months = [
-                                            1 => 'January',
-                                            2 => 'February',
-                                            3 => 'March',
-                                            4 => 'April',
-                                            5 => 'May',
-                                            6 => 'June',
-                                            7 => 'July',
-                                            8 => 'August',
-                                            9 => 'September',
-                                            10 => 'October',
-                                            11 => 'November',
-                                            12 => 'December'
+                                            1 => 'ມັງກອນ',
+                                            2 => 'ກຸມພາ',
+                                            3 => 'ມີນາ',
+                                            4 => 'ເມສາ',
+                                            5 => 'ພຶດສະພາ',
+                                            6 => 'ມິຖຸນາ',
+                                            7 => 'ກໍລະກົດ',
+                                            8 => 'ສິງຫາ',
+                                            9 => 'ກັນຍາ',
+                                            10 => 'ຕຸລາ',
+                                            11 => 'ພະຈິກ',
+                                            12 => 'ທັນວາ'////////////////////////////////////////
                                         ];
                                         foreach ($months as $num => $name): ?>
                                             <option value="<?php echo $num; ?>" <?php echo $num == 6 ? 'selected' : ''; ?>>
@@ -230,9 +258,9 @@ if (empty($subjects)) {
                             <!-- Term Selection -->
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="form-label required">Term</label>
+                                    <label class="form-label required">ພາກຮຽນ</label>
                                     <select name="term_id" class="form-select" required>
-                                        <option value="">Select Term</option>
+                                        <option value="">ກະລຸນາເລືອກພາກຮຽນ</option>
                                         <?php
                                         $term_result->data_seek(0); // Reset pointer
                                         while ($term = $term_result->fetch_assoc()): ?>
@@ -246,9 +274,9 @@ if (empty($subjects)) {
                             <!-- School Year Selection -->
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="form-label required">School Year</label>
+                                    <label class="form-label required">ສົກຮຽນ</label>
                                     <select name="sch_year_id" class="form-select" required>
-                                        <option value="">Select School Year</option>
+                                        <option value="">ກະລຸນາເລືອກສົກຮຽນ</option>
                                         <?php
                                         $year_result->data_seek(0); // Reset pointer
                                         while ($year = $year_result->fetch_assoc()): ?>
@@ -263,19 +291,19 @@ if (empty($subjects)) {
                             <?php foreach ($subjects as $id => $name): ?>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="form-label required"><?php echo htmlspecialchars($name); ?> Score</label>
+                                        <label class="form-label required"><?php echo htmlspecialchars($name); ?> </label>
                                         <input type="hidden" name="sub_id[<?php echo $name; ?>]"
                                             value="<?php echo htmlspecialchars($id); ?>">
                                         <input type="number" name="score[<?php echo $name; ?>]" class="form-control"
-                                            placeholder="Enter score (0-10)" min="0" max="10" required>
+                                            placeholder="ປ້ອນຄະແນນ (0-10)" min="0" max="10" required>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
                         <div class="form-actions">
-                            <button type="reset" class="btn-cancel">Clear</button>
-                            <button type="submit" name="submit_scores" class="btn-save"><i class="fas fa-save me-2"></i>Save
-                                Scores</button>
+                            <button type="reset" class="btn-cancel">ຍົກເລີກ</button>
+                            <button type="submit" name="submit_scores" class="btn-save"><i
+                                    class="fas fa-save me-2"></i>ບັນທືນ</button>
                         </div>
                     </form>
                 <?php endif; ?>
@@ -283,13 +311,33 @@ if (empty($subjects)) {
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts in correct order -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Basic initialization (if needed in the future)
+            // Check if jQuery and Select2 are loaded
+            if (typeof jQuery === 'undefined') {
+                console.error('jQuery is not loaded');
+                return;
+            }
+            if (typeof $.fn.select2 === 'undefined') {
+                console.error('Select2 is not loaded');
+                return;
+            }
+
+            // Initialize Select2 for student selection
+            console.log('Initializing Select2 for student dropdown');
+            $('.select2-student').select2({
+                theme: 'bootstrap-5',
+                placeholder: 'ເລືອກນັກຮຽນ',
+                allowClear: true,
+                width: '100%',
+                minimumResultsForSearch: 1 // Show search for 1 or more options
+            });
         });
     </script>
 </body>
