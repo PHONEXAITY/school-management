@@ -174,17 +174,17 @@ while ($row = $result->fetch_assoc()) {
 <body>
     <div class="container-fluid py-2">
         <!-- Page Heading -->
-        <h1 class="h3 mb-3 text-gray-800">View Student Scores</h1>
-        <p class="mb-4 text-muted">View and filter student scores by class.</p>
+        <h1 class="h3 mb-3 text-gray-800">ເບິ່ງຄະແນນຂອງນັກຮຽນ</h1>
+        <p class="mb-4 text-muted">ເບິ່ງ ແລະ ສະແດງຄະແນນຂອງນັກຮຽນຕາມຫ້ອງຮຽນ.</p>
 
         <!-- Card for Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Scores Table</h6>
+                <h6 class="m-0 font-weight-bold text-primary">ຕາຕະລາງຄະແນນ</h6>
                 <form method="post" class="d-flex align-items-center">
-                    <label class="form-label me-2">Filter by Class:</label>
+                    <label class="form-label me-2">ສະແດງດ້ວຍຫ້ອງຮຽນ:</label>
                     <select name="class_id" class="form-select" onchange="this.form.submit()">
-                        <option value="">All Classes</option>
+                        <option value="">ຫ້ອງທັງໝົດ</option>
                         <?php
                         $class_result->data_seek(0); // Reset pointer
                         while ($class = $class_result->fetch_assoc()): ?>
@@ -200,11 +200,11 @@ while ($row = $result->fetch_assoc()) {
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Student Name</th>
-                                <th>Class</th>
-                                <th>Term</th>
-                                <th>School Year</th>
-                                <th>Month</th>
+                                <th>ຊື່ນັກຮຽນ</th>
+                                <th>ຫ້ອງ</th>
+                                <th>ພາກຮຽນ</th>
+                                <th>ສົກຮຽນ</th>
+                                <th>ເດືອນ</th>
                                 <?php foreach ($subjects as $subject_id => $subject_name): ?>
                                     <th><?php echo htmlspecialchars($subject_name); ?></th>
                                 <?php endforeach; ?>
@@ -213,18 +213,18 @@ while ($row = $result->fetch_assoc()) {
                         <tbody>
                             <?php
                             $months = [
-                                1 => 'January',
-                                2 => 'February',
-                                3 => 'March',
-                                4 => 'April',
-                                5 => 'May',
-                                6 => 'June',
-                                7 => 'July',
-                                8 => 'August',
-                                9 => 'September',
-                                10 => 'October',
-                                11 => 'November',
-                                12 => 'December'
+                                1 => 'ມັງກອນ',
+                                2 => 'ກຸມພາ',
+                                3 => 'ມີນາ',
+                                4 => 'ເມສາ',
+                                5 => 'ພຶດສະພາ',
+                                6 => 'ມິຖຸນາ',
+                                7 => 'ກໍລະກົດ',
+                                8 => 'ສິງຫາ',
+                                9 => 'ກັນຍາ',
+                                10 => 'ຕຸລາ',
+                                11 => 'ພະຈິກ',
+                                12 => 'ທັນວາ'
                             ];
                             foreach ($grouped_scores as $group): ?>
                                 <tr>

@@ -8,8 +8,8 @@
     <!-- Topbar Search -->
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="ຄົ້ນຫາ..." aria-label="Search"
+                aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                     <i class="fas fa-search fa-sm"></i>
@@ -58,8 +58,8 @@
         <!-- Nav Item - Logout Button -->
         <li class="nav-item">
             <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                Logout
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-800"></i>
+                <h6 style="color: black;">ອອກຈາກລະບົບ</h6>
             </a>
         </li>
 
@@ -73,15 +73,15 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="logoutModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="logoutModalLabel">ອອກຈາກລະບົບ</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">ທ່ານແນ່ໃຈບໍວ່າຕ້ອງການອອກຈາກລະບົບ?.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="logout.php">Logout</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">ຍົກເລີກ</button>
+                <a class="btn btn-primary" href="logout.php">ອອກຈາກລະບົບ</a>
             </div>
         </div>
     </div>

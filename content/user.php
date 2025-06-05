@@ -331,27 +331,27 @@ if ($show_report) {
     <div class="container-fluid py-2">
         <?php if ($show_report): ?>
             <!-- Report View -->
-            <h1 class="h3 mb-3 text-gray-800">User Report</h1>
-            <p class="mb-4 text-muted">Generate a report of user details by role.</p>
+            <h1 class="h3 mb-3 text-gray-800">ລາຍງານຂໍ້ມູນຜູ້ໃຊ້ລະບົບ</h1>
+            <p class="mb-4 text-muted">ສ້າງລາຍງານລາຍລະອຽດຂອງຜູ້ໃຊ້ໂດຍອີງຕາມບົດບາດຂອງຜູ້ໃຊ້.</p>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">User Report</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">ລາຍງານຜູ້ໃຊ້</h6>
                     <div>
                         <button class="btn btn-primary me-2" onclick="window.print()"><i
                                 class="fas fa-print me-2"></i>Print</button>
 
-                        <a href="user.php" class="btn btn-secondary"><i class="fas fa-arrow-left me-2"></i>Back to
-                            Management</a>
+                        <a href="user.php" class="btn btn-secondary"><i
+                                class="fas fa-arrow-left me-2"></i>ກັບໄປໜ້າຈັດການ</a>
                     </div>
                 </div>
                 <div class="card-body">
                     <!-- Role Filter -->
                     <form method="post" id="filter_form" class="filter-form mb-4">
                         <div class="d-flex align-items-center">
-                            <label class="form-label">Role:</label>
+                            <label class="form-label">ສະຖານະ:</label>
                             <select name="role" class="form-select" onchange="this.form.submit()">
-                                <option value="">All Roles</option>
+                                <option value="">ທັງໝົດ</option>
                                 <?php foreach ($roles as $role): ?>
                                     <option value="<?php echo htmlspecialchars($role); ?>" <?php echo $selected_role == $role ? 'selected' : ''; ?>>
                                         <?php echo htmlspecialchars($role); ?>
@@ -367,10 +367,10 @@ if ($show_report) {
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
+                                    <th>ລະຫັດ</th>
+                                    <th>ຊື່ຜູ້ໃຊ້</th>
                                     <!--  <th>Password</th> -->
-                                    <th>Role</th>
+                                    <th>ສະຖານະສິດທິ</th>
                                 </tr>
                             </thead>
                             <tbody>
