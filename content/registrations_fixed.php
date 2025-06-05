@@ -234,13 +234,15 @@ $sql = "
            CASE
                WHEN r.registration_type = 'new' THEN c.name
                ELSE existing_class.name
-           END as class_name
+           END as class_name,
+           y.name as academic_year_name
     FROM registration r
     LEFT JOIN new_student_registration n ON r.id = n.registration_id
     LEFT JOIN student s ON r.student_id = s.id AND r.registration_type = 'existing'
     LEFT JOIN class c ON n.class_id = c.id
     LEFT JOIN class existing_class ON s.class_id = existing_class.id
     LEFT JOIN user u ON r.approved_by = u.id
+    LEFT JOIN year y ON r.academic_year_id = y.id
 ";
 
 if ($filter_status !== 'all') {
@@ -448,14 +450,15 @@ $btn_class[$filter_status] = 'btn-primary';
                 <thead>
                     <tr>
                         <th width="5%">ລະຫັດ</th>
-                        <th width="17%">ນັກຮຽນ</th>
-                        <th width="8%">ປະເພດ</th>
-                        <th width="10%">ວັນທີລົງທະບຽນ</th>
-                        <th width="12%">ຊື່ຜູ້ປົກຄອງ</th>
-                        <th width="10%">ຫ້ອງຮຽນ</th>
-                        <th width="8%">ຈຳນວນເງີນ</th>
-                        <th width="8%">ສະຖານະ</th>
-                        <th width="10%">ຜູ້ອະນຸມັດ</th>
+                        <th width="15%">ນັກຮຽນ</th>
+                        <th width="7%">ປະເພດ</th>
+                        <th width="9%">ວັນທີລົງທະບຽນ</th>
+                        <th width="11%">ຊື່ຜູ້ປົກຄອງ</th>
+                        <th width="9%">ຫ້ອງຮຽນ</th>
+                        <th width="9%">ປີການຮຽນ</th>
+                        <th width="7%">ຈຳນວນເງີນ</th>
+                        <th width="7%">ສະຖານະ</th>
+                        <th width="9%">ຜູ້ອະນຸມັດ</th>
                         <th width="12%">ຈັດການ</th>
                     </tr>
                 </thead>
@@ -542,6 +545,12 @@ $btn_class[$filter_status] = 'btn-primary';
                                 </div>
                             </td>
                             <td>{$row['class_name']}</td>
+                            <td>
+                                <span class='badge badge-secondary'>
+                                    <i class='fas fa-calendar-alt mr-1'></i>
+                                    {$row['academic_year_name']}
+                                </span>
+                            </td>
                             <td class='text-right'>" . number_format($row['transfer_amount'], 0, '.', ',') . " ກີບ</td>
                             <td class='text-center'>{$status}</td>
                             <td>";

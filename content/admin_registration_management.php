@@ -357,13 +357,15 @@ $sql = "
                WHEN r.registration_type = 'new' THEN c.name
                ELSE existing_class.name
            END as class_name,
-           u.username as approved_by_name
+           u.username as approved_by_name,
+           y.name as academic_year_name
     FROM registration r
     LEFT JOIN new_student_registration n ON r.id = n.registration_id
     LEFT JOIN student s ON r.student_id = s.id AND r.registration_type = 'existing'
     LEFT JOIN class c ON n.class_id = c.id
     LEFT JOIN class existing_class ON s.class_id = existing_class.id
     LEFT JOIN user u ON r.approved_by = u.id
+    LEFT JOIN year y ON r.academic_year_id = y.id
     $where_clause
     ORDER BY r.registration_date DESC
 ";
@@ -560,15 +562,16 @@ $stats = $stats_stmt->get_result()->fetch_assoc();
                         <th width="3%">
                             <input type="checkbox" id="selectAll" class="form-check-input">
                         </th>
-                        <th width="5%">ID</th>
-                        <th width="15%">ชื่อนักเรียน</th>
-                        <th width="8%">ประเภท</th>
-                        <th width="10%">ห้องเรียน</th>
-                        <th width="12%">ผู้ปกครอง</th>
-                        <th width="10%">วันที่ลงทะเบียน</th>
-                        <th width="8%">จำนวนเงิน</th>
-                        <th width="10%">สถานะ</th>
-                        <th width="19%">การจัดการ</th>
+                        <th width="4%">ID</th>
+                        <th width="14%">ชื่อนักเรียน</th>
+                        <th width="7%">ประเภท</th>
+                        <th width="9%">ห้องเรียน</th>
+                        <th width="9%">ปีการศึกษา</th>
+                        <th width="11%">ผู้ปกครอง</th>
+                        <th width="9%">วันที่ลงทะเบียน</th>
+                        <th width="7%">จำนวนเงิน</th>
+                        <th width="9%">สถานะ</th>
+                        <th width="18%">การจัดการ</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -594,6 +597,13 @@ $stats = $stats_stmt->get_result()->fetch_assoc();
                                     <?php endif; ?>
                                 </td>
                                 <td><?= htmlspecialchars($row['class_name'] ?? '-') ?></td>
+                                <td>
+                                    <?php if (!empty($row['academic_year_name'])): ?>
+                                        <span class="badge badge-secondary"><?= htmlspecialchars($row['academic_year_name']) ?></span>
+                                    <?php else: ?>
+                                        <span class="text-muted">-</span>
+                                    <?php endif; ?>
+                                </td>
                                 <td>
                                     <?= htmlspecialchars($row['parent_name'] ?? 'N/A') ?>
                                     <br><small class="text-muted"><?= htmlspecialchars($row['parent_phone'] ?? 'N/A') ?></small>

@@ -1,0 +1,125 @@
+/* QR Scanner Styles */
+#qrReader {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#qrReader video {
+    border-radius: 12px;
+}
+
+#qrReader canvas {
+    border-radius: 12px;
+}
+
+/* QR Scanner Button Styles */
+.qr-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.qr-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.qr-btn.active {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+/* QR Scanner Container Animation */
+.qr-container {
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* QR Reader Controls */
+.qr-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.qr-control-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    color: #4a5568;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.qr-control-btn:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+}
+
+.qr-control-btn i {
+    margin-right: 5px;
+}
+
+/* QR Scanner Status */
+.qr-status {
+    text-align: center;
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.qr-status.scanning {
+    background-color: #e6fffa;
+    color: #234e52;
+    border: 1px solid #81e6d9;
+}
+
+.qr-status.success {
+    background-color: #f0fff4;
+    color: #22543d;
+    border: 1px solid #9ae6b4;
+}
+
+.qr-status.error {
+    background-color: #fed7d7;
+    color: #742a2a;
+    border: 1px solid #fc8181;
+}
+
+/* Mobile QR Scanner Adjustments */
+@media (max-width: 768px) {
+    #qrReader {
+        max-width: 100%;
+        width: 100% !important;
+    }
+    
+    .qr-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .qr-control-btn {
+        width: 80%;
+        text-align: center;
+    }
+}

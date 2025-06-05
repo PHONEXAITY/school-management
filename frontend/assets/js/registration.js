@@ -200,6 +200,13 @@ class RegistrationManager {
         const form = event.target;
         const formData = new FormData(form);
         
+        // Validate academic year selection
+        const academicYearId = formData.get('academic_year_id');
+        if (!academicYearId || academicYearId.trim() === '') {
+            alert('ກະລຸນາເລືອກປີການສຶກສາກ່ອນ');
+            return;
+        }
+        
         const existingStudentSection = document.getElementById('existingStudentSection');
         const newStudentSection = document.getElementById('newStudentSection');
         
@@ -230,6 +237,7 @@ class RegistrationManager {
         }
         
         console.log(`Final registration type: ${registrationType}`);
+        console.log(`Academic Year ID: ${academicYearId}`);
         
         formData.append('registration_type', registrationType);
         

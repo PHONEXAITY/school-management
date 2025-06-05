@@ -67,13 +67,15 @@ try {
     $transferDate = $_POST['transfer_date'] ?? '';
     $transferTime = $_POST['transfer_time'] ?? '';
     $transferAmount = $_POST['transfer_amount'] ?? 0;
+    $academicYearId = $_POST['academic_year_id'] ?? '';
     
     debugLog("Registration type: " . $registrationType);
     debugLog("Parent name: " . $parentName);
+    debugLog("Academic Year ID: " . $academicYearId);
     
     if (empty($parentName) || empty($parentPhone) || empty($relationship) || 
-        empty($transferDate) || empty($transferTime) || empty($transferAmount)) {
-        throw new Exception('ກະລຸນາປ້ອນຂໍ້ມູນຜູ້ປົກຄອງແລະການຊຳລະເງີນໃຫ້ຄົບຖ້ວນ');
+        empty($transferDate) || empty($transferTime) || empty($transferAmount) || empty($academicYearId)) {
+        throw new Exception('ກະລຸນາປ້ອນຂໍ້ມູນຜູ້ປົກຄອງ, ການຊຳລະເງີນ ແລະ ປີການສຶກສາໃຫ້ຄົບຖ້ວນ');
     }
     
     debugLog("Parent/payment validation passed");
@@ -199,13 +201,13 @@ try {
             INSERT INTO registration (
                 student_id, parent_name, parent_phone, parent_email, address, 
                 relationship, transfer_date, transfer_time, transfer_amount, 
-                payment_slip_path, registration_status, registration_type
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)
+                payment_slip_path, registration_status, registration_type, academic_year_id
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?)
         ");
         
         $result = $stmt->execute([
             $studentId, $parentName, $parentPhone, $parentEmail, $address,
-            $relationship, $transferDate, $transferTime, $transferAmount, $slipPath, $registrationType
+            $relationship, $transferDate, $transferTime, $transferAmount, $slipPath, $registrationType, $academicYearId
         ]);
         
         if (!$result) {
@@ -221,13 +223,13 @@ try {
             INSERT INTO registration (
                 student_id, parent_name, parent_phone, parent_email, address, 
                 relationship, transfer_date, transfer_time, transfer_amount, 
-                payment_slip_path, registration_status, registration_type
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)
+                payment_slip_path, registration_status, registration_type, academic_year_id
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?)
         ");
         
-        $insertStmt->bind_param("ssssssssdss", 
+        $insertStmt->bind_param("ssssssssdsss", 
             $studentId, $parentName, $parentPhone, $parentEmail, $address,
-            $relationship, $transferDate, $transferTime, $transferAmount, $slipPath, $registrationType
+            $relationship, $transferDate, $transferTime, $transferAmount, $slipPath, $registrationType, $academicYearId
         );
         
         if (!$insertStmt->execute()) {

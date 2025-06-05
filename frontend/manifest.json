@@ -1,0 +1,21 @@
+{
+  "name": "Sanfan School - ກວດສອບສະຖານະການລົງທະບຽນ",
+  "short_name": "ກວດສອບສະຖານະ",
+  "start_url": "/school-management/frontend/check_registration.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "../img/logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "../img/logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

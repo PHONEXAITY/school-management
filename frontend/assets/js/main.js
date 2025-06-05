@@ -13,6 +13,9 @@ async function initializeApplication() {
   // Load classes for registration
   await RegistrationManager.loadClasses();
 
+  // Load academic years for registration
+  await loadAcademicYears();
+
   // Show home page by default
   showPage("home");
 
@@ -34,10 +37,24 @@ async function initializeApplication() {
 }
 
 function loadComponents() {
+  console.log("Loading components...");
+  
   // Load navigation
   const navigationContainer = document.getElementById("navigation-container");
   if (navigationContainer) {
-    navigationContainer.innerHTML = ComponentRenderer.renderNavigation();
+    try {
+      if (typeof ComponentRenderer !== 'undefined' && typeof ComponentRenderer.renderNavigation === 'function') {
+        const navHTML = ComponentRenderer.renderNavigation();
+        navigationContainer.innerHTML = navHTML;
+        console.log("✓ Navigation loaded successfully");
+      } else {
+        console.error("✗ ComponentRenderer or renderNavigation not available");
+      }
+    } catch (error) {
+      console.error("✗ Error loading navigation:", error);
+    }
+  } else {
+    console.error("✗ Navigation container not found");
   }
 
   // Load hero section
@@ -165,6 +182,45 @@ function setupEventListeners() {
   }
 }
 
+// Load academic years for registration form
+async function loadAcademicYears() {
+  try {
+    console.log("Loading academic years...");
+    const response = await fetch('/school-management/frontend/api/get_academic_years.php');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log('Academic years response:', data);
+    
+    if (data.success && data.years) {
+      const academicYearSelect = document.getElementById('academicYear');
+      if (academicYearSelect) {
+        // Clear existing options except the first one
+        academicYearSelect.innerHTML = '<option value="">ເລືອກປີການສຶກສາ</option>';
+        
+        // Add academic year options
+        data.years.forEach(year => {
+          const option = document.createElement('option');
+          option.value = year.id;
+          option.textContent = year.year_name;
+          academicYearSelect.appendChild(option);
+        });
+        
+        console.log(`✓ Loaded ${data.years.length} academic years`);
+      } else {
+        console.error("✗ Academic year select element not found");
+      }
+    } else {
+      console.error('✗ Error loading academic years:', data.error || 'Unknown error');
+    }
+  } catch (error) {
+    console.error('✗ Error loading academic years:', error);
+  }
+}
+
 // Page content functions
 function getRegistrationPageContent() {
   return `
@@ -186,6 +242,22 @@ function getRegistrationPageContent() {
                                 <button type="button" id="newStudentBtn" onclick="toggleRegistrationType('new')" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold transition-colors">
                                     <i class="fas fa-user-plus mr-2"></i>ນັກຮຽນໃໝ່
                                 </button>
+                            </div>
+                        </div>
+
+                        <!-- Academic Year Selection -->
+                        <div class="mb-8">
+                            <div class="p-6 bg-purple-50 rounded-2xl">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                                    <i class="fas fa-calendar-alt mr-2 text-purple-600"></i>
+                                    ເລືອກປີການສຶກສາ
+                                </h3>
+                                <div class="max-w-md mx-auto">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">ປີການສຶກສາ *</label>
+                                    <select id="academicYear" name="academic_year_id" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                                        <option value="">ເລືອກປີການສຶກສາ</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
@@ -401,7 +473,7 @@ function getRegistrationPageContent() {
                                         <li>ຊຳລະເງີນຈຳນວນ 500,000 ກີບ</li>
                                         <li>ຖ່າຍພາບຫຼັກຖານການໂອນເງີນ (ສະລິບ)</li>
                                         <li>ອັບໂຫລດຫຼັກຖານການໂອນເງີນດ້ານເທີງ</li>
-                                        <li>ປ້ອນຂໍ້ມູນວັນທີ່ແລະເວລາທີ່ໂອນ</li>
+                                        <li>ປ້ອນຂໍ້ມູນວັນທີ່ແລະເວລາທີໂອນ</li>
                                         <li>ກົດປຸ່ມ "ສົ່ງໃບລົງທະບຽນ" ເພື່ອສຳເລັດ</li>
                                     </ol>
                                 </div>
@@ -506,8 +578,8 @@ function getActivitiesPageContent() {
                         <div class="w-20 h-20 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center mb-6 mx-auto">
                             <i class="fas fa-music text-white text-3xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">ດົນຕີ ແລະ ການສະແດງ</h3>
-                        <p class="text-gray-600 text-center mb-6">ພັດທະນາທັກສະທາງດົນຕີ ແລະ ສິລະປະການສະແດງຕ່າງໆ</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">ດົນຕີ ການສະແດງ</h3>
+                        <p class="text-gray-600 text-center mb-6">ພັດທະນາທັກສະທາງດົນຕີ ສິລະປະການສະແດງຕ່າງໆ</p>
                     </div>
 
                     <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">

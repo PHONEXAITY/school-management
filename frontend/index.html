@@ -25,6 +25,17 @@
 
     <!-- Navigation -->
     <nav id="navigation-container"></nav>
+    
+    <!-- Registration Status Check Banner -->
+    <div class="bg-blue-100 py-3 border-b border-blue-200">
+        <div class="container mx-auto px-4 flex justify-center">
+            <a href="check_registration.html" class="flex items-center text-blue-800 hover:text-blue-900 transition-colors font-medium">
+                <i class="fas fa-search-location mr-2"></i>
+                ກວດສອບສະຖານະການລົງທະບຽນຮຽນ
+                <i class="fas fa-chevron-right text-xs ml-2"></i>
+            </a>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="pt-20">
@@ -72,5 +83,48 @@
     <script src="assets/js/scores.js"></script>
     <script src="assets/js/gallery.js"></script>
     <script src="assets/js/main.js"></script>
+    
+    <!-- Navigation Debug Script -->
+    <script>
+        // Ensure navigation loads properly with multiple attempts
+        let navigationLoadAttempts = 0;
+        const maxAttempts = 3;
+        
+        function attemptNavigationLoad() {
+            navigationLoadAttempts++;
+            console.log(`Navigation load attempt ${navigationLoadAttempts}/${maxAttempts}`);
+            
+            const navigationContainer = document.getElementById('navigation-container');
+            if (navigationContainer && typeof ComponentRenderer !== 'undefined' && typeof ComponentRenderer.renderNavigation === 'function') {
+                try {
+                    if (!navigationContainer.innerHTML.trim() || navigationContainer.innerHTML.length < 100) {
+                        navigationContainer.innerHTML = ComponentRenderer.renderNavigation();
+                        console.log('✓ Navigation loaded successfully');
+                        return true;
+                    }
+                    return true;
+                } catch (error) {
+                    console.error('Navigation load error:', error);
+                }
+            }
+            
+            if (navigationLoadAttempts < maxAttempts) {
+                setTimeout(attemptNavigationLoad, 200);
+            } else {
+                console.error('Failed to load navigation after', maxAttempts, 'attempts');
+            }
+            return false;
+        }
+        
+        // Start loading attempts
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(attemptNavigationLoad, 100);
+        });
+        
+        // Also try when window loads
+        window.addEventListener('load', function() {
+            setTimeout(attemptNavigationLoad, 100);
+        });
+    </script>
 </body>
 </html>
