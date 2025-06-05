@@ -50,13 +50,13 @@ $stats = $stats_result->fetch_assoc();
 <div class="container-fluid">
     <!-- Page Header -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">System Logs</h1>
+        <h1 class="h3 mb-0 text-gray-800">ບັນທຶກິດຈະກຳຂອງລະບົບ</h1>
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-secondary" onclick="refreshLogs()">
-                <i class="fas fa-sync-alt"></i> Refresh
+                <i class="fas fa-sync-alt"></i> ຣິເຟຣ
             </button>
             <button type="button" class="btn btn-primary" onclick="exportLogs()">
-                <i class="fas fa-download"></i> Export
+                <i class="fas fa-download"></i> ສົ່ງອອກ
             </button>
         </div>
     </div>
@@ -69,7 +69,7 @@ $stats = $stats_result->fetch_assoc();
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Actions (30 days)
+                                ການກະທໍາທັງຫມົດ (30 ມື້)
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?php echo number_format($stats['total_actions']); ?>
@@ -89,7 +89,7 @@ $stats = $stats_result->fetch_assoc();
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Active Admins
+                                ຜູ້ເບິ່ງແຍງລະບົບທີ່ເຮັດວຽກ
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?php echo number_format($stats['active_admins']); ?>
@@ -109,7 +109,7 @@ $stats = $stats_result->fetch_assoc();
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Status Updates
+                                ອັບເດດສະຖານະ
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?php echo number_format($stats['status_updates']); ?>
@@ -129,7 +129,7 @@ $stats = $stats_result->fetch_assoc();
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Last 7 Days
+                                7 ມື້ທີ່ຜ່ານມາ
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?php echo number_format($stats['last_7_days']); ?>
@@ -147,19 +147,19 @@ $stats = $stats_result->fetch_assoc();
     <!-- System Logs Table -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Recent System Activities</h6>
+            <h6 class="m-0 font-weight-bold text-primary">ກິດຈະກໍາລະບົບທີ່ຜ່ານມາ</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="systemLogsTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Timestamp</th>
-                            <th>Admin</th>
-                            <th>Action</th>
-                            <th>Student</th>
-                            <th>Details</th>
-                            <th>Status Change</th>
+                            <th>ເວລາ</th>
+                            <th>ແອັບມີນ</th>
+                            <th>ຈັດການ</th>
+                            <th>ນັກຮຽນ</th>
+                            <th>ລາຍລະອຽບ</th>
+                            <th>ປ່ຽນສະຖານະ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -260,24 +260,24 @@ $stats = $stats_result->fetch_assoc();
 </div>
 
 <script>
-function refreshLogs() {
-    location.reload();
-}
+    function refreshLogs() {
+        location.reload();
+    }
 
-function exportLogs() {
-    // Create form to export logs
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = 'system_logs.php';
-    
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'export_logs';
-    input.value = '1';
-    
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
-}
+    function exportLogs() {
+        // Create form to export logs
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'system_logs.php';
+
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'export_logs';
+        input.value = '1';
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+    }
 </script>
