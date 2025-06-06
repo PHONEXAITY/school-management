@@ -12,7 +12,7 @@
     <li class="nav-item <?php echo ($activePage == 'dashboard') ? 'active' : ''; ?>">
         <a class="nav-link" href="index<?php echo ($_SESSION['role'] == 'Teacher') ? '_teacher' : ''; ?>.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>ໜ້າຫຼັກ</span></a>
     </li>
 
     <!-- Divider -->
@@ -20,7 +20,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        School Management
+        ຈັດການຂໍ້ມູນ
     </div>
 
     <?php if ($_SESSION['role'] == 'Admin'): ?>
@@ -31,15 +31,15 @@
                 aria-expanded="<?php echo (strpos($activePage, 'student') !== false) ? 'true' : 'false'; ?>"
                 aria-controls="collapseStudents">
                 <i class="fas fa-fw fa-user-graduate"></i>
-                <span>Students</span>
+                <span>ຂໍ້ມູນນັກຮຽນ</span>
             </a>
             <div id="collapseStudents"
                 class="collapse <?php echo (strpos($activePage, 'student') !== false) ? 'show' : ''; ?>"
                 aria-labelledby="headingStudents" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Student Options:</h6>
+                    <h6 class="collapse-header">ຈັດການຂໍ້ມູນນັກຮຽນ:</h6>
                     <a class="collapse-item <?php echo ($activePage == 'students') ? 'active' : ''; ?>"
-                        href="students.php">Students</a>
+                        href="students.php">ນັກຮຽນ</a>
                 </div>
             </div>
         </li>
@@ -51,15 +51,15 @@
                 aria-expanded="<?php echo (strpos($activePage, 'teacher') !== false) ? 'true' : 'false'; ?>"
                 aria-controls="collapseTeachers">
                 <i class="fas fa-fw fa-chalkboard-teacher"></i>
-                <span>Teachers</span>
+                <span>ຂໍ້ມູນນາຍຄູ</span>
             </a>
             <div id="collapseTeachers"
                 class="collapse <?php echo (strpos($activePage, 'teacher') !== false) ? 'show' : ''; ?>"
                 aria-labelledby="headingTeachers" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Teacher Options:</h6>
+                    <h6 class="collapse-header">ຈັດການຂໍ້ມູນນາຍຄູ:</h6>
                     <a class="collapse-item <?php echo ($activePage == 'teachers') ? 'active' : ''; ?>"
-                        href="teachers.php">Teachers</a>
+                        href="teachers.php">ນາຍຄູ</a>
                 </div>
             </div>
         </li>
@@ -72,23 +72,23 @@
                 aria-expanded="<?php echo in_array($activePage, ['levels', 'classes', 'subjects', 'terms', 'years']) ? 'true' : 'false'; ?>"
                 aria-controls="collapseClasses">
                 <i class="fas fa-fw fa-chalkboard"></i>
-                <span>School_info</span>
+                <span>ຂໍ້ມູນຫຼັກ</span>
             </a>
             <div id="collapseClasses"
                 class="collapse <?php echo in_array($activePage, ['levels', 'classes', 'subjects', 'terms', 'years']) ? 'show' : ''; ?>"
                 aria-labelledby="headingClasses" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Class Options:</h6>
+                    <h6 class="collapse-header">ຈັດການຂໍ້ມູນຫຼັກຂອງໂຮງຮຽນ:</h6>
                     <a class="collapse-item <?php echo ($activePage == 'levels') ? 'active' : ''; ?>"
-                        href="levels.php">Levels</a>
+                        href="levels.php">ຊັ້ນຮຽນ</a>
                     <a class="collapse-item <?php echo ($activePage == 'classes') ? 'active' : ''; ?>"
-                        href="classes.php">Classes</a>
+                        href="classes.php">ຫ້ອງຮຽນ</a>
                     <a class="collapse-item <?php echo ($activePage == 'subjects') ? 'active' : ''; ?>"
-                        href="subjects.php">Subject</a>
+                        href="subjects.php">ວິຊາຮຽນ</a>
                     <a class="collapse-item <?php echo ($activePage == 'terms') ? 'active' : ''; ?>"
-                        href="terms.php">Term</a>
+                        href="terms.php">ພາກຮຽນ</a>
                     <a class="collapse-item <?php echo ($activePage == 'school-year') ? 'active' : ''; ?>"
-                        href="years.php">School Year</a>
+                        href="years.php">ສົກຮຽນ</a>
                 </div>
             </div>
         </li>
@@ -101,31 +101,77 @@
             aria-expanded="<?php echo (strpos($activePage, 'scores') !== false) ? 'true' : 'false'; ?>"
             aria-controls="collapseAttendance">
             <i class="fas fa-fw fa-calendar-check"></i>
-            <span>Scores</span>
+            <span>ຂໍ້ມູນຄະແນນ</span>
         </a>
         <div id="collapseAttendance"
             class="collapse <?php echo (strpos($activePage, 'scores') !== false) ? 'show' : ''; ?>"
             aria-labelledby="headingAttendance" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Score Options:</h6>
-                <a class="collapse-item <?php echo ($activePage == 'scores') ? 'active' : ''; ?>" href="scores.php">Add
-                    Scores</a>
+                <h6 class="collapse-header">ຈັດການຂໍ້ມູນຄະແນນ:</h6>
+                <a class="collapse-item <?php echo ($activePage == 'scores') ? 'active' : ''; ?>"
+                    href="scores.php">ປ້ອນຄະແນນ</a>
                 <a class="collapse-item <?php echo ($activePage == 'view_scores') ? 'active' : ''; ?>"
-                    href="view_scores.php">View Score</a>
+                    href="view_scores.php">ເບິ່ງຄະແນນ</a>
                 <a class="collapse-item <?php echo ($activePage == 'scores_report') ? 'active' : ''; ?>"
-                    href="score_report.php">Reports</a>
+                    href="score_report.php">ລາຍງານຂໍ້ມູນຄະແນນ</a>
             </div>
         </div>
     </li>
 
-    <?php if ($_SESSION['role'] == 'Admin'): ?>
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Administration
-        </div>
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        ລົງທະບຽນ ແລະ ຜູ້ໃຊ້ລະບົບ
+    </div>
+
+    <?php if ($_SESSION['role'] == 'Admin'): ?>
+        <!-- Nav Item - Registration Management Collapse Menu -->
+        <li class="nav-item <?php echo (strpos($activePage, 'registration') !== false) ? 'active' : ''; ?>">
+            <a class="nav-link <?php echo (strpos($activePage, 'registration') !== false) ? '' : 'collapsed'; ?>" href="#"
+                data-toggle="collapse" data-target="#collapseRegistrations"
+                aria-expanded="<?php echo (strpos($activePage, 'registration') !== false) ? 'true' : 'false'; ?>"
+                aria-controls="collapseRegistrations">
+                <i class="fas fa-fw fa-clipboard-list"></i>
+                <span>ຂໍ້ມູນການລົງທະບຽນ</span>
+                <?php
+                // Count pending registrations
+                include_once 'config/db.php';
+                $pending_count_sql = "SELECT COUNT(*) as count FROM registration WHERE registration_status = 'pending'";
+                $pending_count_result = $conn->query($pending_count_sql);
+
+                if ($pending_count_result && $pending_count_row = $pending_count_result->fetch_assoc()) {
+                    $pending_count = (int) $pending_count_row['count'];
+                    if ($pending_count > 0) {
+                        echo "<span class='badge badge-danger badge-counter ml-2'>{$pending_count}</span>";
+                    }
+                }
+                ?>
+            </a>
+            <div id="collapseRegistrations"
+                class="collapse <?php echo (strpos($activePage, 'registration') !== false) ? 'show' : ''; ?>"
+                aria-labelledby="headingRegistrations" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Registration Options:</h6>
+                    <a class="collapse-item <?php echo ($activePage == 'admin_registrations') ? 'active' : ''; ?>"
+                        href="admin_registration_management.php">
+                        <i class="fas fa-user-shield"></i> ຈັດການການລົງທະບຽນ
+                        <?php if ($pending_count > 0): ?>
+                            <span class="badge badge-warning badge-sm ml-1"><?= $pending_count ?></span>
+                        <?php endif; ?>
+                    </a>
+                    <a class="collapse-item <?php echo ($activePage == 'registration_analytics') ? 'active' : ''; ?>"
+                        href="registration_analytics.php">
+                        <i class="fas fa-chart-bar"></i> ລາຍງານ ແລະ ສະຖີຕິ
+                    </a>
+                    <a class="collapse-item <?php echo ($activePage == 'system_logs') ? 'active' : ''; ?>"
+                        href="system_logs.php">
+                        <i class="fas fa-history"></i> ປະຫວັດການດຳເນີນການ
+                    </a>
+                </div>
+            </div>
+        </li>
 
         <!-- Nav Item - Users Collapse Menu -->
         <li class="nav-item <?php echo (strpos($activePage, 'user') !== false) ? 'active' : ''; ?>">
@@ -134,38 +180,14 @@
                 aria-expanded="<?php echo (strpos($activePage, 'user') !== false) ? 'true' : 'false'; ?>"
                 aria-controls="collapseUsers">
                 <i class="fas fa-fw fa-users"></i>
-                <span>Users</span>
+                <span>ຂໍ້ມູນຜູ້ໃຊ້ລະບົບ</span>
             </a>
             <div id="collapseUsers" class="collapse <?php echo (strpos($activePage, 'user') !== false) ? 'show' : ''; ?>"
                 aria-labelledby="headingUsers" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">User Options:</h6>
+                    <h6 class="collapse-header">ຈັດການຂໍ້ມູນຜູ້ໃຊ້ລະບົບ:</h6>
                     <a class="collapse-item <?php echo ($activePage == 'users') ? 'active' : ''; ?>" href="user.php">
-                        Users</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Register Collapse Menu -->
-        <li class="nav-item <?php echo (strpos($activePage, 'setting') !== false) ? 'active' : ''; ?>">
-            <a class="nav-link <?php echo (strpos($activePage, 'setting') !== false) ? '' : 'collapsed'; ?>" href="#"
-                data-toggle="collapse" data-target="#collapseSettings"
-                aria-expanded="<?php echo (strpos($activePage, 'setting') !== false) ? 'true' : 'false'; ?>"
-                aria-controls="collapseSettings">
-                <i class="fas fa-fw fa-cogs"></i>
-                <span>Register</span>
-            </a>
-            <div id="collapseSettings"
-                class="collapse <?php echo (strpos($activePage, 'setting') !== false) ? 'show' : ''; ?>"
-                aria-labelledby="headingSettings" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Setting Options:</h6>
-                    <a class="collapse-item <?php echo ($activePage == 'settings') ? 'active' : ''; ?>"
-                        href="settings.php">All Register</a>
-                    <a class="collapse-item <?php echo ($activePage == 'setting-school') ? 'active' : ''; ?>"
-                        href="setting-school.php">Expire Register</a>
-                    <a class="collapse-item <?php echo ($activePage == 'setting-academic') ? 'active' : ''; ?>"
-                        href="setting-academic.php">Reject</a>
+                        ຂໍ້ມູນຜູ້ໃຊ້ລະບົບ</a>
                 </div>
             </div>
         </li>

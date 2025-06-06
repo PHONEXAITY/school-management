@@ -96,15 +96,15 @@ $conn->close();
 
 <body>
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">term Management</h1>
-    <p class="mb-4">Manage all term records here. You can add, edit, view, and delete term details.</p>
+    <h1 class="h3 mb-2 text-gray-800">ຈັດການຂໍ້ມູນພາກຮຽນ</h1>
+    <p class="mb-4">ຈັດການຂໍ້ມູນພາກຮຽນທັງຫມົດຢູ່ໜ້ານີ້. ທ່ານສາມາດເພີ່ມ, ແກ້ໄຂ, ເບິ່ງ ແລະ ລຶບ.</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">terms</h6>
+            <h6 class="m-0 font-weight-bold text-primary">ຂໍ້ມູນພາກຮຽນ</h6>
             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addClassModal">
-                <i class="fas fa-plus"></i> Add New term
+                <i class="fas fa-plus"></i> ເພີ່ມພາກຮຽນ
             </a>
         </div>
         <div class="card-body">
@@ -113,9 +113,9 @@ $conn->close();
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>ID</th>
-                            <th>term Name</th>
-                            <th>Actions</th>
+                            <th>ລະຫັດ</th>
+                            <th>ພາກຮຽນ</th>
+                            <th>ຈັດການ</th>
                         </tr>
                     </thead>
                     <tbody id="classTableBody">
@@ -132,7 +132,7 @@ $conn->close();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addClassModalLabel">Add New term</h5>
+                    <h5 class="modal-title" id="addClassModalLabel">ເພີ່ມພາກຮຽນ</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -140,18 +140,18 @@ $conn->close();
                 <form id="addClassForm">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="termId">term ID</label>
+                            <label for="termId">ລະຫັດ</label>
                             <input type="text" class="form-control" id="termId" name="termId" required>
                         </div>
                         <div class="form-group">
-                            <label for="termName">term Name</label>
+                            <label for="termName">ພາກຮຽນ</label>
                             <input type="text" class="form-control" id="termName" name="termName" required>
                         </div>
                         <input type="hidden" name="action" value="add">
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Add term</button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">ຍົກເລີກ</button>
+                        <button type="submit" class="btn btn-primary">ບັນທືນ</button>
                     </div>
                 </form>
             </div>
@@ -164,7 +164,7 @@ $conn->close();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title" id="editClassModalLabel">Edit term</h6>
+                    <h6 class="modal-title" id="editClassModalLabel">ແກ້ໄຂຂໍ້ມູນພາກຮຽນ</h6>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -173,14 +173,14 @@ $conn->close();
                     <div class="modal-body">
                         <input type="hidden" id="edittermId" name="edittermId">
                         <div class="form-group">
-                            <label for="edittermName">term Name</label>
+                            <label for="edittermName">ພາກຮຽນ</label>
                             <input type="text" class="form-control" id="edittermName" name="edittermName" required>
                         </div>
                         <input type="hidden" name="action" value="edit">
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">ຍົກເລີກ</button>
+                        <button type="submit" class="btn btn-primary">ແກ້ໄຂ</button>
                     </div>
                 </form>
             </div>
@@ -193,17 +193,17 @@ $conn->close();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteClassModalLabel">Confirm Delete</h5>
+                    <h5 class="modal-title" id="deleteClassModalLabel">ຢືນຢັນການລຶບ</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete this term?
+                    ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບຂໍ້ມູນພາກຮຽນນີິ້?
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-danger" id="confirmDelete">Delete</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">ຍົກເລີກ</button>
+                    <button class="btn btn-danger" id="confirmDelete">ລຶບ</button>
                 </div>
             </div>
         </div>

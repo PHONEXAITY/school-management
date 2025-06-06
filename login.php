@@ -225,14 +225,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <img src="img/mylogo.png" alt="School Logo" width="150" height="150">
             </div>
             <div class="text-overlay">
-                <h2>Sanfan Primary</h2>
-                <h3>School Management System</h3>
+                <h2>ລະບົບຈັດການຂໍ້ມູນ</h2>
+                <h3>
+                    ໂຮງຮຽນອານຸບານ - ປະຖົມສານຝັນ
+                </h3>
             </div>
         </div>
 
         <div class="login-form">
 
-            <h3>Welcome To Login</h3>
+            <h3>ເຂົ້າສູ່ລະບົບ</h3>
             <?php if (!empty($errorMsg)): ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <?php echo htmlspecialchars($errorMsg); ?>
@@ -241,17 +243,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php endif; ?>
             <form method="post" action="login.php">
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="username" id="username" placeholder="User Name"
+                    <input type="text" class="form-control" name="username" id="username" placeholder="ຊື່ຜູ້ໃຊ້"
                         required>
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Password"
+                    <input type="password" class="form-control" name="password" id="password" placeholder="ລະຫັດຜ່ານ"
                         required>
                 </div>
-                <button type="submit" class="btn-login">Login</button>
+                <button type="submit" class="btn-login">ເຂົ້າສູ່ລະບົບ</button>
             </form>
             <div class="link-text">
-                <a href="#">Forgot your password?</a>
+                <a href="#">ລຶມລະຫັດຜ່ານ?</a>
             </div>
         </div>
     </div>

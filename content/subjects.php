@@ -87,7 +87,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subject Management</title>
+    <title>ຈັດການວິຊາຮຽນ</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
@@ -96,15 +96,15 @@ $conn->close();
 
 <body>
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Subject Management</h1>
-    <p class="mb-4">Manage all subject records here. You can add, edit, view, and delete subject details.</p>
+    <h1 class="h3 mb-2 text-gray-800">ຈັດການວິຊາຮຽນ</h1>
+    <p class="mb-4">ຈັດການຂໍ້ມູນວິຊາທັງໝົດ ທ່ານສາມາດເພີ່ມ, ແກ້ໄຂ, ເບິ່ງ, ແລະ ລຶບຂໍ້ມູນ.</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Subjects</h6>
+            <h6 class="m-0 font-weight-bold text-primary">ຂໍ້ມູນວິຊາຮຽນ</h6>
             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addClassModal">
-                <i class="fas fa-plus"></i> Add New Subject
+                <i class="fas fa-plus"></i>ເພີ່ມວິຊາຮຽນ
             </a>
         </div>
         <div class="card-body">
@@ -113,9 +113,9 @@ $conn->close();
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>ID</th>
-                            <th>Subject Name</th>
-                            <th>Actions</th>
+                            <th>ລະຫັດ</th>
+                            <th>ວິຊາຮຽນ</th>
+                            <th>ຈັດການ</th>
                         </tr>
                     </thead>
                     <tbody id="classTableBody">
@@ -132,7 +132,7 @@ $conn->close();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addClassModalLabel">Add New Subject</h5>
+                    <h5 class="modal-title" id="addClassModalLabel">ເພີ່ມວິຊາຮຽນ</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -140,18 +140,18 @@ $conn->close();
                 <form id="addClassForm">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="classId">Subject ID</label>
+                            <label for="classId">ລະຫັດວິຊາ</label>
                             <input type="text" class="form-control" id="classId" name="classId" required>
                         </div>
                         <div class="form-group">
-                            <label for="className">Subject Name</label>
+                            <label for="className">ຊື່ວິຊາ</label>
                             <input type="text" class="form-control" id="className" name="className" required>
                         </div>
                         <input type="hidden" name="action" value="add">
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Add Subject</button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">ຍົກເລີກ</button>
+                        <button type="submit" class="btn btn-primary">ເພີ່ມວິຊາ</button>
                     </div>
                 </form>
             </div>
@@ -164,7 +164,7 @@ $conn->close();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title" id="editClassModalLabel">Edit Subject</h6>
+                    <h6 class="modal-title" id="editClassModalLabel">ເເກ້ໄຂວິຊາຮຽນ</h6>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -173,14 +173,14 @@ $conn->close();
                     <div class="modal-body">
                         <input type="hidden" id="editClassId" name="editClassId">
                         <div class="form-group">
-                            <label for="editClassName">Subject Name</label>
+                            <label for="editClassName">ຊື່ວິຊາ</label>
                             <input type="text" class="form-control" id="editClassName" name="editClassName" required>
                         </div>
                         <input type="hidden" name="action" value="edit">
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">ຍົກເລີກ</button>
+                        <button type="submit" class="btn btn-primary">ບັກທືກ</button>
                     </div>
                 </form>
             </div>
@@ -193,17 +193,17 @@ $conn->close();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteClassModalLabel">Confirm Delete</h5>
+                    <h5 class="modal-title" id="deleteClassModalLabel">ຢືນຢັນການລຶບ</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete this subject?
+                    ທ່ານເເນ່ໃຈບໍ່ວ່າຕ້ອງການລືບຂໍ້ມູນນີ້
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-danger" id="confirmDelete">Delete</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">ຍົກເລີກ</button>
+                    <button class="btn btn-danger" id="confirmDelete">ລືບ</button>
                 </div>
             </div>
         </div>
@@ -358,7 +358,7 @@ $conn->close();
                 success: function (response) {
                     console.log('Delete response:', response);
                     $('#deleteClassModal').modal('hide');
-                    fetchClasses(); // Refresh the table
+                    fetchClasses(); 
                 },
                 error: function (xhr, status, error) {
                     console.error('Error deleting class:', error);

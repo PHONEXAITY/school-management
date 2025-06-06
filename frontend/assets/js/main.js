@@ -242,6 +242,7 @@ function getRegistrationPageContent() {
                                             <option value="">ເລືອກເພດ</option>
                                             <option value="M">ຊາຍ</option>
                                             <option value="F">ຍິງ</option>
+                                            <option value="O">ອື່ນໆ</option>
                                         </select>
                                     </div>
                                     <div>

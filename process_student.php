@@ -1,5 +1,6 @@
 <?php
 include 'config/db.php';
+include 'includes/format_helpers.php'; // Include the helper functions
 
 // Handle add student
 if (isset($_POST['submit_add'])) {
@@ -13,6 +14,9 @@ if (isset($_POST['submit_add'])) {
     $parent_name = $_POST['parent_name'];
     $phone = $_POST['phone'];
     $class_id = $_POST['class_id'] ?: null;
+
+    // Use the helper function to map gender value to database format
+    $gender = mapGenderForDB($gender);
 
     $sql = "INSERT INTO student (fname, lname, gender, birth_date, village, district, province, parent_name, phone, class_id) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -31,6 +35,10 @@ if (isset($_POST['submit_edit'])) {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $gender = $_POST['gender'];
+    
+    // Use the helper function to map gender value to database format
+    $gender = mapGenderForDB($gender);
+    
     $birth_date = $_POST['birth_date'];
     $village = $_POST['village'];
     $district = $_POST['district'];
