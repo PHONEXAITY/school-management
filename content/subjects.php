@@ -358,7 +358,7 @@ $conn->close();
                 success: function (response) {
                     console.log('Delete response:', response);
                     $('#deleteClassModal').modal('hide');
-                    fetchClasses(); // Refresh the table
+                    fetchClasses(); 
                 },
                 error: function (xhr, status, error) {
                     console.error('Error deleting class:', error);
