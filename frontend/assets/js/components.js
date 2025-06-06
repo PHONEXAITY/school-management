@@ -27,6 +27,9 @@ class ComponentRenderer {
                                 <i class="fas fa-search mr-1"></i>ກວດສອບສະຖານະ
                                 <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">!</span>
                             </a>
+                            <a href="#" onclick="showPage('scores')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-chart-line mr-1"></i>ເບິ່ງຄະແນນ
+                            </a>
                             <a href="#" onclick="showPage('activities')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
                                 <i class="fas fa-calendar-alt mr-1"></i>ກິດຈະກຳ
                             </a>
@@ -53,6 +56,9 @@ class ComponentRenderer {
                         <a href="check_registration.html" class="block py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-lg mt-2 mb-2 font-medium shadow-md hover:from-green-600 hover:to-blue-600 transition-all pl-4 relative">
                             <i class="fas fa-search mr-2"></i>ກວດສອບສະຖານະການລົງທະບຽນ
                             <span class="absolute top-1 right-3 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">!</span>
+                        </a>
+                        <a href="#" onclick="showPage('scores')" class="block py-2 text-gray-700 hover:text-blue-600 border-b border-gray-100">
+                            <i class="fas fa-chart-line mr-2"></i>ເບິ່ງຄະແນນ
                         </a>
                         <a href="#" onclick="showPage('activities')" class="block py-2 text-gray-700 hover:text-blue-600 border-b border-gray-100">
                             <i class="fas fa-calendar-alt mr-2"></i>ກິດຈະກຳ

@@ -507,9 +507,9 @@ if ($show_report) {
                                             <label class="form-label required">Gender</label>
                                             <select name="gender" class="form-select" required>
                                                 <option value="">Select Gender</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                                <option value="Other">Other</option>
+                                                <option value="M">Male</option>
+                                                <option value="F">Female</option>
+                                                <option value="O">Other</option>
                                             </select>
                                         </div>
                                     </div>
@@ -617,9 +617,9 @@ if ($show_report) {
                                                 <label class="form-label required">Gender</label>
                                                 <select name="gender" class="form-select" required>
                                                     <option value="">Select Gender</option>
-                                                    <option value="Male" <?php echo ($edit_student['gender'] == 'Male' || $edit_student['gender'] == 'M') ? 'selected' : ''; ?>>Male</option>
-                                                    <option value="Female" <?php echo ($edit_student['gender'] == 'Female' || $edit_student['gender'] == 'F') ? 'selected' : ''; ?>>Female</option>
-                                                    <option value="Other" <?php echo ($edit_student['gender'] == 'Other' || $edit_student['gender'] == 'O') ? 'selected' : ''; ?>>Other</option>
+                                                    <option value="M" <?php echo $edit_student['gender'] == 'M' ? 'selected' : ''; ?>>Male</option>
+                                                    <option value="F" <?php echo $edit_student['gender'] == 'F' ? 'selected' : ''; ?>>Female</option>
+                                                    <option value="O" <?php echo $edit_student['gender'] == 'O' ? 'selected' : ''; ?>>Other</option>
                                                 </select>
                                             </div>
                                         </div>
