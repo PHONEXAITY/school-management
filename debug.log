@@ -261,3 +261,94 @@
 [05-Jun-2025 10:11:35 UTC] No new student data found or registration type is not 'new'
 [05-Jun-2025 10:11:35 UTC] About to send success response...
 [05-Jun-2025 10:11:35 UTC] Sending success response: {"success":true,"message":"\u0e2d\u0e31\u0e1e\u0e40\u0e14\u0e17\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08"}
+[06-Jun-2025 06:15:19 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:19 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:22 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:22 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:22 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:22 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:22 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:22 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:23 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:23 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
