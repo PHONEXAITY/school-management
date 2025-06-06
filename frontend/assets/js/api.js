@@ -200,7 +200,7 @@ class API {
         }
     }
 
-    static async getScores(studentId) {
+    static async getScores(studentId, month = '', term = '') {
         try {
             const possiblePaths = [
                 `${this.BASE_URL}/get_scores.php`,
@@ -217,7 +217,9 @@ class API {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            student_id: studentId
+                            student_id: studentId,
+                            month: month,
+                            term: term
                         })
                     });
                     
@@ -237,7 +239,7 @@ class API {
             }
             
             // Mock scores data
-            return this.getMockScoresData(studentId);
+            return this.getMockScoresData(studentId, month, term);
             
         } catch (error) {
             console.error('Error getting scores:', error);
@@ -246,180 +248,4 @@ class API {
     }
 
     // Mock data functions สำหรับการทดสอบ
-    static getMockClassesData() {
-        return {
-            success: true,
-            levels: [
-                {
-                    name: "ປະຖົມ 1",
-                    classes: [
-                        { id: "p1_a", name: "ກ" },
-                        { id: "p1_b", name: "ຂ" },
-                        { id: "p1_c", name: "ຄ" }
-                    ]
-                },
-                {
-                    name: "ປະຖົມ 2",
-                    classes: [
-                        { id: "p2_a", name: "ກ" },
-                        { id: "p2_b", name: "ຂ" },
-                        { id: "p2_c", name: "ຄ" }
-                    ]
-                },
-                {
-                    name: "ປະຖົມ 3",
-                    classes: [
-                        { id: "p3_a", name: "ກ" },
-                        { id: "p3_b", name: "ຂ" },
-                        { id: "p3_c", name: "ຄ" }
-                    ]
-                },
-                {
-                    name: "ປະຖົມ 4",
-                    classes: [
-                        { id: "p4_a", name: "ກ" },
-                        { id: "p4_b", name: "ຂ" },
-                        { id: "p4_c", name: "ຄ" }
-                    ]
-                },
-                {
-                    name: "ປະຖົມ 5",
-                    classes: [
-                        { id: "p5_a", name: "ກ" },
-                        { id: "p5_b", name: "ຂ" },
-                        { id: "p5_c", name: "ຄ" }
-                    ]
-                }
-            ]
-        };
-    }
-
-    static getMockSearchData(searchValue) {
-        // Mock student data for demo
-        const mockStudents = [
-            {
-                id: "2025001",
-                full_name: "ບຸນມີ ພັນທະວົງ",
-                class_name: "ປະຖົມ 3/ກ",
-                age: 9,
-                gender: "M",
-                full_address: "ບ້ານນາໄຜ່, ເມືອງຈັນທະບູລີ, ແຂວງວຽງຈັນ"
-            },
-            {
-                id: "2025002", 
-                full_name: "ນາງນ້ອຍ ສີລາວົງ",
-                class_name: "ປະຖົມ 2/ຂ",
-                age: 8,
-                gender: "F",
-                full_address: "ບ້ານດົງປາລານ, ເມືອງສີໂຄດຕະບອງ, ແຂວງວຽງຈັນ"
-            }
-        ];
-
-        if (searchValue === "2025001" || searchValue.includes("ບຸນມີ")) {
-            return {
-                success: true,
-                students: [mockStudents[0]]
-            };
-        } else if (searchValue === "2025002" || searchValue.includes("ນາງນ້ອຍ")) {
-            return {
-                success: true,
-                students: [mockStudents[1]]
-            };
-        } else {
-            return {
-                success: false,
-                message: "ບໍ່ພົບຂໍ້ມູນນັກຮຽນ (Demo Mode)"
-            };
-        }
-    }
-
-    static getMockScoresData(studentId) {
-        if (studentId === "2025001") {
-            return {
-                success: true,
-                student: {
-                    id: "2025001",
-                    full_name: "ບຸນມີ ພັນທະວົງ",
-                    class_name: "ປະຖົມ 3/ກ"
-                },
-                scores: [
-                    {
-                        subject_name: "ພາສາລາວ",
-                        score: 85,
-                        month: "ມັງກອນ",
-                        term_name: "ເທີມ 1",
-                        year_name: "2025"
-                    },
-                    {
-                        subject_name: "ຄະນິດສາດ",
-                        score: 92,
-                        month: "ມັງກອນ",
-                        term_name: "ເທີມ 1",
-                        year_name: "2025"
-                    },
-                    {
-                        subject_name: "ວິທະຍາສາດ",
-                        score: 78,
-                        month: "ມັງກອນ",
-                        term_name: "ເທີມ 1",
-                        year_name: "2025"
-                    },
-                    {
-                        subject_name: "ສັງຄົມສຶກສາ",
-                        score: 88,
-                        month: "ມັງກອນ",
-                        term_name: "ເທີມ 1",
-                        year_name: "2025"
-                    }
-                ],
-                statistics: {
-                    average_score: "85.8",
-                    highest_score: "92",
-                    total_subjects: "4"
-                }
-            };
-        } else if (studentId === "2025002") {
-            return {
-                success: true,
-                student: {
-                    id: "2025002",
-                    full_name: "ນາງນ້ອຍ ສີລາວົງ",
-                    class_name: "ປະຖົມ 2/ຂ"
-                },
-                scores: [
-                    {
-                        subject_name: "ພາສາລາວ",
-                        score: 90,
-                        month: "ມັງກອນ",
-                        term_name: "ເທີມ 1",
-                        year_name: "2025"
-                    },
-                    {
-                        subject_name: "ຄະນິດສາດ",
-                        score: 87,
-                        month: "ມັງກອນ",
-                        term_name: "ເທີມ 1",
-                        year_name: "2025"
-                    },
-                    {
-                        subject_name: "ວິທະຍາສາດ",
-                        score: 82,
-                        month: "ມັງກອນ",
-                        term_name: "ເທີມ 1",
-                        year_name: "2025"
-                    }
-                ],
-                statistics: {
-                    average_score: "86.3",
-                    highest_score: "90",
-                    total_subjects: "3"
-                }
-            };
-        } else {
-            return {
-                success: false,
-                message: "ບໍ່ພົບຂໍ້ມູນຄະແນນ (Demo Mode)"
-            };
-        }
-    }
 }

@@ -27,19 +27,25 @@ function formatGender($genderCode) {
  * Use this when inserting/updating database records to prevent "Data truncated" errors
  * 
  * @param string $genderValue The gender value to convert
- * @return string Database-compatible gender value ('M', 'F', or 'O')
+ * @return string Database-compatible gender value ('Male', 'Female', or 'Other')
  */
 function mapGenderForDB($genderValue) {
-    // Handle different formats and standardize to database format 'M', 'F', 'O'
-    if (in_array($genderValue, ['Male', 'male', 'ชาย'])) {
-        return 'M';
-    } elseif (in_array($genderValue, ['Female', 'female', 'หญิง'])) {
-        return 'F';
-    } elseif (in_array($genderValue, ['Other', 'other', 'อื่นๆ'])) {
-        return 'O'; // Make sure your DB schema supports this
+    // Handle different formats and standardize to database format 'Male', 'Female', 'Other'
+    if (in_array($genderValue, ['M', 'Male', 'male', 'ชาย'])) {
+        return 'Male';
+    } elseif (in_array($genderValue, ['F', 'Female', 'female', 'หญิง'])) {
+        return 'Female';
+    } elseif (in_array($genderValue, ['O', 'Other', 'other', 'อื่นๆ'])) {
+        return 'Other'; // Make sure your DB schema supports this
     } else {
         // Already in correct format or unknown
-        return in_array($genderValue, ['M', 'F', 'O']) ? $genderValue : 'M';
+        // If we get legacy values M, F, O, convert them
+        if ($genderValue === 'M') return 'Male';
+        if ($genderValue === 'F') return 'Female';
+        if ($genderValue === 'O') return 'Other';
+        
+        // Default to Male if value is completely unknown
+        return $genderValue ?: 'Male';
     }
 }
 ?>

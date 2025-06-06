@@ -497,7 +497,7 @@ function getScoresPageContent() {
   return `
         <section class="py-20 bg-gradient-to-br from-green-50 to-blue-50 min-h-screen">
             <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto">
+                <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-12">
                         <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">ກວດສອບຄະແນນ</h2>
                         <p class="text-xl text-gray-600">ປ້ອນລະຫັດນັກຮຽນເພື່ອເບິ່ງຜົນການຮຽນ</p>
@@ -506,13 +506,43 @@ function getScoresPageContent() {
                     <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12">
                         <!-- Search Section -->
                         <div class="mb-8">
-                            <div class="max-w-md mx-auto">
-                                <label class="block text-lg font-semibold text-gray-700 mb-4 text-center">ລະຫັດນັກຮຽນ</label>
-                                <div class="flex gap-3">
-                                    <input type="text" id="scoreStudentId" class="flex-1 px-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent text-center text-lg" placeholder="ປ້ອນລະຫັດນັກຮຽນ">
-                                    <button onclick="searchScores()" class="bg-green-600 text-white px-6 py-4 rounded-xl font-semibold hover:bg-green-700 transition-colors">
-                                        <i class="fas fa-search"></i>
-                                    </button>
+                            <div class="max-w-4xl mx-auto">
+                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">ລະຫັດນັກຮຽນ</label>
+                                        <input type="text" id="scoreStudentId" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="ປ້ອນລະຫັດນັກຮຽນ">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">ເດືອນ</label>
+                                        <select id="scoreMonth" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                            <option value="">ທຸກເດືອນ</option>
+                                            <option value="1">ມັງກອນ</option>
+                                            <option value="2">ກຸມພາ</option>
+                                            <option value="3">ມີນາ</option>
+                                            <option value="4">ເມສາ</option>
+                                            <option value="5">ພຶດສະພາ</option>
+                                            <option value="6">ມິຖຸນາ</option>
+                                            <option value="7">ກໍລະກົດ</option>
+                                            <option value="8">ສິງຫາ</option>
+                                            <option value="9">ກັນຍາ</option>
+                                            <option value="10">ຕຸລາ</option>
+                                            <option value="11">ພະຈິກ</option>
+                                            <option value="12">ທັນວາ</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">ເທີມ</label>
+                                        <select id="scoreTerm" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                            <option value="">ທຸກເທີມ</option>
+                                            <option value="1">ເທີມ 1</option>
+                                            <option value="2">ເທີມ 2</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex items-end">
+                                        <button onclick="searchScores()" class="w-full bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors">
+                                            <i class="fas fa-search mr-2"></i>ຄົ້ນຫາ
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -524,6 +554,22 @@ function getScoresPageContent() {
                                     <i class="fas fa-user mr-2"></i>ຂໍ້ມູນນັກຮຽນ
                                 </h3>
                                 <div id="scoreStudentInfo" class="grid md:grid-cols-3 gap-4 text-gray-700"></div>
+                            </div>
+
+                            <!-- Statistics Cards -->
+                            <div id="scoreStatistics" class="grid md:grid-cols-4 gap-6 mb-8">
+                                <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-2xl text-center">
+                                    <div class="text-3xl font-bold mb-2" id="avgScore">0</div>
+                                    <div class="text-blue-100">ຄະແນນສະເລ່ຍ</div>
+                                </div>
+                                <div class="bg-gradient-to-br from-green-500 to-green-600 text-white p-6 rounded-2xl text-center">
+                                    <div class="text-3xl font-bold mb-2" id="highestScore">0</div>
+                                    <div class="text-green-100">ຄະແນນສູງສຸດ</div>
+                                </div>
+                                <div class="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-6 rounded-2xl text-center">
+                                    <div class="text-3xl font-bold mb-2" id="totalSubjects">0</div>
+                                    <div class="text-purple-100">ຈຳນວນວິຊາ</div>
+                                </div>
                             </div>
 
                             <div class="space-y-6">
