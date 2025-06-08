@@ -165,6 +165,12 @@
 [05-Jun-2025 08:06:26 UTC] Student record already exists
 [05-Jun-2025 08:06:26 UTC] About to send success response...
 [05-Jun-2025 08:06:26 UTC] Sending success response: {"success":true,"message":"\u0e2d\u0e31\u0e1e\u0e40\u0e14\u0e17\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08"}
+
+[05-Jun-2025 10:22:36 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\school-management\includes\sidebar.php:61) in C:\xampp\htdocs\school-management\content\admin_registration_management.php on line 172
+[05-Jun-2025 10:22:39 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\school-management\includes\sidebar.php:61) in C:\xampp\htdocs\school-management\content\admin_registration_management.php on line 172
+[05-Jun-2025 11:09:56 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\school-management\includes\sidebar.php:61) in C:\xampp\htdocs\school-management\content\admin_registration_management.php on line 275
+[05-Jun-2025 11:09:58 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\school-management\includes\sidebar.php:61) in C:\xampp\htdocs\school-management\content\admin_registration_management.php on line 275
+
 [05-Jun-2025 10:05:12 UTC] Connection status - isset: yes, connect_error: none
 [05-Jun-2025 10:05:12 UTC] AJAX Request received. POST data: Array
 (
@@ -352,3 +358,4 @@ Stack trace:
 #1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
 #2 {main}
   thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+

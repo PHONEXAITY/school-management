@@ -389,18 +389,18 @@ if ($show_report) {
             </div>
         <?php else: ?>
             <!-- Management View -->
-            <h1 class="h3 mb-3 text-gray-800">Users Management</h1>
-            <p class="mb-4 text-muted">Effortlessly manage user records with options to add, edit, or delete details.</p>
+            <h1 class="h3 mb-3 text-gray-800">ຈັດການຂໍ້ມູນຜູ້ໃຊ້ລະບົບ</h1>
+            <p class="mb-4 text-muted">ຈັດການບັນທຶກຜູ້ໃຊ້ ເພີ່ມ, ແກ້ໄຂ ແລະ ລຶບ.</p>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Users</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">ຂໍ້ມູນຜູ້ໃຊ້ລະບົບ</h6>
                     <div>
                         <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addUserModal">
-                            <i class="fas fa-plus me-2"></i>Add New User
+                            <i class="fas fa-plus me-2"></i>ເພີ່ມ
                         </button>
                         <a href="user.php?report=1" class="btn btn-success">
-                            <i class="fas fa-file-alt me-2"></i>Generate Report
+                            <i class="fas fa-file-alt me-2"></i>ສ້າງລາຍງານ
                         </a>
                     </div>
                 </div>
@@ -409,11 +409,11 @@ if ($show_report) {
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
+                                    <th>ລະຫັດ</th>
+                                    <th>ຊື່ຜູ້ໃຊ້</th>
 
-                                    <th>Role</th>
-                                    <th>Actions</th>
+                                    <th>ສິດທີ່</th>
+                                    <th>ຈັດການ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -448,7 +448,7 @@ if ($show_report) {
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+                            <h5 class="modal-title" id="addUserModalLabel">ເພີ່ມຜູ້ໃຊ້ໃໝ່</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -456,23 +456,23 @@ if ($show_report) {
                                 <div class="row g-2">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="form-label required">Username</label>
+                                            <label class="form-label required">ຊື່ຜູ້ໃຊ້</label>
                                             <input type="text" name="username" class="form-control"
                                                 placeholder="Enter username" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="form-label required">Password</label>
+                                            <label class="form-label required">ລະຫັດຜ່ານ</label>
                                             <input type="password" name="password" class="form-control"
                                                 placeholder="Enter password" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="form-label required">Role</label>
+                                            <label class="form-label required">ສິດທີ່</label>
                                             <select name="role" class="form-select" required>
-                                                <option value="">Select Role</option>
+                                                <option value="">-- ເລືອດສິດທີ່ --</option>
                                                 <?php foreach ($roles as $role): ?>
                                                     <option value="<?php echo htmlspecialchars($role); ?>">
                                                         <?php echo htmlspecialchars($role); ?>
@@ -483,9 +483,9 @@ if ($show_report) {
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn-cancel" data-bs-dismiss="modal">ຍົກເລີກ</button>
                                     <button type="submit" name="submit_add" class="btn-save"><i
-                                            class="fas fa-save me-2"></i>Save</button>
+                                            class="fas fa-save me-2"></i>ບັນທືນ</button>
                                 </div>
                             </form>
                         </div>
@@ -499,7 +499,7 @@ if ($show_report) {
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+                            <h5 class="modal-title" id="editUserModalLabel">ແກ້ໄຂຜູ້ໃຊ້</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -510,7 +510,7 @@ if ($show_report) {
                                     <div class="row g-2">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label required">Username</label>
+                                                <label class="form-label required">ຊື່ຜູ້ໃຊ້</label>
                                                 <input type="text" name="username" class="form-control"
                                                     value="<?php echo htmlspecialchars($edit_user['username']); ?>"
                                                     placeholder="Enter username" required>
@@ -518,7 +518,7 @@ if ($show_report) {
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label required">Password</label>
+                                                <label class="form-label required">ລະຫັດຜ່ານ</label>
                                                 <input type="password" name="password" class="form-control"
                                                     value="<?php echo htmlspecialchars($edit_user['password']); ?>"
                                                     placeholder="Enter password" required>
@@ -526,7 +526,7 @@ if ($show_report) {
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label required">Role</label>
+                                                <label class="form-label required">ສິດທີ່</label>
                                                 <select name="role" class="form-select" required>
                                                     <option value="">Select Role</option>
                                                     <?php foreach ($roles as $role): ?>
@@ -539,9 +539,9 @@ if ($show_report) {
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">ຍົກເລີກ</button>
                                         <button type="submit" name="submit_edit" class="btn-save"><i
-                                                class="fas fa-save me-2"></i>Update</button>
+                                                class="fas fa-save me-2"></i>ແກ້ໄຂ</button>
                                     </div>
                                 </form>
                             <?php else: ?>
@@ -560,18 +560,18 @@ if ($show_report) {
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deleteUserModalLabel">Confirm Deletion</h5>
+                            <h5 class="modal-title" id="deleteUserModalLabel">ຢືນຢັນການລຶບ</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to delete this user? This action cannot be undone.</p>
+                            <p>ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບຜູ້ໃຊ້ນີ້?.</p>
                         </div>
                         <div class="modal-footer">
                             <form method="post" action="process_user.php">
                                 <input type="hidden" name="user_id" id="delete_user_id">
-                                <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn-cancel" data-bs-dismiss="modal">ຍົກເລີກ</button>
                                 <button type="submit" name="submit_delete" class="btn-delete"><i
-                                        class="fas fa-trash me-2"></i>Delete</button>
+                                        class="fas fa-trash me-2"></i>ລຶບ</button>
                             </form>
                         </div>
                     </div>
