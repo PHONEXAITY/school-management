@@ -165,7 +165,197 @@
 [05-Jun-2025 08:06:26 UTC] Student record already exists
 [05-Jun-2025 08:06:26 UTC] About to send success response...
 [05-Jun-2025 08:06:26 UTC] Sending success response: {"success":true,"message":"\u0e2d\u0e31\u0e1e\u0e40\u0e14\u0e17\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08"}
+
 [05-Jun-2025 10:22:36 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\school-management\includes\sidebar.php:61) in C:\xampp\htdocs\school-management\content\admin_registration_management.php on line 172
 [05-Jun-2025 10:22:39 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\school-management\includes\sidebar.php:61) in C:\xampp\htdocs\school-management\content\admin_registration_management.php on line 172
 [05-Jun-2025 11:09:56 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\school-management\includes\sidebar.php:61) in C:\xampp\htdocs\school-management\content\admin_registration_management.php on line 275
 [05-Jun-2025 11:09:58 Europe/Berlin] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\school-management\includes\sidebar.php:61) in C:\xampp\htdocs\school-management\content\admin_registration_management.php on line 275
+
+[05-Jun-2025 10:05:12 UTC] Connection status - isset: yes, connect_error: none
+[05-Jun-2025 10:05:12 UTC] AJAX Request received. POST data: Array
+(
+    [registration_id] => 19
+    [status] => approved
+    [notes] => 
+    [update_status] => 1
+    [ajax] => 1
+)
+
+[05-Jun-2025 10:05:12 UTC] Processing single status update
+[05-Jun-2025 10:05:12 UTC] Registration ID: 19, Status: 'approved', Notes: '', User ID: 1
+[05-Jun-2025 10:05:13 UTC] Current status: pending -> New status: approved
+[05-Jun-2025 10:05:13 UTC] Update result: success, affected rows: 1
+[05-Jun-2025 10:05:13 UTC] Action logged successfully
+[05-Jun-2025 10:05:13 UTC] Processing approved status - creating student record if needed
+[05-Jun-2025 10:05:13 UTC] Found new student registration data
+[05-Jun-2025 10:05:13 UTC] Using gender value directly: 'Male'
+[05-Jun-2025 10:05:14 UTC] Student record created successfully for registration ID: 19
+[05-Jun-2025 10:05:14 UTC] Marked new_student_registration as processed for registration ID: 19
+[05-Jun-2025 10:05:14 UTC] About to send success response...
+[05-Jun-2025 10:05:14 UTC] Sending success response: {"success":true,"message":"\u0e2d\u0e31\u0e1e\u0e40\u0e14\u0e17\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08"}
+[05-Jun-2025 10:05:23 UTC] Connection status - isset: yes, connect_error: none
+[05-Jun-2025 10:05:23 UTC] AJAX Request received. POST data: Array
+(
+    [registration_id] => 18
+    [status] => approved
+    [notes] => 
+    [update_status] => 1
+    [ajax] => 1
+)
+
+[05-Jun-2025 10:05:23 UTC] Processing single status update
+[05-Jun-2025 10:05:23 UTC] Registration ID: 18, Status: 'approved', Notes: '', User ID: 1
+[05-Jun-2025 10:05:23 UTC] Current status: pending -> New status: approved
+[05-Jun-2025 10:05:23 UTC] Update result: success, affected rows: 1
+[05-Jun-2025 10:05:24 UTC] Action logged successfully
+[05-Jun-2025 10:05:24 UTC] Processing approved status - creating student record if needed
+[05-Jun-2025 10:05:24 UTC] No new student data found or registration type is not 'new'
+[05-Jun-2025 10:05:24 UTC] About to send success response...
+[05-Jun-2025 10:05:24 UTC] Sending success response: {"success":true,"message":"\u0e2d\u0e31\u0e1e\u0e40\u0e14\u0e17\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08"}
+[05-Jun-2025 10:05:31 UTC] Connection status - isset: yes, connect_error: none
+[05-Jun-2025 10:05:31 UTC] AJAX Request received. POST data: Array
+(
+    [registration_id] => 17
+    [status] => pending
+    [notes] => 
+    [update_status] => 1
+    [ajax] => 1
+)
+
+[05-Jun-2025 10:05:31 UTC] Processing single status update
+[05-Jun-2025 10:05:31 UTC] Registration ID: 17, Status: 'pending', Notes: '', User ID: 1
+[05-Jun-2025 10:05:31 UTC] Current status: pending -> New status: pending
+[05-Jun-2025 10:05:31 UTC] Update result: success, affected rows: 1
+[05-Jun-2025 10:05:32 UTC] Action logged successfully
+[05-Jun-2025 10:05:32 UTC] About to send success response...
+[05-Jun-2025 10:05:32 UTC] Sending success response: {"success":true,"message":"\u0e2d\u0e31\u0e1e\u0e40\u0e14\u0e17\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08"}
+[05-Jun-2025 10:05:38 UTC] Connection status - isset: yes, connect_error: none
+[05-Jun-2025 10:05:38 UTC] AJAX Request received. POST data: Array
+(
+    [registration_id] => 17
+    [status] => approved
+    [notes] => 
+    [update_status] => 1
+    [ajax] => 1
+)
+
+[05-Jun-2025 10:05:38 UTC] Processing single status update
+[05-Jun-2025 10:05:38 UTC] Registration ID: 17, Status: 'approved', Notes: '', User ID: 1
+[05-Jun-2025 10:05:39 UTC] Current status: pending -> New status: approved
+[05-Jun-2025 10:05:39 UTC] Update result: success, affected rows: 1
+[05-Jun-2025 10:05:39 UTC] Action logged successfully
+[05-Jun-2025 10:05:39 UTC] Processing approved status - creating student record if needed
+[05-Jun-2025 10:05:39 UTC] No new student data found or registration type is not 'new'
+[05-Jun-2025 10:05:39 UTC] About to send success response...
+[05-Jun-2025 10:05:39 UTC] Sending success response: {"success":true,"message":"\u0e2d\u0e31\u0e1e\u0e40\u0e14\u0e17\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08"}
+[05-Jun-2025 10:11:34 UTC] Connection status - isset: yes, connect_error: none
+[05-Jun-2025 10:11:34 UTC] AJAX Request received. POST data: Array
+(
+    [registration_id] => 20
+    [status] => approved
+    [notes] => 
+    [update_status] => 1
+    [ajax] => 1
+)
+
+[05-Jun-2025 10:11:34 UTC] Processing single status update
+[05-Jun-2025 10:11:34 UTC] Registration ID: 20, Status: 'approved', Notes: '', User ID: 1
+[05-Jun-2025 10:11:35 UTC] Current status: pending -> New status: approved
+[05-Jun-2025 10:11:35 UTC] Update result: success, affected rows: 1
+[05-Jun-2025 10:11:35 UTC] Action logged successfully
+[05-Jun-2025 10:11:35 UTC] Processing approved status - creating student record if needed
+[05-Jun-2025 10:11:35 UTC] No new student data found or registration type is not 'new'
+[05-Jun-2025 10:11:35 UTC] About to send success response...
+[05-Jun-2025 10:11:35 UTC] Sending success response: {"success":true,"message":"\u0e2d\u0e31\u0e1e\u0e40\u0e14\u0e17\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08"}
+[06-Jun-2025 06:15:19 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:19 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:20 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:22 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:22 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:22 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:22 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:22 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:22 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:23 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+[06-Jun-2025 06:15:23 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for ballast.proxy.rlwy.net failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/school-management/config/db.php:10
+Stack trace:
+#0 /Applications/MAMP/htdocs/school-management/config/db.php(10): mysqli->__construct('ballast.proxy.r...', 'root', Object(SensitiveParameterValue), 'railway', 19297)
+#1 /Applications/MAMP/htdocs/school-management/admin_registration_management.php(15): include('/Applications/M...')
+#2 {main}
+  thrown in /Applications/MAMP/htdocs/school-management/config/db.php on line 10
+

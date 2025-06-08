@@ -17,12 +17,28 @@ class ComponentRenderer {
                         </div>
 
                         <div class="hidden md:flex space-x-6">
-                            <a href="#" onclick="showPage('home')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ໜ້າຫຼັກ</a>
-                            <a href="#" onclick="showPage('register')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ລົງທະບຽນ</a>
-                            <a href="#" onclick="showPage('scores')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ເບິ່ງຄະແນນ</a>
-                            <a href="#" onclick="showPage('activities')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ກິດຈະກຳ</a>
-                            <a href="#" onclick="showPage('gallery')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ຮູບພາບກິດຈະກຳ</a>
-                            <a href="#" onclick="showPage('about')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">ກ່ຽວກັບພວກເຮົາ</a>
+                            <a href="#" onclick="showPage('home')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-home mr-1"></i>ໜ້າຫຼັກ
+                            </a>
+                            <a href="#" onclick="showPage('register')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-user-plus mr-1"></i>ລົງທະບຽນ
+                            </a>
+                            <a href="check_registration.html" class="nav-link bg-gradient-to-r from-green-500 to-blue-500 text-white px-3 py-2 rounded-full hover:from-green-600 hover:to-blue-600 transition-all transform hover:scale-105 font-medium shadow-md relative">
+                                <i class="fas fa-search mr-1"></i>ກວດສອບສະຖານະ
+                                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">!</span>
+                            </a>
+                            <a href="#" onclick="showPage('scores')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-chart-line mr-1"></i>ເບິ່ງຄະແນນ
+                            </a>
+                            <a href="#" onclick="showPage('activities')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-calendar-alt mr-1"></i>ກິດຈະກຳ
+                            </a>
+                            <a href="#" onclick="showPage('gallery')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-images mr-1"></i>ຮູບພາບກິດຈະກຳ
+                            </a>
+                            <a href="#" onclick="showPage('about')" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-info-circle mr-1"></i>ກ່ຽວກັບພວກເຮົາ
+                            </a>
                         </div>
 
                         <button class="md:hidden" onclick="toggleMobileMenu()">
@@ -31,12 +47,28 @@ class ComponentRenderer {
                     </div>
 
                     <div id="mobileMenu" class="hidden md:hidden pb-4">
-                        <a href="#" onclick="showPage('home')" class="block py-2 text-gray-700 hover:text-blue-600">ໜ້າຫຼັກ</a>
-                        <a href="#" onclick="showPage('register')" class="block py-2 text-gray-700 hover:text-blue-600">ລົງທະບຽນ</a>
-                        <a href="#" onclick="showPage('scores')" class="block py-2 text-gray-700 hover:text-blue-600">ເບິ່ງຄະແນນ</a>
-                        <a href="#" onclick="showPage('activities')" class="block py-2 text-gray-700 hover:text-blue-600">ກິດຈະກຳ</a>
-                        <a href="#" onclick="showPage('gallery')" class="block py-2 text-gray-700 hover:text-blue-600">ຮູບພາບກິດຈະກຳ</a>
-                        <a href="#" onclick="showPage('about')" class="block py-2 text-gray-700 hover:text-blue-600">ກ່ຽວກັບພວກເຮົາ</a>
+                        <a href="#" onclick="showPage('home')" class="block py-2 text-gray-700 hover:text-blue-600 border-b border-gray-100">
+                            <i class="fas fa-home mr-2"></i>ໜ້າຫຼັກ
+                        </a>
+                        <a href="#" onclick="showPage('register')" class="block py-2 text-gray-700 hover:text-blue-600 border-b border-gray-100">
+                            <i class="fas fa-user-plus mr-2"></i>ລົງທະບຽນ
+                        </a>
+                        <a href="check_registration.html" class="block py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-lg mt-2 mb-2 font-medium shadow-md hover:from-green-600 hover:to-blue-600 transition-all pl-4 relative">
+                            <i class="fas fa-search mr-2"></i>ກວດສອບສະຖານະການລົງທະບຽນ
+                            <span class="absolute top-1 right-3 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">!</span>
+                        </a>
+                        <a href="#" onclick="showPage('scores')" class="block py-2 text-gray-700 hover:text-blue-600 border-b border-gray-100">
+                            <i class="fas fa-chart-line mr-2"></i>ເບິ່ງຄະແນນ
+                        </a>
+                        <a href="#" onclick="showPage('activities')" class="block py-2 text-gray-700 hover:text-blue-600 border-b border-gray-100">
+                            <i class="fas fa-calendar-alt mr-2"></i>ກິດຈະກຳ
+                        </a>
+                        <a href="#" onclick="showPage('gallery')" class="block py-2 text-gray-700 hover:text-blue-600 border-b border-gray-100">
+                            <i class="fas fa-images mr-2"></i>ຮູບພາບກິດຈະກຳ
+                        </a>
+                        <a href="#" onclick="showPage('about')" class="block py-2 text-gray-700 hover:text-blue-600">
+                            <i class="fas fa-info-circle mr-2"></i>ກ່ຽວກັບພວກເຮົາ
+                        </a>
                     </div>
                 </div>
             </nav>
@@ -162,7 +194,7 @@ class ComponentRenderer {
                         <p class="text-xl text-gray-600">ລະບົບການຈັດການທີ່ເຮັດໃຫ້ການສຶກສາງ່າຍຂຶ້ນ</p>
                     </div>
 
-                    <div class="grid md:grid-cols-3 gap-8">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl card-hover cursor-pointer" onclick="showPage('register')">
                             <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mb-6">
                                 <i class="fas fa-user-graduate text-white text-2xl"></i>
@@ -171,6 +203,18 @@ class ComponentRenderer {
                             <p class="text-gray-600 mb-6">ລະບົບລົງທະບຽນອອນລາຍທີ່ສະດວກ, ວ່ອງໄວ ແລະ ປອດໄພ</p>
                             <div class="flex items-center text-blue-600 font-semibold">
                                 <span>ເລີ່ມລົງທະບຽນ</span>
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-8 rounded-2xl card-hover cursor-pointer" onclick="location.href='check_registration.html'">
+                            <div class="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-search text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">ກວດສອບສະຖານະ</h3>
+                            <p class="text-gray-600 mb-6">ກວດສອບສະຖານະການລົງທະບຽນ ແລະ ການຈ່າຍເງິນໄດ້ຢ່າງງ່າຍດາຍ</p>
+                            <div class="flex items-center text-amber-600 font-semibold">
+                                <span>ກວດສອບດຽວນີ້</span>
                                 <i class="fas fa-arrow-right ml-2"></i>
                             </div>
                         </div>
