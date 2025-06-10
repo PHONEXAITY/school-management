@@ -10,7 +10,8 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item <?php echo ($activePage == 'dashboard') ? 'active' : ''; ?>">
-        <a class="nav-link" href="index<?php echo ($_SESSION['role'] == 'Teacher') ? '_teacher' : ''; ?>.php">
+        <a class="nav-link"
+            href="index<?php echo ($_SESSION['role'] == 'Teacher') ? '_teacher' : ($_SESSION['role'] == 'Manager' ? '_manager' : ''); ?>.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>ໜ້າຫຼັກ</span></a>
     </li>
@@ -23,7 +24,7 @@
         ຈັດການຂໍ້ມູນ
     </div>
 
-    <?php if ($_SESSION['role'] == 'Admin'): ?>
+    <?php if (in_array($_SESSION['role'], ['Admin', 'Manager'])): ?>
         <!-- Nav Item - Students Collapse Menu -->
         <li class="nav-item <?php echo (strpos($activePage, 'student') !== false) ? 'active' : ''; ?>">
             <a class="nav-link <?php echo (strpos($activePage, 'student') !== false) ? '' : 'collapsed'; ?>" href="#"
@@ -43,7 +44,9 @@
                 </div>
             </div>
         </li>
+    <?php endif; ?>
 
+    <?php if ($_SESSION['role'] == 'Admin'): ?>
         <!-- Nav Item - Teachers Collapse Menu -->
         <li class="nav-item <?php echo (strpos($activePage, 'teacher') !== false) ? 'active' : ''; ?>">
             <a class="nav-link <?php echo (strpos($activePage, 'teacher') !== false) ? '' : 'collapsed'; ?>" href="#"
@@ -63,7 +66,9 @@
                 </div>
             </div>
         </li>
+    <?php endif; ?>
 
+    <?php if (in_array($_SESSION['role'], ['Admin', 'Manager'])): ?>
         <!-- Nav Item - Classes Collapse Menu -->
         <li
             class="nav-item <?php echo in_array($activePage, ['levels', 'classes', 'subjects', 'terms', 'years']) ? 'active' : ''; ?>">
@@ -95,28 +100,30 @@
     <?php endif; ?>
 
     <!-- Nav Item - Scores Collapse Menu -->
-    <li class="nav-item <?php echo (strpos($activePage, 'scores') !== false) ? 'active' : ''; ?>">
-        <a class="nav-link <?php echo (strpos($activePage, 'scores') !== false) ? '' : 'collapsed'; ?>" href="#"
-            data-toggle="collapse" data-target="#collapseAttendance"
-            aria-expanded="<?php echo (strpos($activePage, 'scores') !== false) ? 'true' : 'false'; ?>"
-            aria-controls="collapseAttendance">
-            <i class="fas fa-fw fa-calendar-check"></i>
-            <span>ຂໍ້ມູນຄະແນນ</span>
-        </a>
-        <div id="collapseAttendance"
-            class="collapse <?php echo (strpos($activePage, 'scores') !== false) ? 'show' : ''; ?>"
-            aria-labelledby="headingAttendance" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">ຈັດການຂໍ້ມູນຄະແນນ:</h6>
-                <a class="collapse-item <?php echo ($activePage == 'scores') ? 'active' : ''; ?>"
-                    href="scores.php">ປ້ອນຄະແນນ</a>
-                <a class="collapse-item <?php echo ($activePage == 'view_scores') ? 'active' : ''; ?>"
-                    href="view_scores.php">ເບິ່ງຄະແນນ</a>
-                <a class="collapse-item <?php echo ($activePage == 'scores_report') ? 'active' : ''; ?>"
-                    href="score_report.php">ລາຍງານຂໍ້ມູນຄະແນນ</a>
+    <?php if (in_array($_SESSION['role'], ['Admin', 'Manager', 'Teacher'])): ?>
+        <li class="nav-item <?php echo (strpos($activePage, 'scores') !== false) ? 'active' : ''; ?>">
+            <a class="nav-link <?php echo (strpos($activePage, 'scores') !== false) ? '' : 'collapsed'; ?>" href="#"
+                data-toggle="collapse" data-target="#collapseAttendance"
+                aria-expanded="<?php echo (strpos($activePage, 'scores') !== false) ? 'true' : 'false'; ?>"
+                aria-controls="collapseAttendance">
+                <i class="fas fa-fw fa-calendar-check"></i>
+                <span>ຂໍ້ມູນຄະແນນ</span>
+            </a>
+            <div id="collapseAttendance"
+                class="collapse <?php echo (strpos($activePage, 'scores') !== false) ? 'show' : ''; ?>"
+                aria-labelledby="headingAttendance" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">ຈັດການຂໍ້ມູນຄະແນນ:</h6>
+                    <a class="collapse-item <?php echo ($activePage == 'scores') ? 'active' : ''; ?>"
+                        href="scores.php">ປ້ອນຄະແນນ</a>
+                    <a class="collapse-item <?php echo ($activePage == 'view_scores') ? 'active' : ''; ?>"
+                        href="view_scores.php">ເບິ່ງຄະແນນ</a>
+                    <a class="collapse-item <?php echo ($activePage == 'scores_report') ? 'active' : ''; ?>"
+                        href="score_report.php">ລາຍງານຂໍ້ມູນຄະແນນ</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
+    <?php endif; ?>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -126,7 +133,7 @@
         ລົງທະບຽນ ແລະ ຜູ້ໃຊ້ລະບົບ
     </div>
 
-    <?php if ($_SESSION['role'] == 'Admin'): ?>
+    <?php if (in_array($_SESSION['role'], ['Admin', 'Manager'])): ?>
         <!-- Nav Item - Registration Management Collapse Menu -->
         <li class="nav-item <?php echo (strpos($activePage, 'registration') !== false) ? 'active' : ''; ?>">
             <a class="nav-link <?php echo (strpos($activePage, 'registration') !== false) ? '' : 'collapsed'; ?>" href="#"
@@ -172,7 +179,9 @@
                 </div>
             </div>
         </li>
+    <?php endif; ?>
 
+    <?php if ($_SESSION['role'] == 'Admin'): ?>
         <!-- Nav Item - Users Collapse Menu -->
         <li class="nav-item <?php echo (strpos($activePage, 'user') !== false) ? 'active' : ''; ?>">
             <a class="nav-link <?php echo (strpos($activePage, 'user') !== false) ? '' : 'collapsed'; ?>" href="#"

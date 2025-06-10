@@ -9,6 +9,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         header("Location: index.php");
     } elseif ($_SESSION['role'] === 'Teacher') {
         header("Location: index_teacher.php");
+    } elseif ($_SESSION['role'] === 'Manager') {
+        header("Location: index_manager.php");
     }
     exit;
 }
@@ -41,6 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: index.php");
         } elseif ($role == 'Teacher') {
             header("Location: index_teacher.php");
+        } elseif ($role == 'Manager') {
+            header("Location: index_manager.php");
         }
         exit;
     } else {

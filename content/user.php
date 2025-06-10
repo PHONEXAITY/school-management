@@ -14,7 +14,7 @@ if ($show_report && isset($_POST['save_pdf']) && $_POST['save_pdf'] == '1') {
 }
 
 // Define the fixed roles
-$roles = ['Admin', 'Teacher'];
+$roles = ['Admin', 'Teacher', 'Manager'];
 
 // Report View: Fetch users with role filter
 if ($show_report) {
