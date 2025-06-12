@@ -497,7 +497,7 @@ function getScoresPageContent() {
   return `
         <section class="py-20 bg-gradient-to-br from-green-50 to-blue-50 min-h-screen">
             <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto">
+                <div class="max-w-5xl mx-auto">
                     <div class="text-center mb-12">
                         <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">ກວດສອບຄະແນນ</h2>
                         <p class="text-xl text-gray-600">ປ້ອນລະຫັດນັກຮຽນເພື່ອເບິ່ງຜົນການຮຽນ</p>
@@ -507,39 +507,83 @@ function getScoresPageContent() {
                         <!-- Search Section -->
                         <div class="mb-8">
                             <div class="max-w-md mx-auto">
-                                <label class="block text-lg font-semibold text-gray-700 mb-4 text-center">ລະຫັດນັກຮຽນ</label>
-                                <div class="flex gap-3">
-                                    <input type="text" id="scoreStudentId" class="flex-1 px-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent text-center text-lg" placeholder="ປ້ອນລະຫັດນັກຮຽນ">
-                                    <button onclick="searchScores()" class="bg-green-600 text-white px-6 py-4 rounded-xl font-semibold hover:bg-green-700 transition-colors">
-                                        <i class="fas fa-search"></i>
-                                    </button>
+                                <div class="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-2xl mb-6">
+                                    <label class="block text-lg font-semibold text-gray-700 mb-4 text-center">
+                                        <i class="fas fa-search text-green-500 mr-2"></i>ຄົ້ນຫາຂໍ້ມູນຄະແນນ
+                                    </label>
+                                    <div class="flex gap-3">
+                                        <input type="text" id="scoreStudentId" 
+                                            class="flex-1 px-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent text-center text-lg" 
+                                            placeholder="ປ້ອນລະຫັດນັກຮຽນ">
+                                        <button onclick="searchScores()" 
+                                            class="bg-gradient-to-r from-green-500 to-blue-500 text-white px-6 py-4 rounded-xl font-semibold hover:from-green-600 hover:to-blue-600 transition-all transform hover:scale-105">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Score Results -->
                         <div id="scoreResults" class="hidden">
-                            <div class="mb-6 p-6 bg-blue-50 rounded-2xl">
-                                <h3 class="text-xl font-bold text-blue-800 mb-4">
-                                    <i class="fas fa-user mr-2"></i>ຂໍ້ມູນນັກຮຽນ
-                                </h3>
-                                <div id="scoreStudentInfo" class="grid md:grid-cols-3 gap-4 text-gray-700"></div>
+                            <!-- Student Info Card -->
+                            <div class="mb-8">
+                                <div id="scoreStudentInfo" class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6"></div>
                             </div>
 
-                            <div class="space-y-6">
-                                <h3 class="text-2xl font-bold text-gray-800 text-center">
-                                    <i class="fas fa-chart-line mr-2 text-green-600"></i>ຜົນການຮຽນ
-                                </h3>
+                            <!-- Statistics Cards -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-white p-6 rounded-xl shadow-md border border-blue-100">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h5 class="text-gray-500 text-sm">ຄະແນນສະເລ່ຍ</h5>
+                                            <p class="text-2xl font-bold text-blue-600" id="avgScore">0</p>
+                                        </div>
+                                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-calculator text-blue-500"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-6 rounded-xl shadow-md border border-green-100">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h5 class="text-gray-500 text-sm">ຄະແນນສູງສຸດ</h5>
+                                            <p class="text-2xl font-bold text-green-600" id="highestScore">0</p>
+                                        </div>
+                                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-trophy text-green-500"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-6 rounded-xl shadow-md border border-purple-100">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h5 class="text-gray-500 text-sm">ຈຳນວນວິຊາ</h5>
+                                            <p class="text-2xl font-bold text-purple-600" id="totalSubjects">0</p>
+                                        </div>
+                                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-book text-purple-500"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <!-- Score Tables -->
+                            <div class="space-y-8">
+                                <h3 class="text-2xl font-bold text-gray-800 text-center mb-6">
+                                    <i class="fas fa-chart-line text-green-600 mr-2"></i>ຜົນການຮຽນ
+                                </h3>
                                 <div id="scoreTable" class="overflow-x-auto"></div>
                             </div>
                         </div>
 
                         <!-- No Results -->
                         <div id="noScoreResults" class="hidden text-center py-12">
-                            <i class="fas fa-search text-6xl text-gray-400 mb-4"></i>
-                            <h3 class="text-2xl font-bold text-gray-600 mb-2">ບໍ່ພົບຂໍ້ມູນ</h3>
-                            <p class="text-gray-500">ກະລຸນາກວດສອບລະຫັດນັກຮຽນ ແລະ ລອງໃໝ່ອີກຄັ້ງ</p>
+                            <div class="bg-gray-50 rounded-2xl p-8">
+                                <i class="fas fa-search text-6xl text-gray-400 mb-4"></i>
+                                <h3 class="text-2xl font-bold text-gray-600 mb-2">ບໍ່ພົບຂໍ້ມູນ</h3>
+                                <p class="text-gray-500">ກະລຸນາກວດສອບລະຫັດນັກຮຽນ ແລະ ລອງໃໝ່ອີກຄັ້ງ</p>
+                            </div>
                         </div>
                     </div>
                 </div>
